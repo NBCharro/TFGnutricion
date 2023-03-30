@@ -1,5 +1,4 @@
 'use sctrict'
-import obtenerTodosDatos from './funcionesGET/todosDatos.js';
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -13,28 +12,51 @@ app.use(bodyParser.json());
 }) */
 
 /* GET */
-app.get('/api/product', (req, res) => {
-    const datos = obtenerTodosDatos();
+app.get('/api/v1/products', (req, res) => {
+    const funcion = require('./funciones/peticionesGET');
+    const datos = funcion.obtenerTodosDatos();
     res.status(200).send(datos);
 })
 
-app.get('/api/product/:productId', (req, res) => {
+app.get('/api/v1/products/lista', (req, res) => {
+    const funcion = require('./funciones/peticionesGET');
+    const productos = funcion.listaProductos();
+    res.status(200).send(productos);
+})
 
+app.get('/api/v1/products/:productId', (req, res) => {
+    const funcion = require('./funciones/peticionesGET');
+    const datos = funcion.obtenerDatosPorID(req.params.productId);
+    if (datos) {
+        res.status(200).send(datos);
+    } else {
+        res.status(404).send({ message: "No encontrado" });
+    }
+})
+
+app.get('/api/v1/products/mayor/:caracteristica', (req, res) => {
+    const funcion = require('./funciones/peticionesGET');
+    const datos = funcion.obtenerMayor(req.params.caracteristica);
+    if (datos) {
+        res.status(200).send(datos);
+    } else {
+        res.status(404).send({ message: "No encontrado" });
+    }
 })
 
 /* POST */
-app.post('/api/product', (req, res) => {
+app.post('/api/v1/products', (req, res) => {
     console.log(req.body);
     res.status(200).send({ message: 'El producto se ha recibido' });
 })
 
 /* PUT */
-app.put('api/product/:productId', (req, res) => {
+app.put('api/v1/product/:productId', (req, res) => {
 
 })
 
 /* DELETE */
-app.delete('api/product/:productId', (req, res) => {
+app.delete('api/v1/product/:productId', (req, res) => {
 
 })
 
