@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('id_cliente');
             $table->string('nombre');
             $table->string('apellidos');
+            $table->string('telefono');
+            $table->string('email');
+            $table->string('direccion');
             $table->string('fecha_inicio');
             $table->double('peso_inicial');
             $table->double('peso_final_1');
