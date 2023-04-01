@@ -1,0 +1,90 @@
+[
+    {
+        "Nombre": "Formulario de contacto",
+        "Descripcion": "Contacto con personas no clientes",
+        "Nombre tabla": "contactos_externos",
+        "Campos": {
+            "nombre": "VARCHAR",
+            "telefono": "VARCHAR",
+            "email": "VARCHAR",
+            "fecha": "VARCHAR",
+            "mensaje": "TEXT"
+        }
+    },
+    {
+        "Nombre": "Formulario de contacto interno",
+        "Descripcion": "Contacto con clientes",
+        "Nombre tabla": "contactos_internos",
+        "Campos": {
+            "id_cliente": "VARCHAR",
+            "fecha": "VARCHAR",
+            "mensaje": "TEXT"
+        }
+    },
+    {
+        "Nombre": "Formulario de datos",
+        "Descripcion": "Respuestas de las preguntas de los nuevos clientes",
+        "Nombre tabla": "datos_iniciales_clientes",
+        "Campos": {
+            "id_cliente": "VARCHAR",
+            "fecha": "VARCHAR",
+            "pregunta_respuesta": "JSON"
+        }
+    },
+    {
+        "Nombre": "Datos clientes",
+        "Descripcion": "Datos de los clientes",
+        "Nombre tabla": "clientes",
+        "Campos": {
+            "id_cliente": "VARCHAR",
+            "nombre": "VARCHAR",
+            "apellidos": "VARCHAR",
+            "fecha_inicio": "VARCHAR",
+            "peso_inicial": "DOUBLE",
+            "peso_final_1": "DOUBLE",
+            "peso_final_2": "DOUBLE"
+        }
+    },
+    {
+        "Nombre": "Pesos",
+        "Descripcion": "Pesos de los clientes",
+        "Nombre tabla": "pesos",
+        "Campos": {
+            "id_cliente": "VARCHAR",
+            "fecha": "VARCHAR",
+            "peso": "DOUBLE",
+            "nota_pasos": "DOUBLE"
+        }
+    },
+    {
+        "Nombre": "Platos clientes",
+        "Descripcion": "Comidas de los clientes",
+        "Nombre tabla": "platos",
+        "Campos": {
+            "id_cliente": "VARCHAR",
+            "accion": "ENUM ('desayuno','media manaña','comida','medienda','cena','recena','otro')",
+            "platos": "JSON"
+        }
+    },
+    {
+        "Nombre": "Texto inicial",
+        "Descripcion": "Texto caracteristico de cada dieta",
+        "Nombre tabla": "textos_clientes",
+        "Campos": {
+            "id_cliente": "VARCHAR",
+            "texto_general": "TEXT",
+            "texto_especifico": "TEXT"
+        }
+    },
+    {
+        "Nombre": "Login",
+        "Descripcion": "Usuarios de la plataforma",
+        "Nombre tabla": "users",
+        "Campos": {
+            "name": "VARCHAR",
+            "email": "VARCHAR",
+            "password": "VARCHAR",
+            "role": "ENUM ('nutricionista','administrador')"
+        }
+    }
+]
