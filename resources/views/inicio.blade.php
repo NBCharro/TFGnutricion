@@ -7,4 +7,5 @@
     @include('components.inicio.testimonios')
     @include('components.inicio.sobreMi')
     @include('components.inicio.precios')
+    @include('components.inicio.contactoExterno')
 @endsection

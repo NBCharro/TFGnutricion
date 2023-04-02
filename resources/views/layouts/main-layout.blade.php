@@ -12,7 +12,9 @@
     <title>@yield('page-title')</title>
 </head>
 
-<body>
+{{-- <body> --}}
+
+<body class="dark">
     <div class="bg-primary dark:bg-tertiary-700 md:flex md:flex-col md:h-screen">
         @include('components.header')
         <div class="flex-grow">

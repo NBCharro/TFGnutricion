@@ -1,4 +1,4 @@
- <section class="bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
+ <section class="bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed pb-1">
      <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12 pt-12">
          <h2 class="mb-4 text-4xl tracking-tight font-extrabold dark:text-white">Testimonios</h2>
      </div>

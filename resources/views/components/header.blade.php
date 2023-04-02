@@ -1,4 +1,4 @@
-<header>
+<header class="sticky z-50 top-0">
     <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-tertiary-700">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="https://flowbite.com" class="flex items-center">
@@ -39,7 +39,7 @@
                             dark:{{ Route::is('inicio') ? 'text-white' : 'text-gray-400' }}
                             lg:bg-transparent"
                             aria-current="page">
-                            Home
+                            Inicio
                         </a>
                     </li>
                     <li>
