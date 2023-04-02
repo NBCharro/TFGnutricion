@@ -2,6 +2,7 @@
 @section('page-title', 'Nutricionista')
 @section('content-area')
     @include('components.inicio.hero')
+    @include('components.inicio.servicios')
     @include('components.inicio.frase')
     @include('components.inicio.precios')
 @endsection
