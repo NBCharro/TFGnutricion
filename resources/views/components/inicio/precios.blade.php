@@ -10,17 +10,17 @@
             <div
                 class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow
                 border-gray-100 bg-primary-500 text-white
-                dark:border-gray-600 xl:p-8 dark:bg-gray-800">
+                dark:border-gray-600 xl:p-8 dark:bg-gray-900">
                 <h3 class="mb-4 text-2xl font-semibold">Dieta</h3>
                 <div class="flex justify-center items-baseline my-8">
                     <span class="mr-2 text-5xl font-extrabold">180 €</span>
-                    <span class="font-light italic dark:text-gray-400">/pago único</span>
+                    <span class="font-light italic dark:text-tertiary-100">/pago único</span>
                 </div>
                 <!-- List -->
                 <ul role="list" class="mb-8 space-y-4 text-left">
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -30,7 +30,7 @@
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -40,7 +40,7 @@
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -50,7 +50,7 @@
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -60,7 +60,7 @@
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -74,20 +74,20 @@
             <div
                 class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow
                 border-gray-100 bg-primary-600 text-white
-                dark:border-gray-600 xl:p-8 dark:bg-gray-800">
+                dark:border-gray-600 xl:p-8 dark:bg-gray-900">
                 <h3 class="mb-4 text-2xl font-semibold">Dieta especial</h3>
-                <p class="font-light italic sm:text-lg dark:text-gray-400">Zonas rurales de máximo 5.000
+                <p class="font-light italic sm:text-lg dark:text-tertiary-100">Zonas rurales de máximo 5.000
                     habitantes</p>
                 <div class="flex justify-center items-baseline my-8">
                     <span class="mr-2 text-5xl font-extrabold">150 €</span>
-                    <span class="font-light italic dark:text-gray-400" dark:text-gray-400>/pago
+                    <span class="font-light italic dark:text-tertiary-100">/pago
                         único</span>
                 </div>
                 <!-- List -->
                 <ul role="list" class="mb-8 space-y-4 text-left">
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -97,7 +97,7 @@
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -107,7 +107,7 @@
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -117,7 +117,7 @@
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -127,7 +127,7 @@
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -141,17 +141,17 @@
             <div
                 class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow
                 border-gray-100 bg-primary-500 text-white
-                dark:border-gray-600 xl:p-8 dark:bg-gray-800">
+                dark:border-gray-600 xl:p-8 dark:bg-gray-900">
                 <h3 class="mb-4 text-2xl font-semibold">Seguimiento</h3>
                 <div class="flex justify-center items-baseline my-8">
                     <span class="mr-2 text-5xl font-extrabold">30 €</span>
-                    <span class="font-light italic dark:text-gray-400">/mes</span>
+                    <span class="font-light italic dark:text-tertiary-100">/mes</span>
                 </div>
                 <!-- List -->
                 <ul role="list" class="mb-8 space-y-4 text-left">
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -161,7 +161,7 @@
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -171,7 +171,7 @@
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-green-400" fill="currentColor"
+                        <svg class="flex-shrink-0 w-5 h-5 text-white dark:text-tertiary-100" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
