@@ -1,6 +1,3 @@
-@extends ('layouts.main-layout')
-@section('page-title', 'Pagina de pruebas')
-@section('content-area')
     <section class="relative bg-[url('/public/images/inicio/sobreMi.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
         <div
             class="absolute inset-0
@@ -19,17 +16,18 @@
                     No solo uno tiene que adaptarse a la dieta, si no que la dieta debe adaptarse a uno mismo también.
                 </p>
                 <p class="mb-4 font-light md:text-lg lg:text-xl">
-                    Lo que me mueve es que aprendas a comer de otra manera más saludable y nunca más tengas que depende de
+                    Lo que me mueve es que aprendas a comer de otra manera más saludable y nunca más tengas que depende
+                    de
                     hacer dieta porque sepas mantener ese peso.
                 </p>
                 <p class="font-light md:text-lg lg:text-xl">
-                    Al iniciar una dieta conmigo pido compromiso de que vas a seguirla hasta el peso que tú definas. No hago
+                    Al iniciar una dieta conmigo pido compromiso de que vas a seguirla hasta el peso que tú definas. No
+                    hago
                     dietas si no hay dicho compromiso
                 </p>
             </div>
             <div class="p-5">
-                <img src="/images/inicio/imagenYo.jpg" alt="mockup" class="rounded-bl-full">
+                <img src="/images/inicio/imagenYo.jpg" alt="mockup" class="rounded-bl-full ring ring-tertiary-100">
             </div>
         </div>
     </section>
-@endsection

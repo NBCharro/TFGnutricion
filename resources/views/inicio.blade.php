@@ -5,6 +5,6 @@
     @include('components.inicio.servicios')
     @include('components.inicio.frase')
     @include('components.inicio.testimonios')
-    @include('components.inicio.hero')
+    @include('components.inicio.sobreMi')
     @include('components.inicio.precios')
 @endsection

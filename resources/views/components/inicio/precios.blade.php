@@ -10,7 +10,7 @@
             <div
                 class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow
                 border-gray-100 bg-primary-500 text-white
-                dark:border-gray-600 xl:p-8 dark:bg-gray-900">
+                dark:border-gray-600 xl:p-8 dark:bg-gray-900 ring ring-tertiary-100">
                 <h3 class="mb-4 text-2xl font-semibold">Dieta</h3>
                 <div class="flex justify-center items-baseline my-8">
                     <span class="mr-2 text-5xl font-extrabold">180 €</span>
@@ -74,7 +74,7 @@
             <div
                 class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow
                 border-gray-100 bg-primary-600 text-white
-                dark:border-gray-600 xl:p-8 dark:bg-gray-900">
+                dark:border-gray-600 xl:p-8 dark:bg-gray-900 ring ring-tertiary-100">
                 <h3 class="mb-4 text-2xl font-semibold">Dieta especial</h3>
                 <p class="font-light italic sm:text-lg dark:text-tertiary-100">Zonas rurales de máximo 5.000
                     habitantes</p>
@@ -141,7 +141,7 @@
             <div
                 class="flex flex-col p-6 mx-auto max-w-lg text-center rounded-lg border shadow
                 border-gray-100 bg-primary-500 text-white
-                dark:border-gray-600 xl:p-8 dark:bg-gray-900">
+                dark:border-gray-600 xl:p-8 dark:bg-gray-900 ring ring-tertiary-100">
                 <h3 class="mb-4 text-2xl font-semibold">Seguimiento</h3>
                 <div class="flex justify-center items-baseline my-8">
                     <span class="mr-2 text-5xl font-extrabold">30 €</span>
