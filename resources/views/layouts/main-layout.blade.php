@@ -12,9 +12,7 @@
     <title>@yield('page-title')</title>
 </head>
 
-{{-- <body> --}}
-
-<body class="dark">
+<body>
     <div class="bg-primary dark:bg-tertiary-700 md:flex md:flex-col md:h-screen">
         @include('components.header')
         <div class="flex-grow">
@@ -23,5 +21,18 @@
         @include('components.footer')
     </div>
 </body>
+<script>
+    botonModoNoche = document.getElementById("botonModoNoche")
+    botonModoNoche.addEventListener("click", function(event) {
+        event.preventDefault();
+        document.body.classList.toggle("dark");
+    });
+    botonNavBar = document.getElementById("botonNavBar")
+    burgerNavBar = document.getElementById("burgerNavBar")
+    botonNavBar.addEventListener("click", function(event) {
+        event.preventDefault();
+        burgerNavBar.classList.toggle("hidden");
+    });
+</script>
 
 </html>

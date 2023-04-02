@@ -11,4 +11,9 @@ class MainController extends Controller
         // return view('welcome');
         return view('inicio');
     }
+    public function midieta()
+    {
+        return view('welcome');
+        // return view('midieta');
+    }
 }
