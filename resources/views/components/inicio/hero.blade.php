@@ -1,4 +1,4 @@
-<section class="relative bg-[url('/public/images/fondoHero.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+<section class="relative bg-[url('/public/images/inicio/fondoHero.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
     <div
         class="absolute inset-0
         bg-transparent bg-gradient-to-r from-primary-700/80 to-primary-900/60

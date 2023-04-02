@@ -1,6 +1,3 @@
-@extends ('layouts.main-layout')
-@section('page-title', 'Pagina de pruebas')
-@section('content-area')
     <section
         class="relative bg-[url('/public/images/inicio/frase.jpg')] bg-cover bg-center bg-no-repeat bg-fixed text-white">
         <div
@@ -23,4 +20,3 @@
             </figure>
         </div>
     </section>
-@endsection
