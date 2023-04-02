@@ -26,7 +26,7 @@ return new class extends Migration
                     "otro"
                 ]
             );
-            $table->string('platos');
+            $table->json('platos');
             $table->timestamps();
         });
     }

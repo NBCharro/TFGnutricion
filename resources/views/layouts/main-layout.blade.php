@@ -12,8 +12,10 @@
     <title>@yield('page-title')</title>
 </head>
 
-<body class="dark">
-    <div class="bg-white dark:bg-gray-800 flex flex-col h-screen">
+<body>
+
+    {{-- <body class="dark"> --}}
+    <div class="bg-primary dark:bg-tertiary-700 flex flex-col h-screen">
         @include('components.header')
         <div class="flex-grow">
             @yield('content-area')
