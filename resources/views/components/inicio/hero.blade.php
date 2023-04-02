@@ -11,8 +11,10 @@
                 Isaac Newton
             </h1>
             <p class="mt-4 max-w-lg sm:text-xl sm:leading-relaxed text-white">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo
-                tenetur fuga ducimus numquam ea!
+                Las <strong>dietas para adelgazar</strong> que no están personalizadas y supervisadas pueden conllevar
+                graves carencias
+                nutricionales o en el mejor de los casos provocar un efecto rebote. Una misma dieta no puede servir para
+                todo el mundo.
             </p>
 
             <div class="mt-8 flex flex-wrap gap-4 text-center">

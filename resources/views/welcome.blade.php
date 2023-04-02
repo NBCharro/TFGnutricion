@@ -1,30 +1,30 @@
 @extends ('layouts.main-layout')
 @section('page-title', 'Pagina de pruebas')
 @section('content-area')
-    <section class="relative bg-[url('/public/images/fondoHero.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
-        <div
-            class="absolute inset-0
-        bg-transparent bg-gradient-to-r from-primary-700/80 to-primary-900/60
-        dark:bg-tertiary-700/5 dark:from-tertiary-700 dark:to-tertiary-700/5">
-        </div>
-
-        <div class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
-            <div class="max-w-xl text-center sm:text-left">
-                <h1 class="text-3xl font-extrabold sm:text-5xl font-handwriting text-white">
-                    Isaac Newton
-                </h1>
-                <p class="mt-4 max-w-lg sm:text-xl sm:leading-relaxed text-white">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo
-                    tenetur fuga ducimus numquam ea!
-                </p>
-
-                <div class="mt-8 flex flex-wrap gap-4 text-center">
-                    <a href="#"
-                        class="block w-full rounded bg-primary-500 px-12 py-3 text-white shadow hover:bg-primary-300 hover:text-secondary-600 focus:outline-none focus:ring active:bg-primary-500 sm:w-auto hover:ring-4 ring-secondary-600">
-                        Saber más
-                    </a>
-                </div>
-            </div>
+    <section class=" bg-[url('/public/images/fondoHero.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+        <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
+            <figure class="max-w-screen-md mx-auto">
+                <svg class="h-12 mx-auto mb-3 text-gray-400 dark:text-gray-600" viewBox="0 0 24 27" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z"
+                        fill="currentColor" />
+                </svg>
+                <blockquote>
+                    <p class="text-2xl font-medium text-gray-900 dark:text-white">"Flowbite is just awesome. It contains tons
+                        of predesigned components and pages starting from login screen to complex dashboard. Perfect choice
+                        for your next SaaS application."</p>
+                </blockquote>
+                <figcaption class="flex items-center justify-center mt-6 space-x-3">
+                    <img class="w-6 h-6 rounded-full"
+                        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png"
+                        alt="profile picture">
+                    <div class="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
+                        <div class="pr-3 font-medium text-gray-900 dark:text-white">Micheal Gough</div>
+                        <div class="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">CEO at Google</div>
+                    </div>
+                </figcaption>
+            </figure>
         </div>
     </section>
 @endsection
