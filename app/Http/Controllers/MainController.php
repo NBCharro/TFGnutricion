@@ -9,9 +9,9 @@ class MainController extends Controller
     public function pruebas()
     {
 
-        $mock_datos = $this->mock_midieta();
+        $mock_platos = $this->mock_midieta_tabla();
 
-        return view('welcome')->with('peso_cliente', $mock_datos);
+        return view('welcome')->with('platos', $mock_platos);
     }
 
     public function index()
@@ -22,12 +22,73 @@ class MainController extends Controller
 
     public function midieta()
     {
-        $datos_cliente = $this->mock_midieta();
+        $datos_cliente = $this->mock_midieta_grafico();
         return view('midieta')->with('peso_cliente', $datos_cliente);
     }
 
     // Mock de datos. Temporal
-    public function mock_midieta()
+    public function mock_midieta_tabla()
+    {
+        $mock_platos = [
+            'id_cliente' => 'jl0304',
+            'desayuno' => [
+                'cereales all bran plus',
+                'fritos snack',
+                'germen de trigo',
+                'cereales miel pops', 'copos maiz azucarados frosties'
+            ],
+            'mediamanana' => ['barritas golde grahams', 'arroz inflado chocolateado'],
+            'comida' => [
+                'higado cerdo',
+                'morcilla de embutido',
+                'golden grahams',
+                'fabada asturiana litoral',
+                'callos a la madrileña la tila',
+                'lentejas',
+                'lentejas con chorizo litoral',
+                'higado ternera',
+                'pastel manzana hojaldre',
+                'galletas choco flakes',
+                'donettes',
+                'lomo embuchado'
+            ],
+            'merienda' => [
+                'doritos',
+                'melocoton seco orejon',
+                'cebada',
+                'castaña',
+                'nueces',
+                'donut normal'
+            ],
+            'cena' => [
+                'pure de patata',
+                'tomate frito',
+                'arroz inflado kellogs',
+                'mejillon fresco',
+                'albondigas la tila',
+                'pate higado cerdo',
+                'avena',
+                'anchoas en aceite',
+                'nesquik',
+                'croissant chocolate',
+                'bollycao',
+                'huevo codorniz'
+            ],
+            'recena' => [
+                'bocabits',
+                'pipas girasol sin cascara',
+                'trigo inflado azucarado smacks',
+                'lenteja seca'
+            ],
+            'otro' => [
+                'piñones sin cascara',
+                'alubias secas'
+            ]
+        ];
+        return $mock_platos;
+    }
+
+    public function mock_midieta_grafico()
     {
         $mock_datos_pesos = [
             'id_cliente' => 'jl0304',

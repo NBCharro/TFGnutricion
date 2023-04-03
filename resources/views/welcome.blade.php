@@ -1,139 +1,77 @@
+@php
+    @dump($platos);
+@endphp
 @extends ('layouts.main-layout')
 @section('page-title', 'Pagina de pruebas')
-{{-- @section('page-js', 'grafico.js') --}}
 @section('content-area')
-    <div class="overflow-hidden rounded-lg shadow-lg mt-50">
-        <canvas class="md:p-10 bg-gray-50 dark:bg-tertiary-700" id="chartLine"></canvas>
-    </div>
-
-    <!-- Required chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Chart line -->
+    <section class="flex flex-col justify-center">
+        <div class="block max-w-sm rounded-lg p-6">
+            <div class="relative mb-4">
+                <label for="plato" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Elije una opcion
+                </label>
+                <select id="plato"
+                    class="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white">
+                    <option>Desayuno</option>
+                    <option value="mediamanana">Media mañana</option>
+                    <option>Comida</option>
+                    <option>Merienda</option>
+                    <option>Cena</option>
+                    <option>Recena</option>
+                    <option>Otro</option>
+                </select>
+            </div>
+            <button id="botonPlato"
+                class="rounded bg-primary px-6 py-2.5 leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg">
+                Mostrar
+            </button>
+        </div>
+        <div class="grid grid-cols-2" id="mostrarPlatos">
+            <div class="flex justify-center">
+                <div class="block max-w-sm rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-700">
+                    <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                        Some quick example text to build on the card title and make up the
+                        bulk of the card's content.
+                    </p>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <div class="block max-w-sm rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-700">
+                    <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                        Some quick example text to build on the card title and make up the
+                        bulk of the card's content.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
     <script>
-        <?php
-        $fecha_php = json_encode($peso_cliente['fecha']);
-        $peso_php = json_encode($peso_cliente['peso']);
-        $peso_final_1_php = json_encode($peso_cliente['peso_final_1']);
-        $peso_final_2_php = json_encode($peso_cliente['peso_final_2']);
-        $peso_teorico_php = json_encode($peso_cliente['peso_teorico']);
-        $nota_pasos_php = json_encode($peso_cliente['nota_pasos']);
-        echo 'const fechas = ' . $fecha_php . ";\n";
-        echo 'const pesos = ' . $peso_php . ";\n";
-        echo 'const peso_teorico = ' . $peso_teorico_php . ";\n";
-        echo 'const peso_final_1 = ' . $peso_final_1_php . ";\n";
-        echo 'let peso_final_2 = ' . $peso_final_2_php . ";\n";
-        echo 'let nota_pasos = ' . $nota_pasos_php . ";\n";
-        ?>
-        // Borrar, es para pruebas:
-        nota_pasos = "";
-        peso_final_2 = "";
-
-        // Si se ve desde el movil cambian cosas
-        let pantallaGrande = true;
-        let tamanoPesoTeorico = 50;
-        let radioPunto = 3;
-        if (window.innerWidth < 768) {
-            pantallaGrande = false;
-            tamanoPesoTeorico = 20;
-            radioPunto = 0;
-        }
-
-        // Si estamos en dark mode cambiamos el color de la fuente de la leyenda
-        let colorLeyenda = document.body.classList.contains('dark') ? '#3DBEFF' : "black";
-
-        // Creo el set de datasets para pintar en la grafica
-        let datos = [{
-                label: "Peso",
-                backgroundColor: "hsl(217, 57%, 51%)",
-                borderColor: "hsl(217, 57%, 51%)",
-                data: pesos,
-                yAxisID: 'pesos',
-            },
-            {
-                label: "Peso final 1",
-                backgroundColor: "hsl(75, 57%, 51%)",
-                borderColor: "hsl(75, 57%, 51%)",
-                data: peso_final_1,
-                yAxisID: 'pesos',
-            },
-        ];
-        // Si no hay pasos o notas, no se agrega
-        if (nota_pasos != "") {
-            datos.push({
-                label: "Nota o peso",
-                backgroundColor: "hsl(255, 9%, 50%)",
-                borderColor: "hsl(255, 9%, 50%)",
-                data: nota_pasos,
-                yAxisID: 'notas_pasos'
+        platosPHP = @js($platos);
+        botonPlato = document.getElementById('botonPlato')
+        mostrarPlatos = document.getElementById('mostrarPlatos')
+        botonPlato.addEventListener('click', (event) => {
+            event.preventDefault;
+            opcion = document.getElementById('plato').value.toLowerCase()
+            // Borrar contenido anterior
+            mostrarPlatos.textContent = "";
+            // Array para mostrar los platos
+            eval(`platosPHP['${opcion}']`).forEach(plato => {
+                // Crear elemento nuevo
+                const divPrincipal = document.createElement("div");
+                const divSecundario = document.createElement("div");
+                const parrafo = document.createElement("p");
+                divPrincipal.className = 'flex justify-center';
+                divSecundario.className =
+                    'block max-w-sm rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-700';
+                parrafo.className = 'mb-4 text-base text-neutral-600 dark:text-neutral-200';
+                parrafo.textContent = plato
+                // Agregar el elemento nuevo al DOM
+                divSecundario.appendChild(parrafo);
+                divPrincipal.appendChild(divSecundario);
+                mostrarPlatos.appendChild(divPrincipal);
             });
-        }
-        if (peso_final_2 != "") {
-            datos.push({
-                label: "Peso final 2",
-                backgroundColor: "hsl(10, 57%, 51%)",
-                borderColor: "hsl(10, 57%, 51%)",
-                data: peso_final_2,
-                yAxisID: 'pesos',
-            });
-        }
-        // El peso teorico tiene que quedar por debajo de todas las demas lineas
-        datos.push({
-            label: "Peso teorico",
-            backgroundColor: "hsl(150, 57%, 51%)",
-            borderColor: "hsl(150, 57%, 51%)",
-            data: peso_teorico,
-            borderWidth: tamanoPesoTeorico,
-            hoverBorderWidth: 100,
-            pointBorderWidth: 0,
-            yAxisID: 'pesos',
-        });
 
-        // Creamos la grafica
-        const labels = fechas;
-        const data = {
-            labels: labels,
-            datasets: datos,
-        };
 
-        const configLineChart = {
-            type: "line",
-            data,
-            options: {
-                plugins: {
-                    legend: {
-                        display: pantallaGrande,
-                        position: 'chartArea',
-                        labels: {
-                            color: colorLeyenda,
-                            boxWidth: 0,
-                            boxHeight: 0
-                        }
-                    }
-                },
-                elements: {
-                    point: {
-                        pointRadius: radioPunto,
-                    }
-                },
-                scales: {
-                    pesos: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                    },
-                    notas_pasos: {
-                        type: 'linear',
-                        display: nota_pasos == "" ? false : true,
-                        position: 'right',
-                    },
-                }
-            }
-        }
-
-        var chartLine = new Chart(
-            document.getElementById("chartLine"),
-            configLineChart
-        );
+        })
     </script>
 @endsection
