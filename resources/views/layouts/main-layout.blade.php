@@ -16,7 +16,8 @@
 {{-- <body> --}}
 
 <body class="dark">
-    <div class="bg-white dark:bg-tertiary-700 md:flex md:flex-col justify-between h-screen">
+    <div
+        class="md:flex md:flex-col justify-between h-screen bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
         @include('components.header')
         @yield('content-area')
         @include('components.footer')
