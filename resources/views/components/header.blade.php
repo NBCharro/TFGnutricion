@@ -1,4 +1,5 @@
-<header class="fixed z-50 top-0 w-full">
+{{-- <header class="fixed z-50 top-0 w-full"> --}}
+<header>
     <nav
         class="border-gray-200 px-4 lg:px-6 py-2.5 bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">

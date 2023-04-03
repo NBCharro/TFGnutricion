@@ -1,7 +1,3 @@
-@extends ('layouts.main-layout')
-@section('page-title', 'Pagina de pruebas')
-{{-- @section('page-js', 'grafico.js') --}}
-@section('content-area')
     <div class="overflow-hidden rounded-lg shadow-lg mt-50">
         <canvas class="md:p-10 bg-gray-50 dark:bg-tertiary-700" id="chartLine"></canvas>
     </div>
@@ -136,4 +132,3 @@
             configLineChart
         );
     </script>
-@endsection

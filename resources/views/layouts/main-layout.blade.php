@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     @vite('resources/css/app.css')
     <title>@yield('page-title')</title>
+    {{-- <script src="{{ asset('js/@yield('page-js')') }}" defer></script> --}}
 </head>
 
 {{-- <body> --}}
 
 <body class="dark">
-    <div class="bg-primary dark:bg-tertiary-700 md:flex md:flex-col justify-between h-screen">
+    <div class="bg-white dark:bg-tertiary-700 md:flex md:flex-col justify-between h-screen">
         @include('components.header')
         @yield('content-area')
         @include('components.footer')

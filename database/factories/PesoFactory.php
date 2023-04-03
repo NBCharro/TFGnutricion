@@ -20,6 +20,7 @@ class PesoFactory extends Factory
             'id_cliente' => $this->faker->unique()->text(6),
             'fecha' => $this->faker->date($format = 'd-m-Y', $max = '01-01-2024', $min = '01-01-2023'),
             'peso' => $this->faker->numberBetween(80, 150),
+            'peso_teorico' => $this->faker->numberBetween(80, 150),
             'nota_pasos' => $this->faker->numberBetween(0, 10)
         ];
     }

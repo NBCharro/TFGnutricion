@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MainController::class, 'index'])->name('inicio');
+// Route::get('/', [MainController::class, 'index'])->name('inicio');
+Route::get('/inicio', [MainController::class, 'index'])->name('inicio');
 Route::get('/midieta', [MainController::class, 'midieta'])->name('midieta');
+
+Route::get('/', [MainController::class, 'pruebas'])->name('pruebas');
+
 
 Auth::routes();
