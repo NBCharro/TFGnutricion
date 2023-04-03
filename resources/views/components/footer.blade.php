@@ -1,4 +1,5 @@
-<footer class="bg-white shadow sm:flex sm:items-center sm:justify-between p-4 sm:p-6 xl:p-8 dark:bg-tertiary-700">
+<footer
+    class="shadow sm:flex sm:items-center sm:justify-between p-4 sm:p-6 xl:p-8 bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
     <p class="mb-4 text-sm text-center text-gray-500 dark:text-tertiary-100 dark:bg-tertiary-700 sm:mb-0">
         &copy; 2023 <a href="https://www.nbcharro.com/" class="hover:underline font-semibold" target="_blank">NBcharro</a>
     </p>

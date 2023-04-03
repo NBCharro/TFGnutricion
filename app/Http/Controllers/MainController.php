@@ -8,8 +8,8 @@ class MainController extends Controller
 {
     public function index()
     {
-        // return view('welcome');
-        return view('inicio');
+        return view('welcome');
+        // return view('inicio');
     }
     public function midieta()
     {

@@ -15,11 +15,9 @@
 {{-- <body> --}}
 
 <body class="dark">
-    <div class="bg-primary dark:bg-tertiary-700 md:flex md:flex-col md:h-screen">
+    <div class="bg-primary dark:bg-tertiary-700 md:flex md:flex-col justify-between h-screen">
         @include('components.header')
-        <div class="flex-grow">
-            @yield('content-area')
-        </div>
+        @yield('content-area')
         @include('components.footer')
     </div>
 </body>
