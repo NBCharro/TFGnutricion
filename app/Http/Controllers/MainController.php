@@ -9,9 +9,9 @@ class MainController extends Controller
     public function pruebas()
     {
 
-        $mock_platos = $this->mock_midieta_tabla();
+        $mock_texto_dietas = $this->mock_texto_dietas();
 
-        return view('welcome')->with('platos', $mock_platos);
+        return view('welcome')->with('texto_dietas', $mock_texto_dietas);
     }
 
     public function index()
@@ -23,10 +23,15 @@ class MainController extends Controller
     public function midieta()
     {
         $datos_cliente = $this->mock_midieta_grafico();
-        return view('midieta')->with('peso_cliente', $datos_cliente);
+        $mock_platos = $this->mock_midieta_tabla();
+        return view('midieta')->with('peso_cliente', $datos_cliente)->with('platos', $mock_platos);
     }
 
     // Mock de datos. Temporal
+    public function mock_texto_dietas()
+    {
+    }
+
     public function mock_midieta_tabla()
     {
         $mock_platos = [
