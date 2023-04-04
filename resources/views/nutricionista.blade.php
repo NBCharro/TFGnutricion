@@ -8,6 +8,7 @@
         </div>
         <div class="flex flex-col justify-center">
             @include('components.nutricionista.grafico')
+            @include('components.nutricionista.guardarPeso')
         </div>
         <div>
             @include('components.nutricionista.platos')

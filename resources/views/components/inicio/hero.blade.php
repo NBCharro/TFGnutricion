@@ -19,7 +19,8 @@
 
             <div class="mt-8 flex flex-wrap gap-4 text-center">
                 <a href="#servicios"
-                    class="block w-full rounded bg-primary-500 px-12 py-3 text-white shadow hover:bg-primary-300 hover:text-secondary-600 focus:outline-none focus:ring active:bg-primary-500 sm:w-auto hover:ring-4 ring-secondary-600">
+                    class="font-medium rounded-lg text-sm w-full sm:w-fit px-5 py-2.5 text-center
+            bg-primary text-white hover:bg-tertiary-100 hover:text-black">
                     Saber más
                 </a>
             </div>
