@@ -1,5 +1,5 @@
-    <div class="overflow-hidden rounded-lg shadow-lg mt-50">
-        <canvas class="md:p-10 bg-gray-50 dark:bg-tertiary-700" id="chartLine"></canvas>
+    <div class="overflow-hidden rounded-lg shadow-lg md:m-2 lg:ring lg:ring-tertiary-100 lg:hover:ring-primary-50">
+        <canvas class="md:p-1 bg-gray-50 dark:bg-tertiary-700" id="chartLine"></canvas>
     </div>
 
     <!-- Required chart.js -->
@@ -26,11 +26,9 @@
         peso_final_2 = "";
 
         // Si se ve desde el movil cambian cosas
-        let pantallaGrande = true;
         let tamanoPesoTeorico = 50;
         let radioPunto = 3;
         if (window.innerWidth < 768) {
-            pantallaGrande = false;
             tamanoPesoTeorico = 20;
             radioPunto = 0;
         }
@@ -98,8 +96,8 @@
             options: {
                 plugins: {
                     legend: {
-                        display: pantallaGrande,
-                        position: 'chartArea',
+                        display: true,
+                        position: 'top',
                         labels: {
                             color: colorLeyenda,
                             boxWidth: 0,

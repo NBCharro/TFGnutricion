@@ -24,12 +24,30 @@ class MainController extends Controller
     {
         $datos_cliente = $this->mock_midieta_grafico();
         $mock_platos = $this->mock_midieta_tabla();
-        return view('midieta')->with('peso_cliente', $datos_cliente)->with('platos', $mock_platos);
+        $mock_texto_dietas = $this->mock_texto_dietas();
+        return view('midieta')->with('peso_cliente', $datos_cliente)->with('platos', $mock_platos)->with('texto_dietas', $mock_texto_dietas);
     }
 
     // Mock de datos. Temporal
     public function mock_texto_dietas()
     {
+        $texto = [
+            'titulo' => 'Dieta de 1300 Kcal aprox.',
+            'parrafo1' => 'Calculada para tener una pérdida de alrededor de 400 - 500 g a la semana al principio, después irá bajando a 300 g por semana. Es normal que la primera semana e incluso la segunda haya bajadas muy pronunciadas, pero hazte idea de que esto solo pasa en las primeras semanas, y no vuelve a pasar. Lo normal es que la primera semana pases hambre, luego el estómago se te va haciendo a la reducción de cantidades. También es normal que el ritmo intestinal cambie un poco, al ingerir menos cantidades',
+            'parrafo2' => 'Para el aceite, la dosis media recomendada suele ser 120 mL por semana. Un truco/técnica para no pasarse es tener el aceite medido. Por ejemplo, tener una parte apartada semanal de aceite y gestionártelo. En las preparaciones a la plancha se puede mojar un poco la plancha/sartén con aceite, pero intenta que el alimento no se quede empapado en aceite. Cuando ponga plancha puede ser también otras formas de cocinado como horno, vapor, microondas, etc. Solo se puede usar aceite aparte cuando frías el pescado rebozado o el filete empanado',
+            'Azúcar' => 'donde veas que te contemplo azúcar eres libre y te recomiendo que intentes sustituirlo por edulcorante',
+            'Aliños alternativos' => 'como idea puedes usar salsa de yogur, cogiendo 1 cuchara de yogur y diluyéndola en un poco de agua. Otra idea es usar una salsa de mostaza, cogiendo una cuchara de mostaza de bolitas o normal y diluyéndola en vinagre',
+            'Café con bebida de avena' => 'tienes contemplado uno durante la tarde con medio vaso de avena y media cucharita de postre de azúcar',
+            'Cebolletas, pepinillos, toreras y berenjenas de Almagro' => 'libres para comerlas cuando te apetezcan o para evitar picar otras cosas más calóricas. Puedes usarlas también durante las comidas y cenas',
+            'Especias, ajo, cebolla y demás condimentos para el cocinado' => 'se pueden usar libremente',
+            'Infusiones' => 'libres, siempre que sean sin endulzar. Son buenas aliadas para estar a dieta. Puedes usarlas previas a las comidas y cenas, para que te produzcan saciedad o de sobremesa para calmar el hambre si la cantidad ha sido poca y el cuerpo te pide comer más',
+            'Mermelada' => 'que ronden las 30 Kcal por cada 100 gramos. Suelo recomendar las Helios Diet o la Hero Diet, pero puedes mirar cualquiera que esté sobre esas Kcal',
+            'Pasta' => 'recomiendo consumir pasta con volúmenes (macarrones, caracolas, espirales, etc.) y evitar las que no dejan huecos entre medias como los espaguetis o los tallarines ya que, como también importa lo que percibimos visualmente, con los huecos vemos el plato más lleno',
+            'Pesos de raciones pequeñas' => 'carne magra entre 80 y 100 gramos, pescado blanco entre 140 y 150 gramos, pescado azul entre 110 y 130 gramos',
+            'Sardinillas' => 'puede ser otro tipo de pescado pero respeta la cantidad',
+            'Vinagre' => 'libre en las ensaladas. Puedes usar la crema de vinagre para soportar mejor el poco aceite de las ensaladas. Pero sin pasarse, alguna caloría tiene, pero comparado con el aceite es muy poco'
+        ];
+        return $texto;
     }
 
     public function mock_midieta_tabla()
