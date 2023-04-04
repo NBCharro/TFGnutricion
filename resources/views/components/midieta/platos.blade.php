@@ -113,6 +113,7 @@ Elija una opcion
     async function crearModalNutrientes(plato) {
         tablaNutrientes.textContent = '';
         const datoTratadoAPI = await datoNutrientesAPI(plato);
+
         for (const key in datoTratadoAPI) {
             crearBloquesModalHTML(key, datoTratadoAPI[key]);
         }
