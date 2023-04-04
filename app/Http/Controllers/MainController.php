@@ -33,7 +33,7 @@ class MainController extends Controller
         $datos_cliente = $this->mock_midieta_grafico();
         $mock_platos = $this->mock_midieta_tabla();
         $mock_texto_dietas = $this->mock_texto_dietas();
-        return view('nutricionista')->with('clientes', $mock_clientes)->with('peso_cliente', $datos_cliente)->with('platos', $mock_platos)->with('texto_dietas', $mock_texto_dietas);
+        return view('conectado')->with('clientes', $mock_clientes)->with('peso_cliente', $datos_cliente)->with('platos', $mock_platos)->with('texto_dietas', $mock_texto_dietas);
     }
 
     // Mock de datos. Temporal

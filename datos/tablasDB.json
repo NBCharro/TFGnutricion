@@ -37,8 +37,7 @@
         "Nombre tabla": "clientes",
         "Campos": {
             "id_cliente": "VARCHAR",
-            "nombre": "VARCHAR",
-            "apellidos": "VARCHAR",
+            "nombre_apellidos": "VARCHAR",
             "telefono": "VARCHAR",
             "email": "VARCHAR",
             "direccion": "VARCHAR",
