@@ -9,9 +9,9 @@ class MainController extends Controller
     public function pruebas()
     {
 
-        $mock_texto_dietas = $this->mock_texto_dietas();
+        $mock_clientes = ['Jose Luis', 'Emma', 'America', 'Isaac', 'Benito'];
 
-        return view('welcome')->with('texto_dietas', $mock_texto_dietas);
+        return view('pruebas')->with('clientes', $mock_clientes);
     }
 
     public function index()
@@ -25,6 +25,15 @@ class MainController extends Controller
         $mock_platos = $this->mock_midieta_tabla();
         $mock_texto_dietas = $this->mock_texto_dietas();
         return view('midieta')->with('peso_cliente', $datos_cliente)->with('platos', $mock_platos)->with('texto_dietas', $mock_texto_dietas);
+    }
+
+    public function clientes()
+    {
+        $mock_clientes = ['Jose Luis', 'Emma', 'America', 'Isaac', 'Benito'];
+        $datos_cliente = $this->mock_midieta_grafico();
+        $mock_platos = $this->mock_midieta_tabla();
+        $mock_texto_dietas = $this->mock_texto_dietas();
+        return view('nutricionista')->with('clientes', $mock_clientes)->with('peso_cliente', $datos_cliente)->with('platos', $mock_platos)->with('texto_dietas', $mock_texto_dietas);
     }
 
     // Mock de datos. Temporal

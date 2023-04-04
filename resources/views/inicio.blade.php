@@ -1,5 +1,5 @@
 @extends ('layouts.main-layout')
-@section('page-title', 'Nutricionista')
+@section('page-title', 'Greenlife Nutrition')
 @section('content-area')
     @include('components.inicio.hero')
     @include('components.inicio.servicios')

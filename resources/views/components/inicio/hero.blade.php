@@ -8,7 +8,7 @@
     <div class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
         <div class="max-w-xl text-center sm:text-left">
             <h1 class="text-3xl font-extrabold sm:text-5xl font-handwriting text-white">
-                Isaac Newton
+                Greenlife Nutrition
             </h1>
             <p class="mt-4 max-w-lg sm:text-xl sm:leading-relaxed text-white">
                 Las <strong>dietas para adelgazar</strong> que no están personalizadas y supervisadas pueden conllevar
@@ -18,7 +18,7 @@
             </p>
 
             <div class="mt-8 flex flex-wrap gap-4 text-center">
-                <a href="#"
+                <a href="#servicios"
                     class="block w-full rounded bg-primary-500 px-12 py-3 text-white shadow hover:bg-primary-300 hover:text-secondary-600 focus:outline-none focus:ring active:bg-primary-500 sm:w-auto hover:ring-4 ring-secondary-600">
                     Saber más
                 </a>

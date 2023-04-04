@@ -3,14 +3,18 @@
     <nav
         class="border-gray-200 px-4 lg:px-6 py-2.5 bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-            <a href="https://flowbite.com" class="flex items-center">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+            <a href="#" class="flex items-center">
+                <img src="{{ asset('images/logo.png') }}" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
             </a>
             <div class="flex items-center lg:order-2">
                 <a href="{{ route('pruebas') }}"
-                    class="text-gray-800 dark:text-white hover:bg-gray-50 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-tertiary-100 dark:hover:text-black">Log
-                    in</a>
+                    class="text-gray-800 dark:text-white hover:bg-gray-50 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-tertiary-100 dark:hover:text-black">
+                    Pruebas
+                </a>
+                <a href="{{ route('home') }}"
+                    class="text-gray-800 dark:text-white hover:bg-gray-50 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-tertiary-100 dark:hover:text-black">
+                    Log in
+                </a>
                 <a href="#"
                     class="text-white bg-primary-700 hover:bg-primary-800 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700"
                     id="botonModoNoche">
@@ -64,7 +68,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('clientes') }}"
                             class="block py-2 pr-4 pl-3 rounded lg:p-0
                             {{ Route::is('clientess') ? 'text-tertiary-700' : 'text-gray-400' }}
                             dark:{{ Route::is('clientess') ? 'text-white' : 'text-gray-400' }}
