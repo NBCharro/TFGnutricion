@@ -4,7 +4,7 @@
         bg-transparent bg-gradient-to-r from-primary-700/80 to-primary-900/60
         dark:bg-tertiary-700/5 dark:from-tertiary-700 dark:to-tertiary-700/5">
     </div>
-    <div class="relative py-8 lg:py-16 px-4 mx-auto max-w-screen-md text-white"">
+    <div class="relative py-8 lg:py-16 px-4 mx-auto max-w-screen-md text-white">
         <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center">Contacto</h2>
         {{-- <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Got a technical
                 issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p> --}}
@@ -33,7 +33,7 @@
             <div class="sm:col-span-2">
                 <label for="message" class="block mb-2 text-sm">Mensaje</label>
                 <textarea id="message" rows="6"
-                    class="bg-gray-50 border text-gray-900 text-sm rounded-lg
+                    class="resize-none bg-gray-50 border text-gray-900 text-sm rounded-lg
                          w-full p-2.5 dark:bg-tertiary-700 dark:border-tertiary-700 dark:placeholder-gray-400 dark:text-white"
                     placeholder="Escriba su mensaje"></textarea>
             </div>

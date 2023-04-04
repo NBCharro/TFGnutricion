@@ -12,5 +12,8 @@
         <div class="md:col-span-2">
             @include('components.midieta.texto')
         </div>
+        <div class="md:col-span-2">
+            @include('components.midieta.contactoInterno')
+        </div>
     </div>
 @endsection
