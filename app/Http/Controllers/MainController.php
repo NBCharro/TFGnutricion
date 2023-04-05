@@ -41,6 +41,11 @@ class MainController extends Controller
         $mock_mensajes_externos = $this->mock_mensajes_externos();
         return view('mensajes')->with('mensajes_internos', $mock_mensajes_internos)->with('mensajes_externos', $mock_mensajes_externos);
     }
+
+    public function comenzarmiplan()
+    {
+        return view('comenzarmiplan');
+    }
     // Mock de datos. Temporal
     public function mock_mensajes_internos()
     {

@@ -3,7 +3,7 @@
     <nav
         class="border-gray-200 px-4 lg:px-6 py-2.5 bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-            <a href="#" class="flex items-center">
+            <a href="{{ route('inicio') }}" class="flex items-center">
                 <img src="{{ asset('images/logo.png') }}" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
             </a>
             <div class="flex items-center lg:order-2">
@@ -60,10 +60,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('comenzarmiplan') }}"
                             class="block py-2 pr-4 pl-3 rounded lg:p-0
-                            {{ Route::is('comenzarMiPlan') ? 'text-tertiary-700' : 'text-gray-400' }}
-                            dark:{{ Route::is('comenzarMiPlan') ? 'text-white' : 'text-gray-400' }}
+                            {{ Route::is('comenzarmiplan') ? 'text-tertiary-700' : 'text-gray-400' }}
+                            dark:{{ Route::is('comenzarmiplan') ? 'text-white' : 'text-gray-400' }}
                             lg:bg-transparent">
                             Comenzar mi plan
                         </a>

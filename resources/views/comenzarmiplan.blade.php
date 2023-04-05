@@ -1,4 +1,5 @@
 @extends ('layouts.main-layout')
-@section('page-title', 'Greenlife Nutrition')
+@section('page-title', 'Comenzar mi plan')
 @section('content-area')
+
 @endsection
