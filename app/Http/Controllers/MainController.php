@@ -8,9 +8,8 @@ class MainController extends Controller
 {
     public function pruebas()
     {
-        $mock_mensajes_internos = $this->mock_mensajes_internos();
-        $mock_mensajes_externos = $this->mock_mensajes_externos();
-        return view('pruebas')->with('mensajes_internos', $mock_mensajes_internos)->with('mensajes_externos', $mock_mensajes_externos);
+        $mock_preguntas_clientes = $this->mock_preguntas_clientes();
+        return view('pruebas')->with('preguntas_clientes', $mock_preguntas_clientes);
     }
 
     public function index()
@@ -44,9 +43,33 @@ class MainController extends Controller
 
     public function comenzarmiplan()
     {
-        return view('comenzarmiplan');
+        $mock_preguntas_clientes = $this->mock_preguntas_clientes();
+        return view('comenzarmiplan')->with('preguntas_clientes', $mock_preguntas_clientes);
     }
     // Mock de datos. Temporal
+    public function mock_preguntas_clientes()
+    {
+        return [
+            'pregunta_1' => '¿Se ha puesto anteriormente a dieta? ¿Cosas positivas que te aportaron esas dietas?',
+            'pregunta_2' => '¿Tienes el hábito de desayunar regularmente? ¿Motivo? Indica qué desayunos suele hacer.',
+            'pregunta_3' => '¿Tienes el hábito de comer algo a media mañana regularmente? ¿Motivo? Indica qué sueles hacerte.',
+            'pregunta_4' => '¿Tienes el hábito de merendar regularmente? ¿Motivo? Indica qué sueles hacerte.',
+            'pregunta_5' => '¿Te gusta picar entre horas? ¿Qué picoteas?',
+            'pregunta_6' => '¿Llegas con ansiedad a alguna de la tomas? ¿A cuál?',
+            'pregunta_7' => '¿Qué comidas y cenas sueles hacer con mayor frecuencia?',
+            'pregunta_8' => '¿Bebes alcohol? ¿Qué tipo de alcohol? ¿Frecuencia?',
+            'pregunta_9' => '¿Fumas? ¿Cuánto?',
+            'pregunta_10' => '¿Cocinas tú en casa?',
+            'pregunta_11' => '¿Sales habitualmente a comer/cenar fuera?',
+            'pregunta_12' => '¿Le gusta mucho los alimentos dulces? ¿Qué utiliza normalmente para endulzar?',
+            'pregunta_13' => '¿Te gustan los alimentos muy salados? ¿Qué tipo de sal usa?',
+            'pregunta_14' => '¿Llegas a la ingesta de líquido recomendada?',
+            'pregunta_15' => '¿Toma refrescos habitualmente?',
+            'pregunta_16' => '¿Tomas café? ¿Tipo, cantidad, dulzor?',
+            'pregunta_17' => '¿Cuánto pan come en cada comida y de que tipo?',
+            'pregunta_18' => '¿Hay algún alimento o hábito que quieras incorporar en la dieta?',
+        ];
+    }
     public function mock_mensajes_internos()
     {
         return [
