@@ -8,10 +8,9 @@ class MainController extends Controller
 {
     public function pruebas()
     {
-
-        $mock_clientes = ['Jose Luis', 'Emma', 'America', 'Isaac', 'Benito'];
-
-        return view('pruebas')->with('clientes', $mock_clientes);
+        $mock_mensajes_internos = $this->mock_mensajes_internos();
+        $mock_mensajes_externos = $this->mock_mensajes_externos();
+        return view('pruebas')->with('mensajes_internos', $mock_mensajes_internos)->with('mensajes_externos', $mock_mensajes_externos);
     }
 
     public function index()
@@ -36,7 +35,62 @@ class MainController extends Controller
         return view('conectado')->with('clientes', $mock_clientes)->with('peso_cliente', $datos_cliente)->with('platos', $mock_platos)->with('texto_dietas', $mock_texto_dietas);
     }
 
+    public function mensajes()
+    {
+        $mock_mensajes_internos = $this->mock_mensajes_internos();
+        $mock_mensajes_externos = $this->mock_mensajes_externos();
+        return view('mensajes')->with('mensajes_internos', $mock_mensajes_internos)->with('mensajes_externos', $mock_mensajes_externos);
+    }
     // Mock de datos. Temporal
+    public function mock_mensajes_internos()
+    {
+        return [
+            [
+                'id' => 1,
+                'id_cliente' => 'jl100',
+                'nombre' => 'Jose Luis Lopez',
+                'fecha' => '01/01/2023',
+                'mensaje' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+            ],
+            [
+                'id' => 2,
+                'id_cliente' => 'em200',
+                'nombre' => 'Emma Martinez',
+                'fecha' => '02/02/2023',
+                'mensaje' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+            ],
+            [
+                'id' => 3,
+                'id_cliente' => 'ac394',
+                'nombre' => 'America Chavez',
+                'fecha' => '15/03/2023',
+                'mensaje' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type.'
+            ],
+        ];
+    }
+
+    public function mock_mensajes_externos()
+    {
+        return [
+            [
+                'id' => 1,
+                'nombre' => 'Benito Perez',
+                'telefono' => '111222333',
+                'email' => 'benito@gmail.com',
+                'fecha' => '05/04/2023',
+                'mensaje' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+            ],
+            [
+                'id' => 2,
+                'nombre' => 'Antonia Delate',
+                'telefono' => '999888777',
+                'email' => 'antonia@yahoo.es',
+                'fecha' => '01/04/2023',
+                'mensaje' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+            ]
+        ];
+    }
+
     public function mock_texto_dietas()
     {
         $texto = [

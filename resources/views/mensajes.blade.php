@@ -1,5 +1,5 @@
 @extends ('layouts.main-layout')
-@section('page-title', 'Pagina de pruebas')
+@section('page-title', 'Nutricionista')
 @section('content-area')
     <main class="md:flex md:shadow-lg rounded-3xl text-black dark:text-white mx-6">
         <section id="listaMensajes"
