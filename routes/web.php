@@ -20,6 +20,9 @@ Route::get('/midieta', [MainController::class, 'midieta'])->name('midieta');
 Route::get('/clientes', [MainController::class, 'clientes'])->name('clientes');
 Route::get('/mensajes', [MainController::class, 'mensajes'])->name('mensajes');
 Route::get('/comenzarmiplan', [MainController::class, 'comenzarmiplan'])->name('comenzarmiplan');
+// Tablas de la DB
+Route::resource('contacto_interno', 'App\Http\Controllers\Contacto_InternoController');
+
 
 Route::get('/pruebas', [MainController::class, 'pruebas'])->name('pruebas');
 
