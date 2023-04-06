@@ -42,12 +42,12 @@ class DatabaseSeeder extends Seeder
             'role' => 'administrador',
         ]);
 
-        Cliente::factory(10)->create();
-        Contacto_Externo::factory(10)->create();
-        Contacto_Interno::factory(10)->create();
-        Dato_Inicial_Cliente::factory(10)->create();
-        Peso::factory(10)->create();
-        Plato::factory(10)->create();
-        Texto_Cliente::factory(10)->create();
+        // Cliente::factory(10)->create();
+        // Contacto_Externo::factory(10)->create();
+        // Contacto_Interno::factory(10)->create();
+        // Dato_Inicial_Cliente::factory(10)->create();
+        // Peso::factory(10)->create();
+        // Plato::factory(10)->create();
+        // Texto_Cliente::factory(10)->create();
     }
 }

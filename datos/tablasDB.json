@@ -64,7 +64,7 @@
         "Nombre tabla": "platos",
         "Campos": {
             "id_cliente": "VARCHAR",
-            "accion": "ENUM ('desayuno','media manaña','comida','medienda','cena','recena','otro')",
+            "accion": "ENUM ('desayuno','media manaña','comida','merienda','cena','recena','otro')",
             "platos": "JSON"
         }
     },

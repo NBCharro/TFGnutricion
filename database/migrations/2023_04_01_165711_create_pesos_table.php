@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('id_cliente');
             $table->string('fecha');
-            $table->double('peso');
-            $table->double('peso_teorico');
-            $table->double('nota_pasos');
+            $table->string('peso');
+            $table->string('peso_teorico');
+            $table->string('nota_pasos');
+            // $table->double('peso');
+            // $table->double('peso_teorico');
+            // $table->double('nota_pasos');
             $table->timestamps();
         });
     }

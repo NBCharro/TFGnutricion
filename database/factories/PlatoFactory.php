@@ -33,10 +33,6 @@ class PlatoFactory extends Factory
         return [
             'id_cliente' => $this->faker->unique()->text(6),
             'accion' => $this->faker->randomElement(['desayuno', 'media manaña', 'comida', 'merienda', 'cena', 'recena', 'otro']),
-            // 'platos' => [ // Do not json_encode this as your model will handle the conversion
-            //     'key_1' => $this->faker->randomNumber(),
-            //     'key_2' => $this->faker->sentence,
-            // ]
             'platos' => $data
         ];
     }

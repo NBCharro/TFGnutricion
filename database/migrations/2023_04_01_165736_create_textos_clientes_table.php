@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('textos_clientes', function (Blueprint $table) {
             $table->id();
             $table->string('id_cliente');
-            $table->text('texto_general');
-            $table->text('texto_particular');
+            $table->json('texto_general');
+            $table->json('texto_particular');
             $table->timestamps();
         });
     }
