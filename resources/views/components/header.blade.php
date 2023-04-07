@@ -78,12 +78,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('nuevocliente') }}"
+                        <a href="{{ route('nuevadieta') }}"
                             class="block py-2 pr-4 pl-3 rounded lg:p-0
-                            {{ Route::is('nuevocliente') ? 'text-tertiary-700' : 'text-gray-400' }}
-                            dark:{{ Route::is('nuevocliente') ? 'text-white' : 'text-gray-400' }}
+                            {{ Route::is('nuevadieta') ? 'text-tertiary-700' : 'text-gray-400' }}
+                            dark:{{ Route::is('nuevadieta') ? 'text-white' : 'text-gray-400' }}
                             lg:bg-transparent">
-                            Nuevo Cliente
+                            Nueva dieta
                         </a>
                     </li>
                     <li>

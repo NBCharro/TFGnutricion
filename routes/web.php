@@ -28,7 +28,7 @@ Route::post('/buscar_cliente', [MainController::class, 'buscar_cliente'])->name(
 Route::match(['get', 'post'], '/midieta', [MainController::class, 'midieta'])->name('midieta');
 Route::match(['get', 'post'], '/comenzarmiplan', [MainController::class, 'comenzarmiplan'])->name('comenzarmiplan');
 Route::match(['get', 'post'], '/clientes', [MainController::class, 'clientes'])->name('clientes');
-Route::match(['get', 'post'], '/nuevocliente', [MainController::class, 'nuevocliente'])->name('nuevocliente');
+Route::match(['get', 'post'], '/nuevadieta', [MainController::class, 'nuevadieta'])->name('nuevadieta');
 
 // Pruebas
 Route::match(['get', 'post'], '/pruebas', [MainController::class, 'pruebas'])->name('pruebas');

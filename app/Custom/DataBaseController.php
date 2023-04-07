@@ -180,4 +180,29 @@ class DataBaseController
         }
         return $nombre_apellidos;
     }
+
+    function guardar_cliente_nuevo($nuevo_cliente)
+    {
+        $guardado = false;
+        dump("Cliente guardado en DB");
+        // dump($nuevo_cliente);
+        return true;
+    }
+
+    function obtener_datos_cliente($id_cliente)
+    {
+        $cliente_coincide_db = Cliente::get()->where('id_cliente', $id_cliente)->first();
+        $cliente = [
+            'id_cliente' => $cliente_coincide_db->id_cliente,
+            'nombre_apellidos' => $cliente_coincide_db->nombre_apellidos,
+            'telefono' => $cliente_coincide_db->telefono,
+            'email' => $cliente_coincide_db->email,
+            'direccion' => $cliente_coincide_db->direccion,
+            'fecha_inicio' => $cliente_coincide_db->fecha_inicio,
+            'peso_inicial' => $cliente_coincide_db->peso_inicial,
+            'peso_final_1' => $cliente_coincide_db->peso_final_1,
+            'peso_final_2' => $cliente_coincide_db->peso_final_2
+        ];
+        return $cliente;
+    }
 }
