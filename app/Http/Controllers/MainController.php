@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Custom\DataBaseController;
 
 class MainController extends Controller
 {
-    public function pruebas()
+    public function pruebas(Request $id_buscado)
     {
-        $funciones_control_base_datos = new DataBaseController;
-        $mensajes_internos = $funciones_control_base_datos->obtener_mensajes_internos();
-        $mensajes_externos = $funciones_control_base_datos->obtener_mensajes_externos();
-        return view('pruebas')->with('mensajes_internos', $mensajes_internos)->with('mensajes_externos', $mensajes_externos);
+        $datos_cliente = $this->mock_midieta_grafico();
+        $mock_platos = $this->mock_midieta_tabla();
+        $mock_texto_dietas = $this->mock_texto_dietas();
+        return view('pruebas')->with('peso_cliente', $datos_cliente)->with('platos', $mock_platos)->with('texto_dietas', $mock_texto_dietas);
     }
 
     public function index()
@@ -19,12 +20,37 @@ class MainController extends Controller
         return view('inicio');
     }
 
-    public function midieta()
+    public function buscar_cliente(Request $id_buscado)
     {
-        $datos_cliente = $this->mock_midieta_grafico();
-        $mock_platos = $this->mock_midieta_tabla();
-        $mock_texto_dietas = $this->mock_texto_dietas();
-        return view('midieta')->with('peso_cliente', $datos_cliente)->with('platos', $mock_platos)->with('texto_dietas', $mock_texto_dietas);
+        // jl3864
+        $funciones_control_base_datos = new DataBaseController;
+        $id_cliente = $id_buscado['id_cliente_buscado'];
+        $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
+        if ($cliente_existe) {
+            $datos_cliente_grafico = $funciones_control_base_datos->obtener_datos_pesos_grafico($id_cliente);
+            $platos_cliente = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
+            $texto_cliente = $funciones_control_base_datos->obtener_texto_dietas_cliente($id_cliente);
+            return view('midieta')->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente);
+        } else {
+            return view('midieta');
+        }
+    }
+    public function midieta(Request $id_buscado)
+    {
+        if ($id_buscado['id_cliente_buscado'] == '') {
+            return view('midieta');
+        }
+        $funciones_control_base_datos = new DataBaseController;
+        $id_cliente = $id_buscado['id_cliente_buscado'];
+        $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
+        if ($cliente_existe) {
+            $datos_cliente_grafico = $funciones_control_base_datos->obtener_datos_pesos_grafico($id_cliente);
+            $platos_cliente = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
+            $texto_cliente = $funciones_control_base_datos->obtener_texto_dietas_cliente($id_cliente);
+            return view('midieta')->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente);
+        } else {
+            return view('midieta')->with('mensaje', 'No existe');
+        }
     }
 
     public function clientes()

@@ -14,13 +14,10 @@ return new class extends Migration
         Schema::create('pesos', function (Blueprint $table) {
             $table->id();
             $table->string('id_cliente');
-            $table->string('fecha');
-            $table->string('peso');
-            $table->string('peso_teorico');
-            $table->string('nota_pasos');
-            // $table->double('peso');
-            // $table->double('peso_teorico');
-            // $table->double('nota_pasos');
+            $table->text('fecha');
+            $table->text('peso');
+            $table->text('peso_teorico');
+            $table->text('nota_pasos');
             $table->timestamps();
         });
     }
