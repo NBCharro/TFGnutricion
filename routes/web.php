@@ -31,7 +31,6 @@ Route::match(['get', 'post'], '/clientes', [MainController::class, 'clientes'])-
 Route::match(['get', 'post'], '/nuevocliente', [MainController::class, 'nuevocliente'])->name('nuevocliente');
 
 // Pruebas
-// Route::get('/pruebas', [MainController::class, 'pruebas'])->name('pruebas');
 Route::match(['get', 'post'], '/pruebas', [MainController::class, 'pruebas'])->name('pruebas');
 
 // Auth

@@ -53,9 +53,10 @@
         "Nombre tabla": "pesos",
         "Campos": {
             "id_cliente": "VARCHAR",
-            "fecha": "VARCHAR",
-            "peso": "DOUBLE",
-            "nota_pasos": "DOUBLE"
+            "fecha": "TEXT",
+            "peso": "TEXT",
+            "peso_teorico": "TEXT",
+            "nota_pasos": "TEXT"
         }
     },
     {
@@ -65,7 +66,7 @@
         "Campos": {
             "id_cliente": "VARCHAR",
             "accion": "ENUM ('desayuno','media manaña','comida','merienda','cena','recena','otro')",
-            "platos": "JSON"
+            "platos": "TEXT"
         }
     },
     {
@@ -74,8 +75,8 @@
         "Nombre tabla": "textos_clientes",
         "Campos": {
             "id_cliente": "VARCHAR",
-            "texto_general": "TEXT",
-            "texto_especifico": "TEXT"
+            "texto_general": "JSON",
+            "texto_especifico": "JSON"
         }
     },
     {

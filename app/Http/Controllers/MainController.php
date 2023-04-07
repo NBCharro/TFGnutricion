@@ -8,23 +8,24 @@ use App\Custom\DataBaseController;
 class MainController extends Controller
 {
     // private $funciones_control_base_datos = new DataBaseController;
-    public function pruebas(Request $id_buscado)
+    public function pruebas(Request $nuevo_cliente)
     {
-        $funciones_control_base_datos = new DataBaseController;
-        $clientes = $funciones_control_base_datos->obtener_clientes();
-        if ($id_buscado['selectClientes'] == '') {
-            return view('pruebas')->with('clientes', $clientes);
-        }
-        $id_cliente = $id_buscado['selectClientes'];
-        $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
-        if ($cliente_existe) {
-            $datos_cliente_grafico = $funciones_control_base_datos->obtener_datos_pesos_grafico($id_cliente);
-            $platos_cliente = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
-            $texto_cliente = $funciones_control_base_datos->obtener_texto_dietas_cliente($id_cliente);
-            return view('pruebas')->with('clientes', $clientes)->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente);
-        } else {
-            return view('pruebas')->with('mensaje', 'No existe');
-        }
+        dump($nuevo_cliente);
+        $id_cliente = $nuevo_cliente->id_cliente;
+        $nombre_apellidos = $nuevo_cliente->nombre_apellidos;
+        $telefono = $nuevo_cliente->telefono;
+        $email = $nuevo_cliente->email;
+        $direccion = $nuevo_cliente->direccion;
+        $fecha_inicio = $nuevo_cliente->fecha_inicio;
+        $peso_inicial = $nuevo_cliente->peso_inicial;
+        $peso_final_1 = $nuevo_cliente->peso_final_1;
+        $peso_final_2 = $nuevo_cliente->peso_final_2;
+
+        // $perdida_peso_1 = $nuevo_cliente->perdida_peso_1;
+        // $semanas_perdida_peso_1 = $nuevo_cliente->semanas_perdida_peso_1;
+        // $perdida_peso_2 = $nuevo_cliente->perdida_peso_2;
+        // $semanas_perdida_peso_2 = $nuevo_cliente->semanas_perdida_peso_2;
+        return view('pruebas');
     }
 
     public function index()

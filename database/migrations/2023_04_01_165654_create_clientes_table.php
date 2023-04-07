@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('id_cliente');
             $table->string('nombre_apellidos');
-            $table->string('telefono');
-            $table->string('email');
-            $table->string('direccion');
+            $table->string('telefono')->nullable();
+            $table->string('email')->nullable();
+            $table->string('direccion')->nullable();
             $table->string('fecha_inicio');
             $table->double('peso_inicial');
             $table->double('peso_final_1');
-            $table->double('peso_final_2');
+            $table->double('peso_final_2')->nullable();
             $table->timestamps();
         });
     }
