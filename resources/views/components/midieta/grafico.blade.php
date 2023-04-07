@@ -21,9 +21,6 @@
         echo 'let peso_final_2 = ' . $peso_final_2_php . ";\n";
         echo 'let nota_pasos = ' . $nota_pasos_php . ";\n";
         ?>
-        // Borrar, es para pruebas:
-        nota_pasos = "";
-        peso_final_2 = "";
 
         // Si se ve desde el movil cambian cosas
         let tamanoPesoTeorico = 50;
@@ -53,7 +50,7 @@
             },
         ];
         // Si no hay pasos o notas, no se agrega
-        if (nota_pasos != "") {
+        if (nota_pasos.length != 0) {
             datos.push({
                 label: "Nota o peso",
                 backgroundColor: "hsl(255, 9%, 50%)",
@@ -62,7 +59,7 @@
                 yAxisID: 'notas_pasos'
             });
         }
-        if (peso_final_2 != "") {
+        if (peso_final_2[0] != 0) {
             datos.push({
                 label: "Peso final 2",
                 backgroundColor: "hsl(10, 57%, 51%)",

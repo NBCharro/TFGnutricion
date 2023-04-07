@@ -16,6 +16,58 @@ INSERT INTO `tfg`.`contactos_internos` (`id`, `id_cliente`, `fecha`, `mensaje`, 
 (2, 'as6343', '25-03-2023', 'Hola America, estoy siguiendo mi plan de alimentación al pie de la letra, pero he notado que me siento un poco hinchada después de las comidas. ¿Puede haber alguna comida en mi dieta que esté causando esto?', '2023-04-06 04:43:15', '2023-04-06 04:43:15'),
 (3, 'jl3864', '03-04-2023', 'Hola, necesito tu ayuda con mi dieta. Estoy teniendo dificultades para seguir con mis comidas programadas durante el día porque a veces tengo mucho trabajo y no me da tiempo para cocinar. ¿Podrías darme algunas recomendaciones de comidas rápidas y saludables que pueda tener a mano en mi escritorio?', '2023-04-06 04:43:15', '2023-04-06 04:43:15');
 
+INSERT INTO `tfg`.`datos_iniciales_clientes` (`id`, `id_cliente`, `fecha`, `pregunta_respuesta`, `created_at`, `updated_at`) VALUES
+(1, 'jl3864', '27-12-1991',
+'{
+	\"¿Se ha puesto anteriormente a dieta? ¿Cosas positivas que te aportaron esas dietas?\":\"Sí, he seguido diferentes dietas en el pasado. Me han ayudado a perder peso y a mejorar mi alimentación en general.\",
+	\"¿Tienes el hábito de desayunar regularmente? ¿Motivo? Indica qué desayunos suele hacer.\":\"Sí, trato de desayunar todos los días para tener energía durante la mañana. Por lo general, desayuno una taza de yogur con frutas y granola o una tostada integral con aguacate y huevo.\",
+	\"¿Tienes el hábito de comer algo a media mañana regularmente? ¿Motivo? Indica qué sueles hacerte.\":\"A veces suelo comer algo a media mañana si tengo hambre. Por lo general, me hago un batido de proteínas con frutas o un puñado de frutos secos para mantenerme saciado hasta el almuerzo.\",
+	\"¿Te gusta picar entre horas? ¿Qué picoteas?\":\"Sí, a veces me gusta picar algo entre horas. Suelo comer frutas o verduras crudas, como zanahorias o pepinos.\",
+	\"¿Llegas con ansiedad a alguna de la tomas? ¿A cuál?\":\"A veces llego con ansiedad a la cena, especialmente si he tenido un día muy estresante. Trato de controlar mi ansiedad haciendo una cena nutritiva y equilibrada que me haga sentir satisfecho y tranquilo.\",
+	\"¿Te gustan los alimentos muy salados? ¿Qué tipo de sal usa?\":\"No me gustan los alimentos muy salados. Trato de evitar el uso excesivo de sal en mis comidas y, cuando la uso, prefiero usar sal marina o sal del Himalaya, que son opciones más saludables.\"
+}',
+'2023-04-06 04:43:15', '2023-04-06 04:43:15'),
+(2, 'is3137', '20-02-2012',
+'{
+	\"¿Hay algún alimento o hábito que quieras incorporar en la dieta?\":\"Me gustaría incorporar más alimentos ricos en fibra en mi dieta, como legumbres y cereales integrales, ya que sé que son importantes para mi salud digestiva.\",
+	\"¿Cuánto pan come en cada comida y de que tipo?\":\"Trato de limitar mi consumo de pan, pero cuando lo como, suelo optar por pan integral o de centeno. Normalmente solo como una rebanada en cada comida.\",
+	\"¿Tomas café? ¿Tipo, cantidad, dulzor?\":\"Sí, tomo café por las mañanas. Me gusta el café negro sin azúcar, pero a veces le agrego un poco de leche de almendras para suavizar el sabor.\",
+	\"¿Te gustan los alimentos muy salados? ¿Qué tipo de sal usa?\":\"No me gustan los alimentos muy salados. Trato de evitar el uso excesivo de sal en mis comidas y, cuando la uso, prefiero usar sal marina o sal del Himalaya, que son opciones más saludables.\",
+	\"¿Le gusta mucho los alimentos dulces? ¿Qué utiliza normalmente para endulzar?\":\"Me gusta el sabor dulce, pero trato de limitar mi consumo de azúcar. A veces utilizo miel o stevia como alternativas más saludables al azúcar procesado.\"
+}',
+'2023-04-06 04:43:15', '2023-04-06 04:43:15'),
+(3, 'ia6472', '20-02-2012',
+'{
+	\"¿Se ha puesto anteriormente a dieta? ¿Cosas positivas que te aportaron esas dietas?\":\"Sí, he intentado hacer dieta en el pasado para mejorar mi salud y mi apariencia física. He aprendido que las dietas restrictivas no funcionan a largo plazo y que lo mejor es hacer cambios graduales y sostenibles en mi estilo de vida para obtener resultados duraderos.\",
+	\"¿Tienes el hábito de comer algo a media mañana regularmente? ¿Motivo? Indica qué sueles hacerte.\":\"Sí, suelo tomar un pequeño tentempié a media mañana para mantener mi energía y evitar la sensación de hambre hasta la siguiente comida. Suelo hacerme una fruta o un puñado de frutos secos.\",
+	\"¿Te gusta picar entre horas? ¿Qué picoteas?\":\"A veces me apetece picar entre horas, pero trato de elegir opciones saludables como frutas, verduras o yogur natural. También me gusta hacerme un smoothie casero de vez en cuando.\",
+	\"¿Llegas con ansiedad a alguna de la tomas? ¿A cuál?\":\"A veces llego con ansiedad a la cena, especialmente si he tenido un día muy estresante. Trato de ser consciente de mis emociones y encontrar formas de relajarme antes de la cena, como hacer yoga o meditar durante unos minutos.\",
+	\"¿Fumas? ¿Cuánto?\":\"No, no fumo.\",
+	\"¿Cocinas tú en casa?\":\"Sí, trato de cocinar la mayoría de mis comidas en casa para tener un mayor control sobre lo que como y elegir opciones más saludables. Me gusta experimentar con nuevas recetas y ingredientes para mantener mi alimentación interesante.\"
+}',
+'2023-04-06 04:43:15', '2023-04-06 04:43:15'),
+(4, 'as6343', '20-02-2012',
+'{
+	\"¿Se ha puesto anteriormente a dieta? ¿Cosas positivas que te aportaron esas dietas?\":\"No he seguido ninguna dieta anteriormente\",
+	\"¿Tienes el hábito de desayunar regularmente? ¿Motivo? Indica qué desayunos suele hacer.\":\"Sí, suelo desayunar todos los días porque me ayuda a empezar el día con energía. Normalmente tomo un café con leche, una tostada con aceite y tomate y una pieza de fruta.\",
+	\"¿Llegas con ansiedad a alguna de la tomas? ¿A cuál?\":\"Sí, a veces llego con ansiedad a la cena. Me gusta comer algo ligero antes de dormir, como una ensalada o una sopa.\",
+	\"¿Cocinas tú en casa?\":\"Sí, suelo cocinar en casa la mayoría de las veces. Me gusta preparar comidas saludables y variadas.\",
+	\"¿Te gustan los alimentos muy salados? ¿Qué tipo de sal usa?\":\"No me gustan los alimentos muy salados. Si uso sal, suelo utilizar sal marina o sal baja en sodio.\",
+	\"¿Cuánto pan come en cada comida y de que tipo?\":\"Suelo comer una rebanada de pan integral en cada comida. Me gusta más el pan integral porque es más nutritivo.\",
+	\"¿Qué comidas y cenas sueles hacer con mayor frecuencia?\":\"Suelo hacer comidas y cenas variadas, pero algunas de mis opciones favoritas son ensaladas con proteína, pescado a la plancha con verduras al vapor, y arroz integral con verduras y legumbres.\"
+}',
+'2023-04-06 04:43:15', '2023-04-06 04:43:15'),
+(5, 'ep2244', '20-02-2012',
+'{
+	\"¿Hay algún alimento o hábito que quieras incorporar en la dieta?\":\"Sí me gustaría incorporar más frutas y verduras en mi dieta diaria.\",
+	\"¿Toma refrescos habitualmente?\":\"No, trato de limitar mi consumo de refrescos y bebidas azucaradas en general.\",
+	\"¿Te gustan los alimentos muy salados? ¿Qué tipo de sal usa?\":\"No soy muy fan de los alimentos muy salados, pero cuando cocino utilizo sal de mar.\",
+	\"¿Le gusta mucho los alimentos dulces? ¿Qué utiliza normalmente para endulzar?\":\"Me gustan los alimentos dulces, pero trato de consumirlos con moderación. Cuando endulzo algo, utilizo azúcar morena o miel.\",
+	\"¿Cocinas tú en casa?\":\"Sí, cocino en casa la mayoría de las veces.\",
+	\"¿Bebes alcohol? ¿Qué tipo de alcohol? ¿Frecuencia?\":\"Sí, ocasionalmente bebo cerveza o vino los fines de semana, pero trato de limitar mi consumo y mantenerlo en moderación.\"
+}',
+'2023-04-06 04:43:15', '2023-04-06 04:43:15');
+
 INSERT INTO `tfg`.`pesos` (`id`, `id_cliente`, `fecha`, `peso`, `peso_teorico`, `nota_pasos`, `created_at`, `updated_at`) VALUES
 (1, 'jl3864',
 "['4-9-2022','11-9-2022','18-9-2022','25-9-2022','2-10-2022','9-10-2022','16-10-2022','23-10-2022','30-10-2022','6-11-2022','13-11-2022','20-11-2022','27-11-2022','4-12-2022','11-12-2022','18-12-2022','25-12-2022','1-1-2023','8-1-2023','15-1-2023','22-1-2023','29-1-2023','5-2-2023','12-2-2023','19-2-2023','26-2-2023','5-3-2023','12-3-2023','19-3-2023','26-3-2023','2-4-2023','9-4-2023','16-4-2023','23-4-2023','30-4-2023']",
@@ -32,8 +84,8 @@ INSERT INTO `tfg`.`pesos` (`id`, `id_cliente`, `fecha`, `peso`, `peso_teorico`, 
 (3, 'ia6472',
 "['1-4-2023','8-4-2023','15-4-2023','22-4-2023','29-4-2023','6-5-2023','13-5-2023','20-5-2023','27-5-2023','3-6-2023','10-6-2023','17-6-2023','24-6-2023','1-7-2023','8-7-2023','15-7-2023','22-7-2023','29-7-2023','5-8-2023','12-8-2023','19-8-2023','26-8-2023','2-9-2023','9-9-2023','16-9-2023','23-9-2023','30-9-2023','7-10-2023']",
 "[73.00, 72.50]",
-"[]",
 "[73.00, 72.50,72.00,71.50,71.00,70.50,70.00,69.65,69.30,68.95,68.60,68.25,67.90,67.55,67.20,66.85,66.50,66.15,65.80,65.45,65.10,64.75,64.40,64.05,63.70,63.35,63.00,62.65]",
+"[]",
 '2023-04-06 04:43:15', '2023-04-06 04:43:15'),
 (4, 'as6343',
 "['5-2-2023','12-2-2023','19-2-2023','26-2-2023','5-3-2023','12-3-2023','19-3-2023','26-3-2023','2-4-2023','9-4-2023','16-4-2023','23-4-2023','30-4-2023','7-5-2023','14-5-2023','21-5-2023','28-5-2023','4-6-2023','11-6-2023','18-6-2023','25-6-2023','2-7-2023','9-7-2023','16-7-2023','23-7-2023','30-7-2023','6-8-2023','13-8-2023','20-8-2023','27-8-2023','3-9-2023','10-9-2023','17-9-2023','24-9-2023','1-10-2023','8-10-2023','15-10-2023','22-10-2023','29-10-2023','5-11-2023','12-11-2023','19-11-2023','26-11-2023','3-12-2023','10-12-2023','17-12-2023','24-12-2023','31-12-2023','7-1-2024']",
@@ -44,8 +96,8 @@ INSERT INTO `tfg`.`pesos` (`id`, `id_cliente`, `fecha`, `peso`, `peso_teorico`, 
 (5, 'ep2244',
 "['18-11-2022','25-11-2022','2-12-2022','9-12-2022','16-12-2022','23-12-2022','30-12-2022','6-1-2023','13-1-2023','20-1-2023','27-1-2023','3-2-2023','10-2-2023','17-2-2023','24-2-2023','3-3-2023','10-3-2023','17-3-2023','24-3-2023','31-3-2023','7-4-2023','14-4-2023','21-4-2023','28-4-2023','5-5-2023','12-5-2023','19-5-2023','26-5-2023','2-6-2023','9-6-2023','16-6-2023','23-6-2023','30-6-2023','7-7-2023','14-7-2023','21-7-2023']",
 "[79.00,79.50,79.00,76.00,76.00,77.50,76.00,73.00,76.00,72.50,74.00,73.00,74.50,73.00,70.00,72.50,69.00,75.00,71.00,70.00,70.00,67.00]",
-"[5945,2044,4580,2748,7857,2561,8996,6035,5583,4655,3537,6414,5680,6797,5845,8309,6839,3129,8983,4457,5699,7331]",
 "[79.00,78.25,77.50,76.75,76.00,75.25,74.50,73.75,73.25,72.75,72.25,71.75,71.25,70.75,70.25,69.75,69.25,68.75,68.25,67.75,67.25,66.75,66.25,65.75,65.25,64.75,64.25,63.75,63.25,62.75,62.25,61.75,61.25,60.75,60.25,59.75]",
+"[5945,2044,4580,2748,7857,2561,8996,6035,5583,4655,3537,6414,5680,6797,5845,8309,6839,3129,8983,4457,5699,7331]",
 '2023-04-06 04:43:15', '2023-04-06 04:43:15');
 
 INSERT INTO `tfg`.`textos_clientes` (`id`, `id_cliente`, `texto_general`, `texto_particular`, `created_at`, `updated_at`) VALUES

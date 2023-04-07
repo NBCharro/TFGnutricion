@@ -19,16 +19,18 @@ Route::get('/', [MainController::class, 'index'])->name('inicio');
 // Route::get('/midieta', [MainController::class, 'midieta'])->name('midieta');
 Route::get('/clientes', [MainController::class, 'clientes'])->name('clientes');
 Route::get('/mensajes', [MainController::class, 'mensajes'])->name('mensajes');
-Route::get('/comenzarmiplan', [MainController::class, 'comenzarmiplan'])->name('comenzarmiplan');
+// Route::get('/comenzarmiplan', [MainController::class, 'comenzarmiplan'])->name('comenzarmiplan');
 
 Route::post('/buscar_cliente', [MainController::class, 'buscar_cliente'])->name('buscar_cliente');
 // Route::post('/midieta', [MainController::class, 'midieta'])->name('midieta');
 
 // Paginas que admitan GET y POST
 Route::match(['get', 'post'], '/midieta', [MainController::class, 'midieta'])->name('midieta');
+Route::match(['get', 'post'], '/comenzarmiplan', [MainController::class, 'comenzarmiplan'])->name('comenzarmiplan');
 
 // Pruebas
-Route::get('/pruebas', [MainController::class, 'pruebas'])->name('pruebas');
+// Route::get('/pruebas', [MainController::class, 'pruebas'])->name('pruebas');
+Route::match(['get', 'post'], '/pruebas', [MainController::class, 'pruebas'])->name('pruebas');
 
 // Auth
 Auth::routes();

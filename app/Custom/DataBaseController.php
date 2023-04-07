@@ -5,6 +5,7 @@ namespace App\Custom;
 use App\Models\Cliente;
 use App\Models\Contacto_Externo;
 use App\Models\Contacto_Interno;
+use App\Models\Dato_Inicial_Cliente;
 use App\Models\Peso;
 use App\Models\Plato;
 use App\Models\Texto_Cliente;
@@ -145,5 +146,28 @@ class DataBaseController
             $texto_cliente[$nombre] = $texto;
         }
         return $texto_cliente;
+    }
+
+    function obtener_preguntas_respuestas_iniciales_cliente($id_cliente)
+    {
+        $pregunta_respuesta_db = Dato_Inicial_Cliente::get()->where('id_cliente', $id_cliente)->first();
+        $pregunta_respuesta_json = json_decode($pregunta_respuesta_db->pregunta_respuesta);
+        $pregunta_respuesta = [];
+        foreach ($pregunta_respuesta_json as $key => $value) {
+            $pregunta_respuesta[$key] = $value;
+        }
+        return $pregunta_respuesta;
+    }
+
+    function obtener_preguntas_iniciales_cliente($id_cliente)
+    {
+        $pregunta_respuesta = $this->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
+        $preguntas_cliente = [];
+        $index = 1;
+        foreach ($pregunta_respuesta as $pregunta => $respuesta) {
+            $preguntas_cliente["pregunta_$index"] = $pregunta;
+            $index++;
+        }
+        return $preguntas_cliente;
     }
 }

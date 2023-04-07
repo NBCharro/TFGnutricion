@@ -7,12 +7,21 @@ use App\Custom\DataBaseController;
 
 class MainController extends Controller
 {
+    // private $funciones_control_base_datos = new DataBaseController;
     public function pruebas(Request $id_buscado)
     {
-        $datos_cliente = $this->mock_midieta_grafico();
-        $mock_platos = $this->mock_midieta_tabla();
-        $mock_texto_dietas = $this->mock_texto_dietas();
-        return view('pruebas')->with('peso_cliente', $datos_cliente)->with('platos', $mock_platos)->with('texto_dietas', $mock_texto_dietas);
+        if ($id_buscado['id_cliente_buscado'] == '') {
+            return view('pruebas');
+        }
+        $funciones_control_base_datos = new DataBaseController;
+        $id_cliente = $id_buscado['id_cliente_buscado'];
+        $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
+        if ($cliente_existe) {
+            $preguntas_clientes = $funciones_control_base_datos->obtener_preguntas_iniciales_cliente($id_cliente);
+            return view('pruebas')->with('preguntas_clientes', $preguntas_clientes)->with('id_cliente', $id_buscado);
+        } else {
+            return view('pruebas')->with('mensaje', 'No existe');
+        }
     }
 
     public function index()
@@ -20,21 +29,6 @@ class MainController extends Controller
         return view('inicio');
     }
 
-    public function buscar_cliente(Request $id_buscado)
-    {
-        // jl3864
-        $funciones_control_base_datos = new DataBaseController;
-        $id_cliente = $id_buscado['id_cliente_buscado'];
-        $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
-        if ($cliente_existe) {
-            $datos_cliente_grafico = $funciones_control_base_datos->obtener_datos_pesos_grafico($id_cliente);
-            $platos_cliente = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
-            $texto_cliente = $funciones_control_base_datos->obtener_texto_dietas_cliente($id_cliente);
-            return view('midieta')->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente);
-        } else {
-            return view('midieta');
-        }
-    }
     public function midieta(Request $id_buscado)
     {
         if ($id_buscado['id_cliente_buscado'] == '') {
@@ -70,10 +64,20 @@ class MainController extends Controller
         return view('mensajes')->with('mensajes_internos', $mensajes_internos)->with('mensajes_externos', $mensajes_externos);
     }
 
-    public function comenzarmiplan()
+    public function comenzarmiplan(Request $id_buscado)
     {
-        $mock_preguntas_clientes = $this->mock_preguntas_clientes();
-        return view('comenzarmiplan')->with('preguntas_clientes', $mock_preguntas_clientes);
+        if ($id_buscado['id_cliente_buscado'] == '') {
+            return view('comenzarmiplan');
+        }
+        $funciones_control_base_datos = new DataBaseController;
+        $id_cliente = $id_buscado['id_cliente_buscado'];
+        $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
+        if ($cliente_existe) {
+            $preguntas_clientes = $funciones_control_base_datos->obtener_preguntas_iniciales_cliente($id_cliente);
+            return view('comenzarmiplan')->with('preguntas_clientes', $preguntas_clientes)->with('id_cliente', $id_buscado);
+        } else {
+            return view('comenzarmiplan')->with('mensaje', 'No existe');
+        }
     }
     // Mock de datos. Temporal
 
