@@ -10,15 +10,18 @@ class MainController extends Controller
     // private $funciones_control_base_datos = new DataBaseController;
     public function pruebas(Request $id_buscado)
     {
-        if ($id_buscado['id_cliente_buscado'] == '') {
-            return view('pruebas');
-        }
         $funciones_control_base_datos = new DataBaseController;
-        $id_cliente = $id_buscado['id_cliente_buscado'];
+        $clientes = $funciones_control_base_datos->obtener_clientes();
+        if ($id_buscado['selectClientes'] == '') {
+            return view('pruebas')->with('clientes', $clientes);
+        }
+        $id_cliente = $id_buscado['selectClientes'];
         $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
         if ($cliente_existe) {
-            $preguntas_clientes = $funciones_control_base_datos->obtener_preguntas_iniciales_cliente($id_cliente);
-            return view('pruebas')->with('preguntas_clientes', $preguntas_clientes)->with('id_cliente', $id_buscado);
+            $datos_cliente_grafico = $funciones_control_base_datos->obtener_datos_pesos_grafico($id_cliente);
+            $platos_cliente = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
+            $texto_cliente = $funciones_control_base_datos->obtener_texto_dietas_cliente($id_cliente);
+            return view('pruebas')->with('clientes', $clientes)->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente);
         } else {
             return view('pruebas')->with('mensaje', 'No existe');
         }
@@ -47,13 +50,28 @@ class MainController extends Controller
         }
     }
 
-    public function clientes()
+    public function nuevocliente()
     {
-        $mock_clientes = ['Jose Luis', 'Emma', 'America', 'Isaac', 'Benito'];
-        $datos_cliente = $this->mock_midieta_grafico();
-        $mock_platos = $this->mock_midieta_tabla();
-        $mock_texto_dietas = $this->mock_texto_dietas();
-        return view('conectado')->with('clientes', $mock_clientes)->with('peso_cliente', $datos_cliente)->with('platos', $mock_platos)->with('texto_dietas', $mock_texto_dietas);
+        return view('nuevocliente');
+    }
+
+    public function clientes(Request $id_buscado)
+    {
+        $funciones_control_base_datos = new DataBaseController;
+        $clientes = $funciones_control_base_datos->obtener_clientes();
+        if ($id_buscado['selectClientes'] == '') {
+            return view('conectado')->with('clientes', $clientes);
+        }
+        $id_cliente = $id_buscado['selectClientes'];
+        $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
+        if ($cliente_existe) {
+            $datos_cliente_grafico = $funciones_control_base_datos->obtener_datos_pesos_grafico($id_cliente);
+            $platos_cliente = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
+            $texto_cliente = $funciones_control_base_datos->obtener_texto_dietas_cliente($id_cliente);
+            return view('conectado')->with('clientes', $clientes)->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente);
+        } else {
+            return view('conectado')->with('mensaje', 'No existe');
+        }
     }
 
     public function mensajes()

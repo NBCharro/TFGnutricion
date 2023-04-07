@@ -78,6 +78,15 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('nuevocliente') }}"
+                            class="block py-2 pr-4 pl-3 rounded lg:p-0
+                            {{ Route::is('nuevocliente') ? 'text-tertiary-700' : 'text-gray-400' }}
+                            dark:{{ Route::is('nuevocliente') ? 'text-white' : 'text-gray-400' }}
+                            lg:bg-transparent">
+                            Nuevo Cliente
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('mensajes') }}"
                             class="block py-2 pr-4 pl-3 rounded lg:p-0
                             {{ Route::is('mensajes') ? 'text-tertiary-700' : 'text-gray-400' }}

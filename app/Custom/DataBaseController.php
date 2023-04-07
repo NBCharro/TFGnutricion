@@ -58,8 +58,8 @@ class DataBaseController
     private function obtener_nombre_mediante_id($id_buscado)
     {
         $cliente_coincide_db = Cliente::get()->where('id_cliente', $id_buscado)->first();
-        $nombre = $cliente_coincide_db->nombre_apellidos;
-        return $nombre;
+        $nombre_apellidos = $cliente_coincide_db->nombre_apellidos;
+        return $nombre_apellidos;
     }
 
     function obtener_datos_pesos_grafico($id_cliente)
@@ -169,5 +169,15 @@ class DataBaseController
             $index++;
         }
         return $preguntas_cliente;
+    }
+
+    function obtener_clientes()
+    {
+        $cliente_coincide_db = Cliente::get();
+        $nombre_apellidos = [];
+        foreach ($cliente_coincide_db as $cliente) {
+            $nombre_apellidos[$cliente->id_cliente] = $cliente->nombre_apellidos;
+        }
+        return $nombre_apellidos;
     }
 }
