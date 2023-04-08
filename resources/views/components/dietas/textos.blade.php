@@ -3,9 +3,9 @@
 @endphp
 <div id="textos" class="bg-quaternary-200 md:p-2 rounded-xl md:my-5">
     <div id="mostrar_texto"
-        class="self-center font-medium rounded-lg text-sm w-fit px-5 py-2.5 text-center bg-primary text-white hover:bg-tertiary-100 hover:text-black mt-4 cursor-pointer">
+        class="self-center font-medium rounded-lg text-sm w-fit px-5 py-2.5 text-center bg-primary text-white hover:bg-tertiary-100 hover:text-black mt-4 cursor-pointer mb-3">
         Mostrar textos</div>
-    <div id="texto_general" class="hidden md:grid-cols-5 md:gap-4 my-4">
+    <div id="texto_general" class="hidden md:grid-cols-5 md:gap-4">
         <label for="texto_general_titulo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-right">
             Titulo
         </label>

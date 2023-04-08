@@ -1,12 +1,12 @@
 @php
     $index_platos = 1;
     $tipo_cliente = 'sin dieta';
-    
+
     if (count($platos_cliente_seleccionado['desayuno']) > 1 || count($platos_cliente_seleccionado['mediamanana']) > 1 || count($platos_cliente_seleccionado['comida']) > 1 || count($platos_cliente_seleccionado['merienda']) > 1 || count($platos_cliente_seleccionado['cena']) > 1 || count($platos_cliente_seleccionado['recena']) > 1 || count($platos_cliente_seleccionado['otro']) > 1) {
         $tipo_cliente = 'con dieta';
     }
 @endphp
-<div id="platos" class="bg-tertiary-500 md:p-2 rounded-xl">
+<div id="platos" class="bg-tertiary-500 md:p-2 rounded-xl md:my-5">
     <div id="mostrar_platos"
         class="self-center font-medium rounded-lg text-sm w-fit px-5 py-2.5 text-center bg-primary text-white hover:bg-tertiary-100 hover:text-black mt-4 cursor-pointer mb-3">
         Mostrar platos</div>
