@@ -11,34 +11,28 @@ class MainController extends Controller
     public function pruebas(Request $modificar_cliente)
     {
         $funciones_control_base_datos = new DataBaseController;
-        $clientes = $funciones_control_base_datos->obtener_clientes();
-        dump($modificar_cliente);
-
-        if (isset($modificar_cliente['id_cliente'])) {
-            // Significara que se ha pulsado el boton de guardar cambios
-            dump($modificar_cliente['id_cliente']);
-            // Accedemos a cada recurso de la request:
-            // foreach ($modificar_cliente->request as $key => $value) {
-            //     dump($key);
-            //     dump($value);
-            // }
-        }
-        if ($modificar_cliente['selectClientes'] == '') {
-            return view('pruebas')->with('clientes', $clientes);
-        }
-
-        $id_cliente = $modificar_cliente['selectClientes'];
-        // $id_cliente = 'is3137';
-
-        $datos_cliente_seleccionado = $funciones_control_base_datos->obtener_datos_cliente($id_cliente);
-        $platos_cliente_seleccionado = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
-        $textos_cliente_seleccionado = $funciones_control_base_datos->obtener_texto_dietas_cliente($id_cliente);
-        $pesos_cliente_seleccionado = $funciones_control_base_datos->obtener_datos_pesos_grafico($id_cliente);
-        // dump($platos_cliente_seleccionado);
-        // dump($datos_cliente_seleccionado);
-        // dump($textos_cliente_seleccionado);
-        // dump($pesos_cliente_seleccionado);
-        return view('pruebas')->with('clientes', $clientes)->with('cliente_seleccionado', $datos_cliente_seleccionado)->with('platos_cliente_seleccionado', $platos_cliente_seleccionado)->with('textos_cliente_seleccionado', $textos_cliente_seleccionado)->with('pesos_cliente_seleccionado', $pesos_cliente_seleccionado);
+        $mock_datos_nuevo_cliente = [
+            "id_cliente" => "id_cliente",
+            "nombre_apellidos" => "Nombre Apellido",
+            "telefono" => "111 222 333",
+            "email" => "email@gmail.com",
+            "direccion" => "Calle Falsa, 123",
+            "fecha_inicio" => "2023-04-19",
+            "peso_inicial" => "100",
+            "peso_final_1" => "80",
+            "peso_final_2" => "70"
+        ];
+        $mock_preguntas_extra_nuevo_cliente = [
+            "Pregunta extra 1" => "respuesta",
+            "Pregunta extra 2" => "respuesta",
+        ];
+        // $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
+        // if ($cliente_existe) {
+        //     dump('cliente existe');
+        //     return view('pruebas');
+        // }
+        $cliente_guardado = $funciones_control_base_datos->guardar_cliente_nuevo($mock_datos_nuevo_cliente, $mock_preguntas_extra_nuevo_cliente);
+        return view('pruebas');
     }
 
     public function index()
@@ -91,10 +85,17 @@ class MainController extends Controller
             "peso_final_1" => $nuevo_cliente->peso_final_1,
             "peso_final_2" => $nuevo_cliente->peso_final_2
         ];
+        $preguntas_extra_nuevo_cliente = [];
+        foreach ($nuevo_cliente->request as $key => $value) {
+            if (strpos($key, 'pregunta_') !== false && $value != null) {
+                $preguntas_extra_nuevo_cliente[$value] = "respuesta";
+            }
+        }
+        dump($preguntas_extra_nuevo_cliente);
         if ($cliente_existe) {
-            return view('dietas')->with('cliente_existe', true)->with('cliente_nuevo', $cliente_nuevo);
+            return view('dietas')->with('cliente_existe', true)->with('cliente_nuevo', $cliente_nuevo)->with('preguntas_extra_nuevo_cliente', $preguntas_extra_nuevo_cliente);
         } else {
-            $cliente_guardado = $funciones_control_base_datos->guardar_cliente_nuevo($cliente_nuevo);
+            $cliente_guardado = $funciones_control_base_datos->guardar_cliente_nuevo($cliente_nuevo, $preguntas_extra_nuevo_cliente);
             return view('dietas')->with('cliente_guardado', $cliente_guardado);
         }
     }

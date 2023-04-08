@@ -7,7 +7,10 @@
                     class="border text-m rounded-lg block w-full py-2.5 px-8 bg-primary-600 text-white dark:bg-gray-800">
                     <option disabled selected>Selecciona una opción</option>
                     @php
+                        dump($clientes);
                         foreach ($clientes as $id_cliente => $cliente) {
+                            dump($id_cliente);
+                            dump($cliente);
                             $cliente_elegido = '';
                             if (isset($peso_cliente) && $peso_cliente['id_cliente'] == $id_cliente) {
                                 $cliente_elegido = 'selected';
