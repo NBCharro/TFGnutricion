@@ -75,6 +75,7 @@ class MainController extends Controller
     {
         $funciones_control_base_datos = new DataBaseController;
         $id_cliente = $nuevo_cliente->id_cliente;
+        dump($nuevo_cliente);
         if ($id_cliente == '') {
             return view('dietas');
         }

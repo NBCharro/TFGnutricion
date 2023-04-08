@@ -127,8 +127,18 @@
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
         </div>
     </div>
+    <div id="pregunta_respuesta" class="bg-quaternary-200 md:p-2 rounded-xl md:my-5">
+        <input type="text" name="pregunta_1"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white my-4"
+            placeholder="Escriba la pregunta">
+        <div id="crearMas_preguntas"
+            class="self-center font-medium rounded-lg text-sm w-fit px-5 py-2.5 text-center bg-primary text-white hover:bg-tertiary-100 hover:text-black mt-4 cursor-pointer">
+            Crear mas preguntas</div>
+    </div>
     <button type="submit"
         class="self-center font-medium rounded-lg text-sm w-fit px-5 py-2.5 text-center bg-primary text-white hover:bg-tertiary-100 hover:text-black mt-4">
         Guardar cliente nuevo
     </button>
 </form>
+
+<script src="{{ asset('js/dietas_pregunta_respuesta.js') }}" defer></script>

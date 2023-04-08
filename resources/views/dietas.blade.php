@@ -1,10 +1,10 @@
 @extends ('layouts.main-layout')
-@section('page-title', 'Nuevo cliente')
+@section('page-title', 'Dietas clientes')
 @section('content-area')
     @if (!isset($cliente_seleccionado))
-        @include('components.nuevadieta.nuevo_cliente')
+        @include('components.dietas.nuevo_cliente')
     @endif
     @if (isset($clientes))
-        @include('components.nuevadieta.modificar_cliente')
+        @include('components.dietas.modificar_cliente')
     @endif
 @endsection
