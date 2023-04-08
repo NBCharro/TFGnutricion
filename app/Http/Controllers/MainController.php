@@ -150,12 +150,34 @@ class MainController extends Controller
         }
     }
 
-    public function mensajes()
+    public function mensajes(Request $mensajes)
     {
+        $mensaje_borrado = 'ningun mensaje seleccionado';
+        if ($mensajes->id_mensaje != '') {
+            $mensaje_borrado = $this->borrar_mensaje($mensajes->id_mensaje);
+        }
         $funciones_control_base_datos = new DataBaseController;
         $mensajes_internos = $funciones_control_base_datos->obtener_mensajes_internos();
         $mensajes_externos = $funciones_control_base_datos->obtener_mensajes_externos();
-        return view('mensajes')->with('mensajes_internos', $mensajes_internos)->with('mensajes_externos', $mensajes_externos);
+        return view('mensajes')->with('mensajes_internos', $mensajes_internos)->with('mensajes_externos', $mensajes_externos)->with('mensaje_borrado', $mensaje_borrado);
+    }
+
+    private function borrar_mensaje($id_mensaje)
+    {
+        // $borrado = false;
+        $borrado = "no borrado";
+        $funciones_control_base_datos = new DataBaseController;
+        $borrar_mensaje = explode("_", $id_mensaje);
+        if ($borrar_mensaje[0] == 'interno') {
+            $mensaje_borrado = $funciones_control_base_datos->borrar_mensaje_interno($borrar_mensaje[1]);
+        } else {
+            $mensaje_borrado = $funciones_control_base_datos->borrar_mensaje_externo($borrar_mensaje[1]);
+        }
+        if ($mensaje_borrado) {
+            // $borrado = true;
+            $borrado = 'borrado';
+        }
+        return $borrado;
     }
 
     public function comenzarmiplan(Request $id_buscado)

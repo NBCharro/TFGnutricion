@@ -16,6 +16,11 @@ crearMasPlatos.addEventListener('click', (event) => {
 function mostrar_ocultar_platos() {
     lista_platos.classList.toggle("md:grid");
     lista_platos.classList.toggle("hidden");
+    if (mostrar_platos.innerText == 'Mostrar platos') {
+        mostrar_platos.innerText = 'Ocultar platos';
+    } else {
+        mostrar_platos.innerText = 'Mostrar platos';
+    }
 }
 
 function crear_nuevo_plato() {

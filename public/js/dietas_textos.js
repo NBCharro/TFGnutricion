@@ -17,6 +17,11 @@ function mostrar_ocultar_textos() {
     texto_general.classList.toggle("hidden");
     texto_particular.classList.toggle("md:grid");
     texto_particular.classList.toggle("hidden");
+    if (mostrar_texto.innerText == 'Mostrar textos') {
+        mostrar_texto.innerText = 'Ocultar textos';
+    } else {
+        mostrar_texto.innerText = 'Mostrar textos';
+    }
 }
 
 function crear_nuevo_alimento() {

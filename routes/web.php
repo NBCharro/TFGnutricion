@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index'])->name('inicio');
 // Route::get('/midieta', [MainController::class, 'midieta'])->name('midieta');
 // Route::get('/clientes', [MainController::class, 'clientes'])->name('clientes');
-Route::get('/mensajes', [MainController::class, 'mensajes'])->name('mensajes');
+// Route::get('/mensajes', [MainController::class, 'mensajes'])->name('mensajes');
 // Route::get('/comenzarmiplan', [MainController::class, 'comenzarmiplan'])->name('comenzarmiplan');
 
 Route::post('/buscar_cliente', [MainController::class, 'buscar_cliente'])->name('buscar_cliente');
@@ -31,6 +31,7 @@ Route::match(['get', 'post'], '/midieta', [MainController::class, 'midieta'])->n
 Route::match(['get', 'post'], '/comenzarmiplan', [MainController::class, 'comenzarmiplan'])->name('comenzarmiplan');
 Route::match(['get', 'post'], '/clientes', [MainController::class, 'clientes'])->name('clientes');
 Route::match(['get', 'post'], '/nuevadieta', [MainController::class, 'nuevadieta'])->name('nuevadieta');
+Route::match(['get', 'post'], '/mensajes', [MainController::class, 'mensajes'])->name('mensajes');
 
 // Pruebas
 Route::match(['get', 'post'], '/pruebas', [MainController::class, 'pruebas'])->name('pruebas');

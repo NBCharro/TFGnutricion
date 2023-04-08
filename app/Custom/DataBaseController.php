@@ -165,17 +165,27 @@ class DataBaseController
         return $pregunta_respuesta;
     }
 
-    // function obtener_preguntas_iniciales_cliente($id_cliente)
-    // {
-    //     $pregunta_respuesta = $this->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
-    //     $preguntas_cliente = [];
-    //     $index = 1;
-    //     foreach ($pregunta_respuesta as $pregunta => $respuesta) {
-    //         $preguntas_cliente["pregunta_$index"] = $pregunta;
-    //         $index++;
-    //     }
-    //     return $preguntas_cliente;
-    // }
+    function borrar_mensaje_interno($id)
+    {
+        $borrado = false;
+        try {
+            $mensaje = Contacto_Interno::get()->where('id', $id)->first();
+            $borrado = $mensaje->delete();
+        } catch (\Throwable $e) {
+        }
+        return $borrado;
+    }
+
+    function borrar_mensaje_externo($id)
+    {
+        $borrado = false;
+        try {
+            $mensaje = Contacto_Externo::get()->where('id', $id)->first();
+            $borrado = $mensaje->delete();
+        } catch (\Throwable $e) {
+        }
+        return $borrado;
+    }
 
     function obtener_clientes()
     {
