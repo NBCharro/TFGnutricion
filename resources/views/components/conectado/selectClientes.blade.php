@@ -12,7 +12,7 @@
                             dump($id_cliente);
                             dump($cliente);
                             $cliente_elegido = '';
-                            if (isset($peso_cliente) && $peso_cliente['id_cliente'] == $id_cliente) {
+                            if (isset($platos) && $platos['id_cliente'] == $id_cliente) {
                                 $cliente_elegido = 'selected';
                             }
                             echo "<option value='$id_cliente' $cliente_elegido>$cliente</option>";
