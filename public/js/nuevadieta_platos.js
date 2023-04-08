@@ -1,11 +1,22 @@
+const mostrar_platos = document.getElementById('mostrar_platos');
 const crearMasPlatos = document.getElementById('crearMasPlatos');
 const platos = document.getElementById('platos');
-let numero_campos_platos = 1;
+const lista_platos = document.getElementById('lista_platos');
+
+mostrar_platos.addEventListener('click', (event) => {
+    event.preventDefault;
+    mostrar_ocultar_platos();
+})
 
 crearMasPlatos.addEventListener('click', (event) => {
     event.preventDefault;
     crear_nuevo_plato();
 })
+
+function mostrar_ocultar_platos() {
+    lista_platos.classList.toggle("md:grid");
+    lista_platos.classList.toggle("hidden");
+}
 
 function crear_nuevo_plato() {
     const select = document.createElement("select");
@@ -23,9 +34,9 @@ function crear_nuevo_plato() {
     input.className =
         'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white col-span-4';
 
-    numero_campos_platos++;
     select.name = `select_plato_${numero_campos_platos}`;
     input.name = `input_plato_${numero_campos_platos}`;
+    numero_campos_platos++;
 
     input.placeholder = 'Introduzca el plato';
 
@@ -45,6 +56,6 @@ function crear_nuevo_plato() {
     select.appendChild(recena);
     select.appendChild(otro);
 
-    platos.insertBefore(select, crearMasPlatos);
-    platos.insertBefore(input, crearMasPlatos);
+    lista_platos.insertBefore(select, crearMasPlatos);
+    lista_platos.insertBefore(input, crearMasPlatos);
 }

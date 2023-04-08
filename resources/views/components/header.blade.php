@@ -83,7 +83,7 @@
                             {{ Route::is('nuevadieta') ? 'text-tertiary-700' : 'text-gray-400' }}
                             dark:{{ Route::is('nuevadieta') ? 'text-white' : 'text-gray-400' }}
                             lg:bg-transparent">
-                            Nueva dieta
+                            Dietas
                         </a>
                     </li>
                     <li>

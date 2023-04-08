@@ -22,6 +22,8 @@ Route::get('/mensajes', [MainController::class, 'mensajes'])->name('mensajes');
 // Route::get('/comenzarmiplan', [MainController::class, 'comenzarmiplan'])->name('comenzarmiplan');
 
 Route::post('/buscar_cliente', [MainController::class, 'buscar_cliente'])->name('buscar_cliente');
+Route::post('/modificar_cliente', [MainController::class, 'modificar_cliente'])->name('modificar_cliente');
+Route::post('/nuevo_cliente', [MainController::class, 'nuevo_cliente'])->name('nuevo_cliente');
 // Route::post('/midieta', [MainController::class, 'midieta'])->name('midieta');
 
 // Paginas que admitan GET y POST

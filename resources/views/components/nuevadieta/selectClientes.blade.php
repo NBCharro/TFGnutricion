@@ -1,6 +1,7 @@
 <section class="flex justify-center">
     <div class="mb-3 xl:w-96">
-        <form action="{{ route('pruebas') }}" method="post" class="relative mb-4 flex w-full flex-wrap items-stretch">
+        <form action="{{ route('modificar_cliente') }}" method="post"
+            class="relative mb-4 flex w-full flex-wrap items-stretch">
             @csrf
             <div class="relative mb-4">
                 <select id="selectClientes" onchange="this.form.submit()" name="selectClientes"
@@ -9,7 +10,7 @@
                     @php
                         foreach ($clientes as $id_cliente => $cliente) {
                             $cliente_elegido = '';
-                            if (isset($peso_cliente) && $peso_cliente['id_cliente'] == $id_cliente) {
+                            if (isset($cliente_seleccionado) && $cliente_seleccionado['id_cliente'] == $id_cliente) {
                                 $cliente_elegido = 'selected';
                             }
                             echo "<option value='$id_cliente' $cliente_elegido>$cliente</option>";

@@ -12,19 +12,23 @@ class MainController extends Controller
     {
         $funciones_control_base_datos = new DataBaseController;
         $clientes = $funciones_control_base_datos->obtener_clientes();
+        dump($modificar_cliente);
+
+        if (isset($modificar_cliente['id_cliente'])) {
+            // Significara que se ha pulsado el boton de guardar cambios
+            dump($modificar_cliente['id_cliente']);
+            // Accedemos a cada recurso de la request:
+            // foreach ($modificar_cliente->request as $key => $value) {
+            //     dump($key);
+            //     dump($value);
+            // }
+        }
         if ($modificar_cliente['selectClientes'] == '') {
             return view('pruebas')->with('clientes', $clientes);
         }
-        dump($modificar_cliente);
 
-        // Accedemos a cada recurso de la request:
-        // foreach ($modificar_cliente->request as $key => $value) {
-        //     dump($key);
-        //     dump($value);
-        // }
-
-        // $id_cliente = $modificar_cliente['selectClientes'];
-        $id_cliente = 'is3137';
+        $id_cliente = $modificar_cliente['selectClientes'];
+        // $id_cliente = 'is3137';
 
         $datos_cliente_seleccionado = $funciones_control_base_datos->obtener_datos_cliente($id_cliente);
         $platos_cliente_seleccionado = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
@@ -60,12 +64,19 @@ class MainController extends Controller
         }
     }
 
-    public function nuevadieta(Request $nuevo_cliente)
+    public function nuevadieta()
+    {
+        $funciones_control_base_datos = new DataBaseController;
+        $clientes = $funciones_control_base_datos->obtener_clientes();
+        return view('dietas')->with('clientes', $clientes);
+    }
+
+    public function nuevo_cliente(Request $nuevo_cliente)
     {
         $funciones_control_base_datos = new DataBaseController;
         $id_cliente = $nuevo_cliente->id_cliente;
         if ($id_cliente == '') {
-            return view('nuevadieta');
+            return view('dietas');
         }
         $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
         $cliente_nuevo = [
@@ -80,11 +91,42 @@ class MainController extends Controller
             "peso_final_2" => $nuevo_cliente->peso_final_2
         ];
         if ($cliente_existe) {
-            return view('nuevadieta')->with('cliente_existe', true)->with('cliente_nuevo', $cliente_nuevo);
+            return view('dietas')->with('cliente_existe', true)->with('cliente_nuevo', $cliente_nuevo);
         } else {
             $cliente_guardado = $funciones_control_base_datos->guardar_cliente_nuevo($cliente_nuevo);
-            return view('nuevadieta')->with('cliente_guardado', $cliente_guardado);
+            return view('dietas')->with('cliente_guardado', $cliente_guardado);
         }
+    }
+
+    public function modificar_cliente(Request $modificar_cliente)
+    {
+        $funciones_control_base_datos = new DataBaseController;
+        $clientes = $funciones_control_base_datos->obtener_clientes();
+        dump($modificar_cliente);
+
+        if (isset($modificar_cliente['id_cliente'])) {
+            // Significara que se ha pulsado el boton de guardar cambios
+            dump($modificar_cliente['id_cliente']);
+            // Accedemos a cada recurso de la request:
+            // foreach ($modificar_cliente->request as $key => $value) {
+            //     dump($key);
+            //     dump($value);
+            // }
+            // return view('');
+        }
+
+        if ($modificar_cliente['selectClientes'] == '') {
+            return view('dietas')->with('clientes', $clientes);
+        }
+
+        $id_cliente = $modificar_cliente['selectClientes'];
+
+        $datos_cliente_seleccionado = $funciones_control_base_datos->obtener_datos_cliente($id_cliente);
+        $platos_cliente_seleccionado = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
+        $textos_cliente_seleccionado = $funciones_control_base_datos->obtener_texto_dietas_cliente($id_cliente);
+        $pesos_cliente_seleccionado = $funciones_control_base_datos->obtener_datos_pesos_grafico($id_cliente);
+
+        return view('dietas')->with('clientes', $clientes)->with('cliente_seleccionado', $datos_cliente_seleccionado)->with('platos_cliente_seleccionado', $platos_cliente_seleccionado)->with('textos_cliente_seleccionado', $textos_cliente_seleccionado)->with('pesos_cliente_seleccionado', $pesos_cliente_seleccionado);
     }
 
     public function clientes(Request $id_buscado)
