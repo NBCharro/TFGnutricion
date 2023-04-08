@@ -195,4 +195,17 @@ class MainController extends Controller
             return view('comenzarmiplan')->with('mensaje', 'No existe');
         }
     }
+
+    public function guardar_respuestas_comenzarmiplan(Request $preguntas_respuestas_cliente)
+    {
+        $funciones_control_base_datos = new DataBaseController;
+        $preguntas_respuestas = [];
+        foreach ($preguntas_respuestas_cliente->request as $pregunta => $respuesta) {
+            if ($pregunta != '_token' && $pregunta != 'id_cliente') {
+                $preguntas_respuestas[$pregunta] = $respuesta;
+            }
+        }
+        $datos_actualizados = $funciones_control_base_datos->actualizar_preguntas_respuestas($preguntas_respuestas_cliente->id_cliente, $preguntas_respuestas);
+        return view('comenzarmiplan')->with('datos_actualizados', $datos_actualizados);
+    }
 }

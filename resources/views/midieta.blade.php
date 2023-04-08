@@ -23,7 +23,7 @@
             <div class="md:col-span-2">
                 @include('components.midieta.buscarCliente')
             </div>
-            {{-- @if (isset($peso_cliente))
+            @if (isset($peso_cliente) && count($peso_cliente) != 0 && isset($texto_dietas) && count($texto_dietas) != 0)
                 <div class="flex flex-col justify-center">
                     @include('components.midieta.grafico')
                 </div>
@@ -32,21 +32,6 @@
                 </div>
                 <div class="md:col-span-2">
                     @include('components.midieta.texto')
-                </div>
-                <div class="md:col-span-2">
-                    @include('components.midieta.contactoInterno')
-                </div>
-            @endif --}}
-            @if (isset($peso_cliente) && count($peso_cliente) != 0 && isset($texto_dietas) && count($texto_dietas) != 0)
-                <div class="flex flex-col justify-center">
-                    @include('components.conectado.grafico')
-                    @include('components.conectado.guardarPeso')
-                </div>
-                <div>
-                    @include('components.conectado.platos')
-                </div>
-                <div class="md:col-span-2">
-                    @include('components.conectado.texto')
                 </div>
             @else
                 @if (isset($platos))
@@ -63,7 +48,10 @@
                                 Aun no hay datos
                             </h1>
                             <p class="font-bold text-gray-500 md:text-lg xl:text-xl dark:text-gray-400">
-                                Espere unos dias a que se introduzcan sus datos
+                                Recuerde que tiene que contestar a las preguntas de
+                            </p>
+                            <p class="font-bold text-tertiary-400 md:text-lg xl:text-xl dark:text-primary-500 underline">
+                                <a href="{{ route('comenzarmiplan') }}">Comenzar mi plan</a>
                             </p>
                             <p class="font-light text-gray-500 md:text-lg xl:text-xl dark:text-gray-400">
                                 Si pasados unos dias el problema persiste pongase en contacto con su nutricionista

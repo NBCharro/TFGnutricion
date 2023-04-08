@@ -284,4 +284,21 @@ class DataBaseController
         }
         return $guardado;
     }
+
+    function actualizar_preguntas_respuestas($id_cliente, $preguntas_respuestas)
+    {
+        $actualizado = false;
+        try {
+            $preguntas_respuestas_json = json_encode($preguntas_respuestas);
+
+            $pregunta_respuesta_db = Dato_Inicial_Cliente::get()->where('id_cliente', $id_cliente)->first();
+            $pregunta_respuesta_db->pregunta_respuesta = $preguntas_respuestas_json;
+
+            $pregunta_respuesta_db->save();
+            $actualizado = true;
+        } catch (\Throwable $e) {
+            # code...
+        }
+        return $actualizado;
+    }
 }
