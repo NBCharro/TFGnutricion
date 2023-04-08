@@ -167,8 +167,8 @@ class MainController extends Controller
         $id_cliente = $id_buscado['id_cliente_buscado'];
         $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
         if ($cliente_existe) {
-            $preguntas_clientes = $funciones_control_base_datos->obtener_preguntas_iniciales_cliente($id_cliente);
-            return view('comenzarmiplan')->with('preguntas_clientes', $preguntas_clientes)->with('id_cliente', $id_buscado);
+            $preguntas_respuestas_clientes = $funciones_control_base_datos->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
+            return view('comenzarmiplan')->with('preguntas_respuestas_clientes', $preguntas_respuestas_clientes)->with('id_cliente', $id_buscado);
         } else {
             return view('comenzarmiplan')->with('mensaje', 'No existe');
         }

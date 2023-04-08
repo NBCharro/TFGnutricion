@@ -165,17 +165,17 @@ class DataBaseController
         return $pregunta_respuesta;
     }
 
-    function obtener_preguntas_iniciales_cliente($id_cliente)
-    {
-        $pregunta_respuesta = $this->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
-        $preguntas_cliente = [];
-        $index = 1;
-        foreach ($pregunta_respuesta as $pregunta => $respuesta) {
-            $preguntas_cliente["pregunta_$index"] = $pregunta;
-            $index++;
-        }
-        return $preguntas_cliente;
-    }
+    // function obtener_preguntas_iniciales_cliente($id_cliente)
+    // {
+    //     $pregunta_respuesta = $this->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
+    //     $preguntas_cliente = [];
+    //     $index = 1;
+    //     foreach ($pregunta_respuesta as $pregunta => $respuesta) {
+    //         $preguntas_cliente["pregunta_$index"] = $pregunta;
+    //         $index++;
+    //     }
+    //     return $preguntas_cliente;
+    // }
 
     function obtener_clientes()
     {
