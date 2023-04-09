@@ -59,3 +59,4 @@
 <script>
     let numero_campos_platos = @json($index_platos);
 </script>
+<script src="{{ asset('js/dietas/platos.js') }}" defer></script>

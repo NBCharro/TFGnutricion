@@ -147,7 +147,8 @@ class Crear_DB_Controller
             Contacto_Interno::create([
                 'id_cliente' => $mensaje['id_cliente'],
                 'fecha' => $mensaje['fecha'],
-                'mensaje' => $mensaje['mensaje']
+                'mensaje' => $mensaje['mensaje'],
+                'leido' => 0
             ]);
             $guardado = true;
         } catch (\Throwable $e) {
@@ -164,7 +165,8 @@ class Crear_DB_Controller
                 'telefono' => $mensaje['telefono'],
                 'email' => $mensaje['email'],
                 'fecha' => $mensaje['fecha'],
-                'mensaje' => $mensaje['mensaje']
+                'mensaje' => $mensaje['mensaje'],
+                'leido' => 0
             ]);
             $guardado = true;
         } catch (\Throwable $e) {

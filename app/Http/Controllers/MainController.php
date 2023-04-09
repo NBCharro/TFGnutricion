@@ -46,8 +46,8 @@ class MainController extends Controller
     }
 
     // Pagina que permite crear nuevas dietas y modificar dietas existentes
-    // Web: /nuevadieta
-    public function nuevadieta()
+    // Web: /dietas
+    public function dietas()
     {
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $clientes = $funciones_obtener_base_datos->obtener_clientes();

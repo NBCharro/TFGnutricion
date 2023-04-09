@@ -23,6 +23,7 @@
                 @include('components.conectado.texto')
             </div>
         @else
+            {{-- Si no hay datos del cliente por ser una dieta nueva --}}
             @if (isset($platos))
                 {{-- No hay datos del cliente en la DB --}}
                 <section class="bg-white dark:bg-gray-900 md:w-screen">

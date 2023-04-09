@@ -30,7 +30,7 @@ Route::post('/guardar_peso', [MainController::class, 'guardar_peso'])->name('gua
 Route::match(['get', 'post'], '/midieta', [MainController::class, 'midieta'])->name('midieta');
 Route::match(['get', 'post'], '/comenzarmiplan', [MainController::class, 'comenzarmiplan'])->name('comenzarmiplan');
 Route::match(['get', 'post'], '/clientes', [MainController::class, 'clientes'])->name('clientes');
-Route::match(['get', 'post'], '/nuevadieta', [MainController::class, 'nuevadieta'])->name('nuevadieta');
+Route::match(['get', 'post'], '/dietas', [MainController::class, 'dietas'])->name('dietas');
 Route::match(['get', 'post'], '/mensajes', [MainController::class, 'mensajes'])->name('mensajes');
 
 // Pruebas

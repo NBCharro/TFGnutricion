@@ -20,3 +20,4 @@
         @endif
     </div>
 </div>
+<script src="{{ asset('js/dietas/preguntas_respuestas.js') }}" defer></script>

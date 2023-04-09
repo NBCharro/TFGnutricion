@@ -27,8 +27,14 @@ let datos = [{
 ];
 // Si no hay pasos o notas, no se agrega
 if (nota_pasos.length != 0) {
+    let suma = 0;
+    for (let i = 0; i < nota_pasos.length; i++) {
+        suma += nota_pasos[i];
+    }
+    const media = suma / nota_pasos.length;
+    const nombre_nota_pasos = media <= 10 ? 'Nota' : 'Pasos';
     datos.push({
-        label: "Nota o peso",
+        label: nombre_nota_pasos,
         backgroundColor: "hsl(255, 9%, 50%)",
         borderColor: "hsl(255, 9%, 50%)",
         data: nota_pasos,
@@ -36,6 +42,7 @@ if (nota_pasos.length != 0) {
     });
 }
 if (peso_final_2[0] != 0) {
+    // El peso se crea automaticamente como un array, si es 0 es que no hay peso_final_2
     datos.push({
         label: "Peso final 2",
         backgroundColor: "hsl(10, 57%, 51%)",

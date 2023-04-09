@@ -63,3 +63,4 @@
 <script>
     let numero_campos_texto_particular = @json($index_textos);
 </script>
+<script src="{{ asset('js/dietas/textos.js') }}" defer></script>
