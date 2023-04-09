@@ -140,9 +140,23 @@ class Crear_DB_Controller
         return $guardado;
     }
 
-    public function guardar_mensaje($mensaje)
+    public function guardar_mensaje_interno($mensaje)
     {
-        dump($mensaje);
+        $guardado = false;
+        try {
+            Contacto_Interno::create([
+                'id_cliente' => $mensaje['id_cliente'],
+                'fecha' => $mensaje['fecha'],
+                'mensaje' => $mensaje['mensaje']
+            ]);
+            $guardado = true;
+        } catch (\Throwable $e) {
+        }
+        return $guardado;
+    }
+
+    public function guardar_mensaje_externo($mensaje)
+    {
         $guardado = false;
         try {
             Contacto_Externo::create([

@@ -10,7 +10,7 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-bold">Ha ocurrido un error.</span>Intentelo de nuevo mas tarde o utilice los enlaces de
+            <span class="font-bold">Ha ocurrido un error.</span>Intentelo de nuevo mas tarde o utilice otro medio de
             contacto.
         </div>
     </div>
@@ -42,7 +42,7 @@
         <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center">Contacto</h2>
         {{-- <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Got a technical
         issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p> --}}
-        <form action="{{ route('contacto_externo') }}" method="post" class="md:mx-4">
+        <form action="{{ route('mensaje_externo') }}" method="post" class="md:mx-4">
             @csrf
             <div class="my-2">
                 <label for="nombre" class="block mb-2 text-sm">Nombre</label>

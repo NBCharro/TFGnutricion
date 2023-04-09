@@ -1,7 +1,7 @@
 @extends ('layouts.main-layout')
 @section('page-title', 'Mi dieta')
 @section('content-area')
-    <section>
+    <section class="bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
         @if (isset($mensaje) && $mensaje == 'No existe')
             <div class="flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 md:mx-4"
                 role="alert">
@@ -18,8 +18,7 @@
                 </div>
             </div>
         @endif
-        <div id="buscarCliente"
-            class="lg:grid lg:grid-cols-2 bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
+        <div id="buscarCliente" class="lg:grid lg:grid-cols-2">
             <div class="md:col-span-2">
                 @include('components.midieta.buscarCliente')
             </div>
@@ -60,6 +59,9 @@
                     </section>
                 @endif
             @endif
+        </div>
+        <div>
+            @include('components.midieta.contactoInterno')
         </div>
     </section>
 @endsection
