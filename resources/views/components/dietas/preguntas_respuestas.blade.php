@@ -1,6 +1,6 @@
 <div id="seccion_preguntas_respuestas"
     class="md:p-2 md:my-5 border-gray-100 bg-quaternary-200 text-gray-900 dark:text-white
-                    dark:border-gray-600 dark:bg-gray-800 rounded-lg">
+                    dark:border-gray-600 dark:bg-gray-800 rounded-lg p-2 my-2">
     <div id="mostrar_preguntas_respuestas"
         class="self-center font-medium rounded-lg text-sm w-fit px-5 py-2.5 text-center bg-primary text-white hover:bg-tertiary-100 hover:text-black mt-4 cursor-pointer mb-3">
         Mostrar preguntas y respuestas</div>

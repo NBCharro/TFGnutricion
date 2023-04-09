@@ -6,7 +6,7 @@
         $tipo_cliente = 'con dieta';
     }
 @endphp
-<div id="platos" class="bg-tertiary-500 md:p-2 rounded-xl md:my-5">
+<div id="platos" class="bg-tertiary-500 md:p-2 rounded-xl md:my-5 p-2 my-2">
     <div id="mostrar_platos"
         class="self-center font-medium rounded-lg text-sm w-fit px-5 py-2.5 text-center bg-primary text-white hover:bg-tertiary-100 hover:text-black mt-4 cursor-pointer mb-3">
         Mostrar platos</div>
@@ -17,7 +17,7 @@
                     @foreach ($item as $plato)
                         {{-- El autocomplete="off" es porque en Firefox sin ponerlo no selecciona la opcion marcada con selected --}}
                         <select name="select_plato_<?php echo "$index_platos"; ?>"
-                            class="border text-m rounded-lg block w-full py-2.5 px-8 bg-primary-600 text-white dark:bg-gray-800"
+                            class="border text-m rounded-lg block w-full py-2.5 px-8 bg-primary-600 text-white dark:bg-gray-800 my-2"
                             autocomplete="off">
                             <option @php if($key == 'desayuno'){echo "selected";} @endphp>Desayuno</option>
                             <option @php if($key == 'mediamanana'){echo "selected";} @endphp>Media mañana</option>

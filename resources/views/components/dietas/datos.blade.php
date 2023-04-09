@@ -1,6 +1,6 @@
 <div id="datos"
     class="md:p-2 md:my-2 border-gray-100 bg-quaternary-200 text-gray-900 dark:text-white
-                    dark:border-gray-600 dark:bg-gray-800 rounded-lg">
+                    dark:border-gray-600 dark:bg-gray-800 rounded-lg p-2 my-2">
     <div class="md:grid md:grid-cols-3 md:gap-2">
         <div class="relative z-0 w-full mb-2 group">
             <label for="id_cliente" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

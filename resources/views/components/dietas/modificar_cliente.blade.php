@@ -1,6 +1,6 @@
 @include('components.dietas.selectClientes')
 @if (isset($cliente_seleccionado))
-    <form action="{{ route('actualizar_cliente') }}" method="post" class="md:mx-4">
+    <form action="{{ route('actualizar_cliente') }}" method="post" class="md:mx-4 p-2">
         @csrf
         @include('components.dietas.datos')
         @include('components.dietas.perdida_peso')

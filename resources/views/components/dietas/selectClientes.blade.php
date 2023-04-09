@@ -5,7 +5,7 @@
             @csrf
             <div class="relative mb-4">
                 <select id="selectClientes" onchange="this.form.submit()" name="selectClientes"
-                    class="border text-m rounded-lg block w-full py-2.5 px-8 bg-primary-600 text-white dark:bg-gray-800">
+                    class="border text-m rounded-lg block w-full py-2.5 px-8 bg-tertiary-100 text-black dark:bg-gray-800 dark:text-white">
                     <option disabled selected>Selecciona una opción</option>
                     @php
                         foreach ($clientes as $id_cliente => $cliente) {

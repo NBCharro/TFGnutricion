@@ -52,7 +52,7 @@
         </div>
     </div>
 @endif
-<form action="{{ route('nuevo_cliente') }}" method="post" class="md:mx-4">
+<form action="{{ route('nuevo_cliente') }}" method="post" class="md:mx-4 p-4">
     @csrf
     <div class="md:grid md:grid-cols-3 md:gap-2">
         <div class="relative z-0 w-full mb-2 group">
@@ -127,7 +127,7 @@
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
         </div>
     </div>
-    <div id="pregunta_respuesta" class="bg-quaternary-200 md:p-2 rounded-xl md:my-5">
+    <div id="pregunta_respuesta" class="bg-quaternary-200 md:p-2 rounded-xl md:my-5 p-2">
         <input type="text" name="pregunta_1"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white my-4"
             placeholder="Escriba la pregunta">
