@@ -1,7 +1,9 @@
 @php
     $index_textos = 1;
 @endphp
-<div id="textos" class="bg-quaternary-200 md:p-2 rounded-xl md:my-5">
+<div id="textos"
+    class="md:p-2 md:my-5 border-gray-100 bg-quaternary-200 text-gray-900 dark:text-white
+                    dark:border-gray-600 dark:bg-gray-800 rounded-lg">
     <div id="mostrar_texto"
         class="self-center font-medium rounded-lg text-sm w-fit px-5 py-2.5 text-center bg-primary text-white hover:bg-tertiary-100 hover:text-black mt-4 cursor-pointer mb-3">
         Mostrar textos</div>
@@ -27,7 +29,7 @@
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white col-span-4 resize-none">Para el aceite, la dosis media recomendada suele ser 100 mL por semana. Un truco/técnica para no pasarse es tener el aceite medido. Por ejemplo, tener una parte apartada semanal de aceite y gestionártelo. En las preparaciones a la plancha se puede mojar un poco la plancha/sartén con aceite, pero intenta que el alimento no se quede empapado en aceite. Cuando ponga plancha puede ser también otras formas de cocinado como horno, vapor, microondas, etc.
                     </textarea>
     </div>
-    <div id="texto_particular" class="hidden md:grid-cols-4 md:gap-4">
+    <div id="texto_particular" class="hidden md:grid-cols-4 md:gap-4 md:my-5">
         @if (count($textos_cliente_seleccionado) > 1)
             @foreach ($textos_cliente_seleccionado as $key => $item)
                 @if ($key != 'titulo' && $key != 'parrafo1' && $key != 'parrafo2')

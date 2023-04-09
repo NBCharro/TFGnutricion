@@ -7,8 +7,6 @@ mostrar_preguntas_respuestas.addEventListener('click', (event) => {
 })
 
 function mostrar_ocultar_preguntas_respuestas() {
-    // preguntas_respuestas.classList.toggle("md:grid");
-    preguntas_respuestas.classList.toggle("md:flex");
     preguntas_respuestas.classList.toggle("hidden");
     if (mostrar_preguntas_respuestas.innerText == 'Mostrar preguntas y respuestas') {
         mostrar_preguntas_respuestas.innerText = 'Ocultar preguntas y respuestas';
