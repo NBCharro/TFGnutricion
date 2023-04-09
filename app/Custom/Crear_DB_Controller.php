@@ -139,4 +139,22 @@ class Crear_DB_Controller
         }
         return $guardado;
     }
+
+    public function guardar_mensaje($mensaje)
+    {
+        dump($mensaje);
+        $guardado = false;
+        try {
+            Contacto_Externo::create([
+                'nombre' => $mensaje['nombre'],
+                'telefono' => $mensaje['telefono'],
+                'email' => $mensaje['email'],
+                'fecha' => $mensaje['fecha'],
+                'mensaje' => $mensaje['mensaje']
+            ]);
+            $guardado = true;
+        } catch (\Throwable $e) {
+        }
+        return $guardado;
+    }
 }

@@ -18,11 +18,14 @@ class MainController extends Controller
         return view('pruebas');
     }
 
+    // Pagina inicio
     public function index()
     {
         return view('inicio');
     }
 
+    // Pagina en la que los clientes podran ver sus datos previa introduccion de un codigo de cliente
+    // Web: /midieta
     public function midieta(Request $id_buscado)
     {
         if ($id_buscado['id_cliente_buscado'] == '') {
@@ -42,6 +45,8 @@ class MainController extends Controller
         }
     }
 
+    // Pagina que permite crear nuevas dietas y modificar dietas existentes
+    // Web: /nuevadieta
     public function nuevadieta()
     {
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
@@ -49,12 +54,13 @@ class MainController extends Controller
         return view('dietas')->with('clientes', $clientes);
     }
 
+    // Pagina en la que se podra crear un nuevo cliente
+    // Web: nuevo_cliente
     public function nuevo_cliente(Request $nuevo_cliente)
     {
         $funciones_control_base_datos = new DataBaseController;
         $funciones_crear_base_datos = new Crear_DB_Controller;
         $id_cliente = $nuevo_cliente->id_cliente;
-        dump($nuevo_cliente);
         if ($id_cliente == '') {
             return view('dietas');
         }
@@ -76,7 +82,6 @@ class MainController extends Controller
                 $preguntas_extra_nuevo_cliente[$value] = "respuesta";
             }
         }
-        dump($preguntas_extra_nuevo_cliente);
         if ($cliente_existe) {
             return view('dietas')->with('cliente_existe', true)->with('cliente_nuevo', $cliente_nuevo)->with('preguntas_extra_nuevo_cliente', $preguntas_extra_nuevo_cliente);
         } else {
@@ -85,6 +90,8 @@ class MainController extends Controller
         }
     }
 
+    // Pagina que modificara un cliente elegido de la lista desplegable
+    // Web: /modificar_cliente
     public function modificar_cliente(Request $modificar_cliente)
     {
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
@@ -104,6 +111,7 @@ class MainController extends Controller
         return view('dietas')->with('clientes', $clientes)->with('cliente_seleccionado', $datos_cliente_seleccionado)->with('platos_cliente_seleccionado', $platos_cliente_seleccionado)->with('textos_cliente_seleccionado', $textos_cliente_seleccionado)->with('perdida_peso_cliente_seleccionado', $perdida_peso_cliente_seleccionado)->with('preguntas_respuestas_cliente_seleccionado', $preguntas_respuestas_cliente_seleccionado);
     }
 
+    // Cuando se actualizan los datos de un cliente desde /modificar_cliente se usa la siguiente funcion
     public function actualizar_cliente(Request $actualizar_cliente)
     {
         $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
@@ -173,6 +181,73 @@ class MainController extends Controller
         return view('dietas')->with('clientes', $clientes);
     }
 
+    // Obtencion de los mensajes internos y externos
+    // Web: /mensajes
+    public function mensajes(Request $mensajes)
+    {
+        $mensaje_borrado = 'ningun mensaje seleccionado';
+        if ($mensajes->id_mensaje != '') {
+            $mensaje_borrado = $this->borrar_mensaje($mensajes->id_mensaje);
+        }
+        $funciones_obtener_base_datos = new Obtener_DB_Controller;
+        $mensajes_internos = $funciones_obtener_base_datos->obtener_mensajes_internos();
+        $mensajes_externos = $funciones_obtener_base_datos->obtener_mensajes_externos();
+        return view('mensajes')->with('mensajes_internos', $mensajes_internos)->with('mensajes_externos', $mensajes_externos)->with('mensaje_borrado', $mensaje_borrado);
+    }
+
+    // Al pulsar el icono de borrar mensaje, se invocara esta funcion para borrar el mensaje interno o externo
+    private function borrar_mensaje($id_mensaje)
+    {
+        // $borrado = false;
+        $borrado = "no borrado";
+        $funciones_borrar_base_datos = new Borrar_DB_Controller;
+        $borrar_mensaje = explode("_", $id_mensaje);
+        if ($borrar_mensaje[0] == 'interno') {
+            $mensaje_borrado = $funciones_borrar_base_datos->borrar_mensaje_interno($borrar_mensaje[1]);
+        } else {
+            $mensaje_borrado = $funciones_borrar_base_datos->borrar_mensaje_externo($borrar_mensaje[1]);
+        }
+        if ($mensaje_borrado) {
+            // $borrado = true;
+            $borrado = 'borrado';
+        }
+        return $borrado;
+    }
+
+    // Pagina que permite a los clientes rellenar la encuesta inicial
+    // Web: /comenzarmiplan
+    public function comenzarmiplan(Request $id_buscado)
+    {
+        if ($id_buscado['id_cliente_buscado'] == '') {
+            return view('comenzarmiplan');
+        }
+        $funciones_control_base_datos = new DataBaseController;
+        $funciones_obtener_base_datos = new Obtener_DB_Controller;
+        $id_cliente = $id_buscado['id_cliente_buscado'];
+        $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
+        if ($cliente_existe) {
+            $preguntas_respuestas_clientes = $funciones_obtener_base_datos->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
+            return view('comenzarmiplan')->with('preguntas_respuestas_clientes', $preguntas_respuestas_clientes)->with('id_cliente', $id_buscado);
+        } else {
+            return view('comenzarmiplan')->with('mensaje', 'No existe');
+        }
+    }
+
+    // Cuando un cliente quiere guardar las respuestas a las preguntas iniciales se invoca esta funcion
+    public function guardar_respuestas_comenzarmiplan(Request $preguntas_respuestas_cliente)
+    {
+        $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
+        $preguntas_respuestas = [];
+        foreach ($preguntas_respuestas_cliente->request as $pregunta => $respuesta) {
+            if ($pregunta != '_token' && $pregunta != 'id_cliente') {
+                $preguntas_respuestas[$pregunta] = $respuesta;
+            }
+        }
+        $datos_actualizados = $funciones_actualizar_base_datos->actualizar_preguntas_respuestas($preguntas_respuestas_cliente->id_cliente, $preguntas_respuestas);
+        return view('comenzarmiplan')->with('datos_actualizados', $datos_actualizados);
+    }
+
+    // Permite obtener un desplegable de todos los clientes
     public function clientes(Request $id_buscado)
     {
         $funciones_control_base_datos = new DataBaseController;
@@ -193,63 +268,22 @@ class MainController extends Controller
         }
     }
 
-    public function mensajes(Request $mensajes)
+    // Permite que una persona NO cliente se ponga en contacto con nosotros
+    public function contacto_externo(Request $mensaje)
     {
-        $mensaje_borrado = 'ningun mensaje seleccionado';
-        if ($mensajes->id_mensaje != '') {
-            $mensaje_borrado = $this->borrar_mensaje($mensajes->id_mensaje);
+        $funciones_crear_base_datos = new Crear_DB_Controller;
+        $mensaje_externo = [
+            "nombre" => "Nelson",
+            "telefono" => "1122233",
+            "email" => "email@gmail.com",
+            "fecha" => date("d/m/Y H:i:s"),
+            "mensaje" => "ghfghfgdhdfgh"
+        ];
+        $mensaje_guardado = $funciones_crear_base_datos->guardar_mensaje($mensaje_externo);
+        $mensaje_enviado = 'fallo';
+        if ($mensaje_guardado) {
+            $mensaje_enviado = 'exito';
         }
-        $funciones_obtener_base_datos = new Obtener_DB_Controller;
-        $mensajes_internos = $funciones_obtener_base_datos->obtener_mensajes_internos();
-        $mensajes_externos = $funciones_obtener_base_datos->obtener_mensajes_externos();
-        return view('mensajes')->with('mensajes_internos', $mensajes_internos)->with('mensajes_externos', $mensajes_externos)->with('mensaje_borrado', $mensaje_borrado);
-    }
-
-    private function borrar_mensaje($id_mensaje)
-    {
-        // $borrado = false;
-        $borrado = "no borrado";
-        $funciones_borrar_base_datos = new Borrar_DB_Controller;
-        $borrar_mensaje = explode("_", $id_mensaje);
-        if ($borrar_mensaje[0] == 'interno') {
-            $mensaje_borrado = $funciones_borrar_base_datos->borrar_mensaje_interno($borrar_mensaje[1]);
-        } else {
-            $mensaje_borrado = $funciones_borrar_base_datos->borrar_mensaje_externo($borrar_mensaje[1]);
-        }
-        if ($mensaje_borrado) {
-            // $borrado = true;
-            $borrado = 'borrado';
-        }
-        return $borrado;
-    }
-
-    public function comenzarmiplan(Request $id_buscado)
-    {
-        if ($id_buscado['id_cliente_buscado'] == '') {
-            return view('comenzarmiplan');
-        }
-        $funciones_control_base_datos = new DataBaseController;
-        $funciones_obtener_base_datos = new Obtener_DB_Controller;
-        $id_cliente = $id_buscado['id_cliente_buscado'];
-        $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
-        if ($cliente_existe) {
-            $preguntas_respuestas_clientes = $funciones_obtener_base_datos->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
-            return view('comenzarmiplan')->with('preguntas_respuestas_clientes', $preguntas_respuestas_clientes)->with('id_cliente', $id_buscado);
-        } else {
-            return view('comenzarmiplan')->with('mensaje', 'No existe');
-        }
-    }
-
-    public function guardar_respuestas_comenzarmiplan(Request $preguntas_respuestas_cliente)
-    {
-        $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
-        $preguntas_respuestas = [];
-        foreach ($preguntas_respuestas_cliente->request as $pregunta => $respuesta) {
-            if ($pregunta != '_token' && $pregunta != 'id_cliente') {
-                $preguntas_respuestas[$pregunta] = $respuesta;
-            }
-        }
-        $datos_actualizados = $funciones_actualizar_base_datos->actualizar_preguntas_respuestas($preguntas_respuestas_cliente->id_cliente, $preguntas_respuestas);
-        return view('comenzarmiplan')->with('datos_actualizados', $datos_actualizados);
+        return view('inicio')->with('mensaje_enviado', $mensaje_enviado);
     }
 }
