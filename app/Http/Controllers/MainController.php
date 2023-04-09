@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Custom\DataBaseController;
+use App\Custom\Actualizar_DB_Controller;
 
 class MainController extends Controller
 {
@@ -104,19 +105,6 @@ class MainController extends Controller
     {
         $funciones_control_base_datos = new DataBaseController;
         $clientes = $funciones_control_base_datos->obtener_clientes();
-        dump($modificar_cliente);
-
-        if (isset($modificar_cliente['id_cliente'])) {
-            // Significara que se ha pulsado el boton de guardar cambios
-            dump($modificar_cliente['id_cliente']);
-            // Accedemos a cada recurso de la request:
-            // foreach ($modificar_cliente->request as $key => $value) {
-            //     dump($key);
-            //     dump($value);
-            // }
-            // return view('');
-        }
-
         if ($modificar_cliente['selectClientes'] == '') {
             return view('dietas')->with('clientes', $clientes);
         }
@@ -130,6 +118,77 @@ class MainController extends Controller
         $preguntas_respuestas_cliente_seleccionado = $funciones_control_base_datos->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
 
         return view('dietas')->with('clientes', $clientes)->with('cliente_seleccionado', $datos_cliente_seleccionado)->with('platos_cliente_seleccionado', $platos_cliente_seleccionado)->with('textos_cliente_seleccionado', $textos_cliente_seleccionado)->with('pesos_cliente_seleccionado', $pesos_cliente_seleccionado)->with('preguntas_respuestas_cliente_seleccionado', $preguntas_respuestas_cliente_seleccionado);
+    }
+
+    public function actualizar_cliente(Request $actualizar_cliente)
+    {
+        $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
+        // dump($actualizar_cliente);
+        $datos_cliente = [
+            'id_cliente' => $actualizar_cliente->id_cliente,
+            'nombre_apellidos' => $actualizar_cliente->nombre_apellidos,
+            'telefono' => $actualizar_cliente->telefono,
+            'email' => $actualizar_cliente->email,
+            'direccion' => $actualizar_cliente->direccion,
+            'fecha_inicio' => $actualizar_cliente->fecha_inicio,
+            'peso_inicial' => $actualizar_cliente->peso_inicial,
+            'peso_final_1' => $actualizar_cliente->peso_final_1,
+            'peso_final_2' => $actualizar_cliente->peso_final_2,
+        ];
+        // $clientes = $funciones_actualizar_base_datos->actualizar_datos_cliente($datos_cliente);
+
+        // id_cliente, [fecha], [peso], [peso_teorico], [nota_pasos]
+        $peso = [
+            'id_cliente' => $actualizar_cliente->id_cliente,
+            'fecha_inicio' => $actualizar_cliente->fecha_inicio,
+            'peso_inicial' => $actualizar_cliente->peso_inicial,
+            'peso_final_1' => $actualizar_cliente->peso_final_1,
+            'peso_final_2' => $actualizar_cliente->peso_final_2,
+            'perdida_peso_1' => $actualizar_cliente->perdida_peso_1,
+            'semanas_perdida_peso_1' => $actualizar_cliente->semanas_perdida_peso_1,
+            'perdida_peso_2' => $actualizar_cliente->perdida_peso_2,
+            'semanas_perdida_peso_2' => $actualizar_cliente->semanas_perdida_peso_2,
+        ];
+        $clientes = $funciones_actualizar_base_datos->actualizar_pesos($peso);
+
+
+        $platos = [];
+        $hora = '';
+        foreach ($actualizar_cliente->request as $key => $value) {
+            if (substr($key, 0, 13) == "select_plato_") {
+                $hora = $value;
+            }
+            if (substr($key, 0, 12) == "input_plato_") {
+                $platos[$hora][] = $value;
+            }
+        }
+        // $clientes = $funciones_actualizar_base_datos->actualizar_platos($actualizar_cliente->id_cliente, $platos);
+
+        $textos_especificos = [];
+        $alimento = '';
+        foreach ($actualizar_cliente->request as $key => $value) {
+            if (substr($key, 0, 26) == "texto_particular_alimento_" && $value != '') {
+                $alimento = $value;
+            }
+            if (substr($key, 0, 29) == "texto_particular_descripcion_" && $value != '') {
+                $textos_especificos[$alimento] = $value;
+            }
+        }
+        $textos_clientes = [
+            'id_cliente' => $actualizar_cliente->id_cliente,
+            'texto_general' => [
+                'titulo' => $actualizar_cliente->texto_general_titulo,
+                'parrafo1' => $actualizar_cliente->texto_general_parrafo_1,
+                'parrafo2' => $actualizar_cliente->texto_general_parrafo_2,
+            ],
+            'texto_particular' => $textos_especificos,
+        ];
+        // $clientes = $funciones_actualizar_base_datos->actualizar_textos_clientes($textos_clientes);
+
+
+        $funciones_control_base_datos = new DataBaseController;
+        $clientes = $funciones_control_base_datos->obtener_clientes();
+        return view('dietas')->with('clientes', $clientes);
     }
 
     public function clientes(Request $id_buscado)

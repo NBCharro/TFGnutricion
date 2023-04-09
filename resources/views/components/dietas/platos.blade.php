@@ -1,7 +1,7 @@
 @php
     $index_platos = 1;
     $tipo_cliente = 'sin dieta';
-
+    
     if (count($platos_cliente_seleccionado['desayuno']) > 1 || count($platos_cliente_seleccionado['mediamanana']) > 1 || count($platos_cliente_seleccionado['comida']) > 1 || count($platos_cliente_seleccionado['merienda']) > 1 || count($platos_cliente_seleccionado['cena']) > 1 || count($platos_cliente_seleccionado['recena']) > 1 || count($platos_cliente_seleccionado['otro']) > 1) {
         $tipo_cliente = 'con dieta';
     }
