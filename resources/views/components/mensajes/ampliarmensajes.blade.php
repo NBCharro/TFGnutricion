@@ -68,9 +68,9 @@
         <h1 id="verMensajesTitulo" class="font-bold text-2xl">
             @php
                 if (count($mensajes_internos) > 0) {
-                    echo 'Cliente';
+                    echo $mensajes_internos[0]['fecha'];
                 } else {
-                    echo 'No cliente';
+                    echo $mensajes_externos[0]['fecha'];
                 }
             @endphp
         </h1>

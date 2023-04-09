@@ -128,7 +128,6 @@ class Actualizar_DB_Controller
             $peso_cliente_db->save();
             $actualizado = true;
         } catch (\Throwable $e) {
-            dump($e);
         }
         return $actualizado;
     }

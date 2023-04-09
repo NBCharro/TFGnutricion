@@ -54,7 +54,6 @@ class Crear_DB_Controller
     function crear_textos_clientes($textos_clientes)
     {
         $guardado = false;
-        dump($textos_clientes);
         try {
             $texto_general_json = json_encode($textos_clientes['texto_general']);
             $texto_particular_json = json_encode($textos_clientes['texto_particular']);

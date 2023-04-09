@@ -27,7 +27,7 @@ listaMensajes.addEventListener('click', (event) => {
                     verMensajesMensaje.innerHTML = '';
                     verMensajesNombre.innerHTML = element.nombre;
                     verMensajesEmail.innerHTML = element.id_cliente;
-                    verMensajesTitulo.innerHTML = 'Cliente';
+                    verMensajesTitulo.innerHTML = element.fecha;
                     verMensajesMensaje.innerHTML = element.mensaje;
                     id_mensaje.value = li.id;
                 }
@@ -41,7 +41,7 @@ listaMensajes.addEventListener('click', (event) => {
                     verMensajesMensaje.innerHTML = '';
                     verMensajesNombre.innerHTML = element.nombre;
                     verMensajesEmail.innerHTML = element.email;
-                    verMensajesTitulo.innerHTML = 'No cliente';
+                    verMensajesTitulo.innerHTML = element.fecha;
                     verMensajesMensaje.innerHTML = element.mensaje;
                     id_mensaje.value = li.id;
                 }
