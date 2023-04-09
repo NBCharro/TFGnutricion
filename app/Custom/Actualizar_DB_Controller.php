@@ -14,6 +14,7 @@ use App\Custom\Crear_DB_Controller;
 
 class Actualizar_DB_Controller
 {
+
     function actualizar_preguntas_respuestas($id_cliente, $preguntas_respuestas)
     {
         $actualizado = false;

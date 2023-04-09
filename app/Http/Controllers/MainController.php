@@ -5,34 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Custom\DataBaseController;
 use App\Custom\Actualizar_DB_Controller;
+use App\Custom\Borrar_DB_Controller;
+use App\Custom\Crear_DB_Controller;
+use App\Custom\Obtener_DB_Controller;
 
 class MainController extends Controller
 {
     // private $funciones_control_base_datos = new DataBaseController;
     public function pruebas(Request $modificar_cliente)
     {
-        $funciones_control_base_datos = new DataBaseController;
-        $mock_datos_nuevo_cliente = [
-            "id_cliente" => "id_cliente",
-            "nombre_apellidos" => "Nombre Apellido",
-            "telefono" => "111 222 333",
-            "email" => "email@gmail.com",
-            "direccion" => "Calle Falsa, 123",
-            "fecha_inicio" => "2023-04-19",
-            "peso_inicial" => "100",
-            "peso_final_1" => "80",
-            "peso_final_2" => "70"
-        ];
-        $mock_preguntas_extra_nuevo_cliente = [
-            "Pregunta extra 1" => "respuesta",
-            "Pregunta extra 2" => "respuesta",
-        ];
-        // $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
-        // if ($cliente_existe) {
-        //     dump('cliente existe');
-        //     return view('pruebas');
-        // }
-        $cliente_guardado = $funciones_control_base_datos->guardar_cliente_nuevo($mock_datos_nuevo_cliente, $mock_preguntas_extra_nuevo_cliente);
+
         return view('pruebas');
     }
 
@@ -47,12 +29,13 @@ class MainController extends Controller
             return view('midieta');
         }
         $funciones_control_base_datos = new DataBaseController;
+        $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $id_cliente = $id_buscado['id_cliente_buscado'];
         $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
         if ($cliente_existe) {
-            $datos_cliente_grafico = $funciones_control_base_datos->obtener_datos_pesos_grafico($id_cliente);
-            $platos_cliente = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
-            $texto_cliente = $funciones_control_base_datos->obtener_texto_dietas_cliente($id_cliente);
+            $datos_cliente_grafico = $funciones_obtener_base_datos->obtener_datos_pesos_grafico($id_cliente);
+            $platos_cliente = $funciones_obtener_base_datos->obtener_platos_cliente($id_cliente);
+            $texto_cliente = $funciones_obtener_base_datos->obtener_texto_dietas_cliente($id_cliente);
             return view('midieta')->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente);
         } else {
             return view('midieta')->with('mensaje', 'No existe');
@@ -61,14 +44,15 @@ class MainController extends Controller
 
     public function nuevadieta()
     {
-        $funciones_control_base_datos = new DataBaseController;
-        $clientes = $funciones_control_base_datos->obtener_clientes();
+        $funciones_obtener_base_datos = new Obtener_DB_Controller;
+        $clientes = $funciones_obtener_base_datos->obtener_clientes();
         return view('dietas')->with('clientes', $clientes);
     }
 
     public function nuevo_cliente(Request $nuevo_cliente)
     {
         $funciones_control_base_datos = new DataBaseController;
+        $funciones_crear_base_datos = new Crear_DB_Controller;
         $id_cliente = $nuevo_cliente->id_cliente;
         dump($nuevo_cliente);
         if ($id_cliente == '') {
@@ -96,26 +80,26 @@ class MainController extends Controller
         if ($cliente_existe) {
             return view('dietas')->with('cliente_existe', true)->with('cliente_nuevo', $cliente_nuevo)->with('preguntas_extra_nuevo_cliente', $preguntas_extra_nuevo_cliente);
         } else {
-            $cliente_guardado = $funciones_control_base_datos->guardar_cliente_nuevo($cliente_nuevo, $preguntas_extra_nuevo_cliente);
+            $cliente_guardado = $funciones_crear_base_datos->crear_cliente_nuevo($cliente_nuevo, $preguntas_extra_nuevo_cliente);
             return view('dietas')->with('cliente_guardado', $cliente_guardado);
         }
     }
 
     public function modificar_cliente(Request $modificar_cliente)
     {
-        $funciones_control_base_datos = new DataBaseController;
-        $clientes = $funciones_control_base_datos->obtener_clientes();
+        $funciones_obtener_base_datos = new Obtener_DB_Controller;
+        $clientes = $funciones_obtener_base_datos->obtener_clientes();
         if ($modificar_cliente['selectClientes'] == '') {
             return view('dietas')->with('clientes', $clientes);
         }
 
         $id_cliente = $modificar_cliente['selectClientes'];
 
-        $datos_cliente_seleccionado = $funciones_control_base_datos->obtener_datos_cliente($id_cliente);
-        $platos_cliente_seleccionado = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
-        $textos_cliente_seleccionado = $funciones_control_base_datos->obtener_texto_dietas_cliente($id_cliente);
-        $perdida_peso_cliente_seleccionado = $funciones_control_base_datos->obtener_datos_perdida_peso_cliente($id_cliente);
-        $preguntas_respuestas_cliente_seleccionado = $funciones_control_base_datos->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
+        $datos_cliente_seleccionado = $funciones_obtener_base_datos->obtener_datos_cliente($id_cliente);
+        $platos_cliente_seleccionado = $funciones_obtener_base_datos->obtener_platos_cliente($id_cliente);
+        $textos_cliente_seleccionado = $funciones_obtener_base_datos->obtener_texto_dietas_cliente($id_cliente);
+        $perdida_peso_cliente_seleccionado = $funciones_obtener_base_datos->obtener_datos_perdida_peso_cliente($id_cliente);
+        $preguntas_respuestas_cliente_seleccionado = $funciones_obtener_base_datos->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
 
         return view('dietas')->with('clientes', $clientes)->with('cliente_seleccionado', $datos_cliente_seleccionado)->with('platos_cliente_seleccionado', $platos_cliente_seleccionado)->with('textos_cliente_seleccionado', $textos_cliente_seleccionado)->with('perdida_peso_cliente_seleccionado', $perdida_peso_cliente_seleccionado)->with('preguntas_respuestas_cliente_seleccionado', $preguntas_respuestas_cliente_seleccionado);
     }
@@ -183,8 +167,8 @@ class MainController extends Controller
         ];
         $textos_actualizado = $funciones_actualizar_base_datos->actualizar_textos_clientes($textos_clientes);
 
-        $funciones_control_base_datos = new DataBaseController;
-        $clientes = $funciones_control_base_datos->obtener_clientes();
+        $funciones_obtener_base_datos = new Obtener_DB_Controller;
+        $clientes = $funciones_obtener_base_datos->obtener_clientes();
         // Volver a la pagina con los datos del cliente lanzando una alerta de bien o mal
         return view('dietas')->with('clientes', $clientes);
     }
@@ -192,16 +176,17 @@ class MainController extends Controller
     public function clientes(Request $id_buscado)
     {
         $funciones_control_base_datos = new DataBaseController;
-        $clientes = $funciones_control_base_datos->obtener_clientes();
+        $funciones_obtener_base_datos = new Obtener_DB_Controller;
+        $clientes = $funciones_obtener_base_datos->obtener_clientes();
         if ($id_buscado['selectClientes'] == '') {
             return view('conectado')->with('clientes', $clientes);
         }
         $id_cliente = $id_buscado['selectClientes'];
         $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
         if ($cliente_existe) {
-            $datos_cliente_grafico = $funciones_control_base_datos->obtener_datos_pesos_grafico($id_cliente);
-            $platos_cliente = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
-            $texto_cliente = $funciones_control_base_datos->obtener_texto_dietas_cliente($id_cliente);
+            $datos_cliente_grafico = $funciones_obtener_base_datos->obtener_datos_pesos_grafico($id_cliente);
+            $platos_cliente = $funciones_obtener_base_datos->obtener_platos_cliente($id_cliente);
+            $texto_cliente = $funciones_obtener_base_datos->obtener_texto_dietas_cliente($id_cliente);
             return view('conectado')->with('clientes', $clientes)->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente);
         } else {
             return view('conectado')->with('mensaje', 'No existe');
@@ -214,9 +199,9 @@ class MainController extends Controller
         if ($mensajes->id_mensaje != '') {
             $mensaje_borrado = $this->borrar_mensaje($mensajes->id_mensaje);
         }
-        $funciones_control_base_datos = new DataBaseController;
-        $mensajes_internos = $funciones_control_base_datos->obtener_mensajes_internos();
-        $mensajes_externos = $funciones_control_base_datos->obtener_mensajes_externos();
+        $funciones_obtener_base_datos = new Obtener_DB_Controller;
+        $mensajes_internos = $funciones_obtener_base_datos->obtener_mensajes_internos();
+        $mensajes_externos = $funciones_obtener_base_datos->obtener_mensajes_externos();
         return view('mensajes')->with('mensajes_internos', $mensajes_internos)->with('mensajes_externos', $mensajes_externos)->with('mensaje_borrado', $mensaje_borrado);
     }
 
@@ -224,12 +209,12 @@ class MainController extends Controller
     {
         // $borrado = false;
         $borrado = "no borrado";
-        $funciones_control_base_datos = new DataBaseController;
+        $funciones_borrar_base_datos = new Borrar_DB_Controller;
         $borrar_mensaje = explode("_", $id_mensaje);
         if ($borrar_mensaje[0] == 'interno') {
-            $mensaje_borrado = $funciones_control_base_datos->borrar_mensaje_interno($borrar_mensaje[1]);
+            $mensaje_borrado = $funciones_borrar_base_datos->borrar_mensaje_interno($borrar_mensaje[1]);
         } else {
-            $mensaje_borrado = $funciones_control_base_datos->borrar_mensaje_externo($borrar_mensaje[1]);
+            $mensaje_borrado = $funciones_borrar_base_datos->borrar_mensaje_externo($borrar_mensaje[1]);
         }
         if ($mensaje_borrado) {
             // $borrado = true;
@@ -244,10 +229,11 @@ class MainController extends Controller
             return view('comenzarmiplan');
         }
         $funciones_control_base_datos = new DataBaseController;
+        $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $id_cliente = $id_buscado['id_cliente_buscado'];
         $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
         if ($cliente_existe) {
-            $preguntas_respuestas_clientes = $funciones_control_base_datos->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
+            $preguntas_respuestas_clientes = $funciones_obtener_base_datos->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
             return view('comenzarmiplan')->with('preguntas_respuestas_clientes', $preguntas_respuestas_clientes)->with('id_cliente', $id_buscado);
         } else {
             return view('comenzarmiplan')->with('mensaje', 'No existe');
@@ -256,14 +242,14 @@ class MainController extends Controller
 
     public function guardar_respuestas_comenzarmiplan(Request $preguntas_respuestas_cliente)
     {
-        $funciones_control_base_datos = new DataBaseController;
+        $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
         $preguntas_respuestas = [];
         foreach ($preguntas_respuestas_cliente->request as $pregunta => $respuesta) {
             if ($pregunta != '_token' && $pregunta != 'id_cliente') {
                 $preguntas_respuestas[$pregunta] = $respuesta;
             }
         }
-        $datos_actualizados = $funciones_control_base_datos->actualizar_preguntas_respuestas($preguntas_respuestas_cliente->id_cliente, $preguntas_respuestas);
+        $datos_actualizados = $funciones_actualizar_base_datos->actualizar_preguntas_respuestas($preguntas_respuestas_cliente->id_cliente, $preguntas_respuestas);
         return view('comenzarmiplan')->with('datos_actualizados', $datos_actualizados);
     }
 }

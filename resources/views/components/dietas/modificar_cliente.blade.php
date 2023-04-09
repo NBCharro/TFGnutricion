@@ -13,6 +13,6 @@
         </button>
     </form>
 @endif
-<script src="{{ asset('js/dietas_platos.js') }}" defer></script>
-<script src="{{ asset('js/dietas_textos.js') }}" defer></script>
-<script src="{{ asset('js/dietas_preguntas_respuestas.js') }}" defer></script>
+<script src="{{ asset('js/dietas/platos.js') }}" defer></script>
+<script src="{{ asset('js/dietas/textos.js') }}" defer></script>
+<script src="{{ asset('js/dietas/preguntas_respuestas.js') }}" defer></script>

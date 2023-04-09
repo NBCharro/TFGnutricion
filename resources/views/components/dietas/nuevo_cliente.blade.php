@@ -141,4 +141,4 @@
     </button>
 </form>
 
-<script src="{{ asset('js/dietas_pregunta_respuesta.js') }}" defer></script>
+<script src="{{ asset('js/dietas/pregunta_respuesta.js') }}" defer></script>

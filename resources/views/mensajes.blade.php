@@ -13,6 +13,6 @@
             const mensajes_internos = @js($mensajes_internos);
             const mensajes_externos = @js($mensajes_externos);
         </script>
-        <script src="{{ asset('js/mensajes_mostrar.js') }}" defer></script>
+        <script src="{{ asset('js/mensajes/mostrar.js') }}" defer></script>
     @endif
 @endsection

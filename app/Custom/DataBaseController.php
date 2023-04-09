@@ -22,300 +22,300 @@ class DataBaseController
         return $existe;
     }
 
-    function obtener_mensajes_internos()
-    {
-        $mensajes_db = Contacto_Interno::get();
-        $mensajes_internos = [];
-        foreach ($mensajes_db as $value) {
-            $mensajes_internos[] = [
-                'id' => $value->id,
-                'id_cliente' => $value->id_cliente,
-                'nombre' => $this->obtener_nombre_mediante_id($value->id_cliente),
-                'fecha' => $value->fecha,
-                'mensaje' => $value->mensaje
-            ];
-        }
-        return $mensajes_internos;
-    }
+    // function obtener_mensajes_internos()
+    // {
+    //     $mensajes_db = Contacto_Interno::get();
+    //     $mensajes_internos = [];
+    //     foreach ($mensajes_db as $value) {
+    //         $mensajes_internos[] = [
+    //             'id' => $value->id,
+    //             'id_cliente' => $value->id_cliente,
+    //             'nombre' => $this->obtener_nombre_mediante_id($value->id_cliente),
+    //             'fecha' => $value->fecha,
+    //             'mensaje' => $value->mensaje
+    //         ];
+    //     }
+    //     return $mensajes_internos;
+    // }
 
-    function obtener_mensajes_externos()
-    {
-        $mensajes_db = Contacto_Externo::get();
-        $mensajes_externos = [];
-        foreach ($mensajes_db as $value) {
-            $mensajes_externos[] = [
-                'id' => $value->id,
-                'nombre' => $value->nombre,
-                'telefono' => $value->telefono,
-                'email' => $value->telefono,
-                'fecha' => $value->fecha,
-                'mensaje' => $value->mensaje
-            ];
-        }
-        return $mensajes_externos;
-    }
+    // function obtener_mensajes_externos()
+    // {
+    //     $mensajes_db = Contacto_Externo::get();
+    //     $mensajes_externos = [];
+    //     foreach ($mensajes_db as $value) {
+    //         $mensajes_externos[] = [
+    //             'id' => $value->id,
+    //             'nombre' => $value->nombre,
+    //             'telefono' => $value->telefono,
+    //             'email' => $value->telefono,
+    //             'fecha' => $value->fecha,
+    //             'mensaje' => $value->mensaje
+    //         ];
+    //     }
+    //     return $mensajes_externos;
+    // }
 
-    private function obtener_nombre_mediante_id($id_buscado)
-    {
-        $cliente_coincide_db = Cliente::get()->where('id_cliente', $id_buscado)->first();
-        $nombre_apellidos = $cliente_coincide_db->nombre_apellidos;
-        return $nombre_apellidos;
-    }
+    // private function obtener_nombre_mediante_id($id_buscado)
+    // {
+    //     $cliente_coincide_db = Cliente::get()->where('id_cliente', $id_buscado)->first();
+    //     $nombre_apellidos = $cliente_coincide_db->nombre_apellidos;
+    //     return $nombre_apellidos;
+    // }
 
-    function obtener_datos_pesos_grafico($id_cliente)
-    {
-        $cliente_coincide_db_peso = Peso::get()->where('id_cliente', $id_cliente)->first();
-        $datos_grafico = [];
-        if ($cliente_coincide_db_peso) {
-            $datos_pesos = [
-                'id_cliente' => $id_cliente,
-                'fecha' => json_decode(str_replace("'", '"', $cliente_coincide_db_peso->fecha), true),
-                'peso' => json_decode(str_replace("'", '"', $cliente_coincide_db_peso->peso), true),
-                'nota_pasos' => json_decode(str_replace("'", '"', $cliente_coincide_db_peso->nota_pasos), true),
-                'peso_teorico' => json_decode(str_replace("'", '"', $cliente_coincide_db_peso->peso_teorico), true),
-            ];
-            $cliente_coincide_db_cliente = Cliente::get()->where('id_cliente', $id_cliente)->first();
-            $datos_cliente = [
-                'peso_final_1' => $cliente_coincide_db_cliente->peso_final_1,
-                'peso_final_2' => $cliente_coincide_db_cliente->peso_final_2
-            ];
-            $peso_final_1_array = array_fill(0, count($datos_pesos['fecha']), $datos_cliente['peso_final_1']);
-            $peso_final_2_array = array_fill(0, count($datos_pesos['fecha']), $datos_cliente['peso_final_2']);
-            $datos_grafico = [...$datos_pesos, 'peso_final_1' => $peso_final_1_array, 'peso_final_2' => $peso_final_2_array];
-        }
-        return $datos_grafico;
-    }
+    // function obtener_datos_pesos_grafico($id_cliente)
+    // {
+    //     $cliente_coincide_db_peso = Peso::get()->where('id_cliente', $id_cliente)->first();
+    //     $datos_grafico = [];
+    //     if ($cliente_coincide_db_peso) {
+    //         $datos_pesos = [
+    //             'id_cliente' => $id_cliente,
+    //             'fecha' => json_decode(str_replace("'", '"', $cliente_coincide_db_peso->fecha), true),
+    //             'peso' => json_decode(str_replace("'", '"', $cliente_coincide_db_peso->peso), true),
+    //             'nota_pasos' => json_decode(str_replace("'", '"', $cliente_coincide_db_peso->nota_pasos), true),
+    //             'peso_teorico' => json_decode(str_replace("'", '"', $cliente_coincide_db_peso->peso_teorico), true),
+    //         ];
+    //         $cliente_coincide_db_cliente = Cliente::get()->where('id_cliente', $id_cliente)->first();
+    //         $datos_cliente = [
+    //             'peso_final_1' => $cliente_coincide_db_cliente->peso_final_1,
+    //             'peso_final_2' => $cliente_coincide_db_cliente->peso_final_2
+    //         ];
+    //         $peso_final_1_array = array_fill(0, count($datos_pesos['fecha']), $datos_cliente['peso_final_1']);
+    //         $peso_final_2_array = array_fill(0, count($datos_pesos['fecha']), $datos_cliente['peso_final_2']);
+    //         $datos_grafico = [...$datos_pesos, 'peso_final_1' => $peso_final_1_array, 'peso_final_2' => $peso_final_2_array];
+    //     }
+    //     return $datos_grafico;
+    // }
 
-    function obtener_datos_perdida_peso_cliente($id_cliente)
-    {
-        $cliente_coincide_db_peso = Peso::get()->where('id_cliente', $id_cliente)->first();
-        $datos_perdida_peso = [];
-        if ($cliente_coincide_db_peso) {
-            $datos_perdida_peso = [
-                'id_cliente' => $cliente_coincide_db_peso->id_cliente,
-                'perdida_peso_1' => $cliente_coincide_db_peso->perdida_peso_1,
-                'semanas_perdida_peso_1' => $cliente_coincide_db_peso->semanas_perdida_peso_1,
-                'perdida_peso_2' => $cliente_coincide_db_peso->perdida_peso_2,
-                'semanas_perdida_peso_2' => $cliente_coincide_db_peso->semanas_perdida_peso_2,
-                'perdida_peso_final' => $cliente_coincide_db_peso->perdida_peso_final,
-            ];
-        }
-        return $datos_perdida_peso;
-    }
+    // function obtener_datos_perdida_peso_cliente($id_cliente)
+    // {
+    //     $cliente_coincide_db_peso = Peso::get()->where('id_cliente', $id_cliente)->first();
+    //     $datos_perdida_peso = [];
+    //     if ($cliente_coincide_db_peso) {
+    //         $datos_perdida_peso = [
+    //             'id_cliente' => $cliente_coincide_db_peso->id_cliente,
+    //             'perdida_peso_1' => $cliente_coincide_db_peso->perdida_peso_1,
+    //             'semanas_perdida_peso_1' => $cliente_coincide_db_peso->semanas_perdida_peso_1,
+    //             'perdida_peso_2' => $cliente_coincide_db_peso->perdida_peso_2,
+    //             'semanas_perdida_peso_2' => $cliente_coincide_db_peso->semanas_perdida_peso_2,
+    //             'perdida_peso_final' => $cliente_coincide_db_peso->perdida_peso_final,
+    //         ];
+    //     }
+    //     return $datos_perdida_peso;
+    // }
 
-    function obtener_platos_cliente($id_cliente)
-    {
-        $cliente_coincide_db_plato = Plato::get()->where('id_cliente', $id_cliente);
-        $desayuno = [];
-        $mediamanana = [];
-        $comida = [];
-        $merienda = [];
-        $cena = [];
-        $recena = [];
-        $otro = [];
-        foreach ($cliente_coincide_db_plato as $plato) {
-            if ($plato->accion == 'desayuno') {
-                $desayuno = json_decode(str_replace("'", '"', $plato->platos), true);
-            }
-            if ($plato->accion == 'media mañana') {
-                $mediamanana = json_decode(str_replace("'", '"', $plato->platos), true);
-            }
-            if ($plato->accion == 'comida') {
-                $comida = json_decode(str_replace("'", '"', $plato->platos), true);
-            }
-            if ($plato->accion == 'merienda') {
-                $merienda = json_decode(str_replace("'", '"', $plato->platos), true);
-            }
-            if ($plato->accion == 'cena') {
-                $cena = json_decode(str_replace("'", '"', $plato->platos), true);
-            }
-            if ($plato->accion == 'recena') {
-                $recena = json_decode(str_replace("'", '"', $plato->platos), true);
-            }
-            if ($plato->accion == 'otro') {
-                $otro = json_decode(str_replace("'", '"', $plato->platos), true);
-            }
-        }
-        $platos_cliente = [
-            'id_cliente' => $id_cliente,
-            'desayuno' => $desayuno,
-            'mediamanana' => $mediamanana,
-            'comida' => $comida,
-            'merienda' => $merienda,
-            'cena' => $cena,
-            'recena' => $recena,
-            'otro' => $otro
-        ];
-        return $platos_cliente;
-    }
+    // function obtener_platos_cliente($id_cliente)
+    // {
+    //     $cliente_coincide_db_plato = Plato::get()->where('id_cliente', $id_cliente);
+    //     $desayuno = [];
+    //     $mediamanana = [];
+    //     $comida = [];
+    //     $merienda = [];
+    //     $cena = [];
+    //     $recena = [];
+    //     $otro = [];
+    //     foreach ($cliente_coincide_db_plato as $plato) {
+    //         if ($plato->accion == 'desayuno') {
+    //             $desayuno = json_decode(str_replace("'", '"', $plato->platos), true);
+    //         }
+    //         if ($plato->accion == 'media mañana') {
+    //             $mediamanana = json_decode(str_replace("'", '"', $plato->platos), true);
+    //         }
+    //         if ($plato->accion == 'comida') {
+    //             $comida = json_decode(str_replace("'", '"', $plato->platos), true);
+    //         }
+    //         if ($plato->accion == 'merienda') {
+    //             $merienda = json_decode(str_replace("'", '"', $plato->platos), true);
+    //         }
+    //         if ($plato->accion == 'cena') {
+    //             $cena = json_decode(str_replace("'", '"', $plato->platos), true);
+    //         }
+    //         if ($plato->accion == 'recena') {
+    //             $recena = json_decode(str_replace("'", '"', $plato->platos), true);
+    //         }
+    //         if ($plato->accion == 'otro') {
+    //             $otro = json_decode(str_replace("'", '"', $plato->platos), true);
+    //         }
+    //     }
+    //     $platos_cliente = [
+    //         'id_cliente' => $id_cliente,
+    //         'desayuno' => $desayuno,
+    //         'mediamanana' => $mediamanana,
+    //         'comida' => $comida,
+    //         'merienda' => $merienda,
+    //         'cena' => $cena,
+    //         'recena' => $recena,
+    //         'otro' => $otro
+    //     ];
+    //     return $platos_cliente;
+    // }
 
-    function obtener_texto_dietas_cliente($id_cliente)
-    {
-        $cliente_coincide_db_texto_cliente = Texto_Cliente::get()->where('id_cliente', $id_cliente)->first();
-        $texto_cliente = [];
-        if ($cliente_coincide_db_texto_cliente) {
-            $texto_general = json_decode(str_replace("'", '"', $cliente_coincide_db_texto_cliente->texto_general), true);
-            $texto_particular = json_decode(str_replace("'", '"', $cliente_coincide_db_texto_cliente->texto_particular), true);
-            $titulo = $texto_general['titulo'];
-            $parrafo1 = $texto_general['parrafo1'];
-            $parrafo2 = $texto_general['parrafo2'];
-            $texto_cliente = [
-                'titulo' => $titulo,
-                'parrafo1' => $parrafo1,
-                'parrafo2' => $parrafo2,
-            ];
-            foreach ($texto_particular as $nombre => $texto) {
-                $texto_cliente[$nombre] = $texto;
-            }
-        }
-        return $texto_cliente;
-    }
+    // function obtener_texto_dietas_cliente($id_cliente)
+    // {
+    //     $cliente_coincide_db_texto_cliente = Texto_Cliente::get()->where('id_cliente', $id_cliente)->first();
+    //     $texto_cliente = [];
+    //     if ($cliente_coincide_db_texto_cliente) {
+    //         $texto_general = json_decode(str_replace("'", '"', $cliente_coincide_db_texto_cliente->texto_general), true);
+    //         $texto_particular = json_decode(str_replace("'", '"', $cliente_coincide_db_texto_cliente->texto_particular), true);
+    //         $titulo = $texto_general['titulo'];
+    //         $parrafo1 = $texto_general['parrafo1'];
+    //         $parrafo2 = $texto_general['parrafo2'];
+    //         $texto_cliente = [
+    //             'titulo' => $titulo,
+    //             'parrafo1' => $parrafo1,
+    //             'parrafo2' => $parrafo2,
+    //         ];
+    //         foreach ($texto_particular as $nombre => $texto) {
+    //             $texto_cliente[$nombre] = $texto;
+    //         }
+    //     }
+    //     return $texto_cliente;
+    // }
 
-    function obtener_preguntas_respuestas_iniciales_cliente($id_cliente)
-    {
-        $pregunta_respuesta_db = Dato_Inicial_Cliente::get()->where('id_cliente', $id_cliente)->first();
-        $pregunta_respuesta_json = json_decode($pregunta_respuesta_db->pregunta_respuesta);
-        $pregunta_respuesta = [];
-        foreach ($pregunta_respuesta_json as $key => $value) {
-            $pregunta_respuesta[$key] = $value;
-        }
-        return $pregunta_respuesta;
-    }
+    // function obtener_preguntas_respuestas_iniciales_cliente($id_cliente)
+    // {
+    //     $pregunta_respuesta_db = Dato_Inicial_Cliente::get()->where('id_cliente', $id_cliente)->first();
+    //     $pregunta_respuesta_json = json_decode($pregunta_respuesta_db->pregunta_respuesta);
+    //     $pregunta_respuesta = [];
+    //     foreach ($pregunta_respuesta_json as $key => $value) {
+    //         $pregunta_respuesta[$key] = $value;
+    //     }
+    //     return $pregunta_respuesta;
+    // }
 
-    function borrar_mensaje_interno($id)
-    {
-        $borrado = false;
-        try {
-            $mensaje = Contacto_Interno::get()->where('id', $id)->first();
-            $borrado = $mensaje->delete();
-        } catch (\Throwable $e) {
-        }
-        return $borrado;
-    }
+    // function borrar_mensaje_interno($id)
+    // {
+    //     $borrado = false;
+    //     try {
+    //         $mensaje = Contacto_Interno::get()->where('id', $id)->first();
+    //         $borrado = $mensaje->delete();
+    //     } catch (\Throwable $e) {
+    //     }
+    //     return $borrado;
+    // }
 
-    function borrar_mensaje_externo($id)
-    {
-        $borrado = false;
-        try {
-            $mensaje = Contacto_Externo::get()->where('id', $id)->first();
-            $borrado = $mensaje->delete();
-        } catch (\Throwable $e) {
-        }
-        return $borrado;
-    }
+    // function borrar_mensaje_externo($id)
+    // {
+    //     $borrado = false;
+    //     try {
+    //         $mensaje = Contacto_Externo::get()->where('id', $id)->first();
+    //         $borrado = $mensaje->delete();
+    //     } catch (\Throwable $e) {
+    //     }
+    //     return $borrado;
+    // }
 
-    function obtener_clientes()
-    {
-        $cliente_coincide_db = Cliente::get();
-        $nombre_apellidos = [];
-        foreach ($cliente_coincide_db as $cliente) {
-            $nombre_apellidos[$cliente->id_cliente] = $cliente->nombre_apellidos;
-        }
-        return $nombre_apellidos;
-    }
+    // function obtener_clientes()
+    // {
+    //     $cliente_coincide_db = Cliente::get();
+    //     $nombre_apellidos = [];
+    //     foreach ($cliente_coincide_db as $cliente) {
+    //         $nombre_apellidos[$cliente->id_cliente] = $cliente->nombre_apellidos;
+    //     }
+    //     return $nombre_apellidos;
+    // }
 
-    function obtener_datos_cliente($id_cliente)
-    {
-        $cliente_coincide_db = Cliente::get()->where('id_cliente', $id_cliente)->first();
-        $cliente = [
-            'id_cliente' => $cliente_coincide_db->id_cliente,
-            'nombre_apellidos' => $cliente_coincide_db->nombre_apellidos,
-            'telefono' => $cliente_coincide_db->telefono,
-            'email' => $cliente_coincide_db->email,
-            'direccion' => $cliente_coincide_db->direccion,
-            'fecha_inicio' => $cliente_coincide_db->fecha_inicio,
-            'peso_inicial' => $cliente_coincide_db->peso_inicial,
-            'peso_final_1' => $cliente_coincide_db->peso_final_1,
-            'peso_final_2' => $cliente_coincide_db->peso_final_2
-        ];
-        return $cliente;
-    }
+    // function obtener_datos_cliente($id_cliente)
+    // {
+    //     $cliente_coincide_db = Cliente::get()->where('id_cliente', $id_cliente)->first();
+    //     $cliente = [
+    //         'id_cliente' => $cliente_coincide_db->id_cliente,
+    //         'nombre_apellidos' => $cliente_coincide_db->nombre_apellidos,
+    //         'telefono' => $cliente_coincide_db->telefono,
+    //         'email' => $cliente_coincide_db->email,
+    //         'direccion' => $cliente_coincide_db->direccion,
+    //         'fecha_inicio' => $cliente_coincide_db->fecha_inicio,
+    //         'peso_inicial' => $cliente_coincide_db->peso_inicial,
+    //         'peso_final_1' => $cliente_coincide_db->peso_final_1,
+    //         'peso_final_2' => $cliente_coincide_db->peso_final_2
+    //     ];
+    //     return $cliente;
+    // }
 
-    function guardar_cliente_nuevo($datos_nuevo_cliente, $preguntas_extra_nuevo_cliente)
-    {
-        $guardado = false;
+    // function guardar_cliente_nuevo($datos_nuevo_cliente, $preguntas_extra_nuevo_cliente)
+    // {
+    //     $guardado = false;
 
-        $guardado_datos_cliente = $this->guardar_db_nuevo_cliente($datos_nuevo_cliente);
+    //     $guardado_datos_cliente = $this->guardar_db_nuevo_cliente($datos_nuevo_cliente);
 
-        $preguntas_estandar = $this->preguntas_estandar();
-        $preguntas_json = json_encode([...$preguntas_estandar, ...$preguntas_extra_nuevo_cliente]);
-        $preguntas_extra_nuevo_cliente_db = [
-            'id_cliente' => $datos_nuevo_cliente['id_cliente'],
-            'fecha_inicio' => $datos_nuevo_cliente['fecha_inicio'],
-            'preguntas' => $preguntas_json,
-        ];
-        $guardado_preguntas_cliente = $this->guardar_db_datos_iniciales_nuevo_cliente($preguntas_extra_nuevo_cliente_db);
+    //     $preguntas_estandar = $this->preguntas_estandar();
+    //     $preguntas_json = json_encode([...$preguntas_estandar, ...$preguntas_extra_nuevo_cliente]);
+    //     $preguntas_extra_nuevo_cliente_db = [
+    //         'id_cliente' => $datos_nuevo_cliente['id_cliente'],
+    //         'fecha_inicio' => $datos_nuevo_cliente['fecha_inicio'],
+    //         'preguntas' => $preguntas_json,
+    //     ];
+    //     $guardado_preguntas_cliente = $this->guardar_db_datos_iniciales_nuevo_cliente($preguntas_extra_nuevo_cliente_db);
 
-        if ($guardado_datos_cliente && $guardado_preguntas_cliente) {
-            $guardado = true;
-        } else {
-            // Si falla alguno, deshacer guardado
-        }
+    //     if ($guardado_datos_cliente && $guardado_preguntas_cliente) {
+    //         $guardado = true;
+    //     } else {
+    //         // Si falla alguno, deshacer guardado
+    //     }
 
-        return $guardado;
-    }
+    //     return $guardado;
+    // }
 
-    private function guardar_db_nuevo_cliente($datos_cliente_db)
-    {
-        $guardado = false;
-        try {
-            Cliente::create([
-                'id_cliente' => $datos_cliente_db['id_cliente'],
-                'nombre_apellidos' => $datos_cliente_db['nombre_apellidos'],
-                'telefono' => $datos_cliente_db['telefono'],
-                'email' => $datos_cliente_db['email'],
-                'direccion' => $datos_cliente_db['direccion'],
-                'fecha_inicio' => $datos_cliente_db['fecha_inicio'],
-                'peso_inicial' => $datos_cliente_db['peso_inicial'],
-                'peso_final_1' => $datos_cliente_db['peso_final_1'],
-                'peso_final_2' => $datos_cliente_db['peso_final_2'],
-            ]);
-            $guardado = true;
-        } catch (\Throwable $e) {
-        }
-        return $guardado;
-    }
+    // private function guardar_db_nuevo_cliente($datos_cliente_db)
+    // {
+    //     $guardado = false;
+    //     try {
+    //         Cliente::create([
+    //             'id_cliente' => $datos_cliente_db['id_cliente'],
+    //             'nombre_apellidos' => $datos_cliente_db['nombre_apellidos'],
+    //             'telefono' => $datos_cliente_db['telefono'],
+    //             'email' => $datos_cliente_db['email'],
+    //             'direccion' => $datos_cliente_db['direccion'],
+    //             'fecha_inicio' => $datos_cliente_db['fecha_inicio'],
+    //             'peso_inicial' => $datos_cliente_db['peso_inicial'],
+    //             'peso_final_1' => $datos_cliente_db['peso_final_1'],
+    //             'peso_final_2' => $datos_cliente_db['peso_final_2'],
+    //         ]);
+    //         $guardado = true;
+    //     } catch (\Throwable $e) {
+    //     }
+    //     return $guardado;
+    // }
 
-    private function preguntas_estandar()
-    {
-        return [
-            '¿Se ha puesto anteriormente a dieta? ¿Cosas positivas que te aportaron esas dietas?' => 'respuesta_estandar',
-            '¿Tienes el hábito de desayunar regularmente? ¿Motivo? Indica qué desayunos suele hacer.' => 'respuesta_estandar',
-            '¿Tienes el hábito de comer algo a media mañana regularmente? ¿Motivo? Indica qué sueles hacerte.' => 'respuesta_estandar',
-            '¿Te gusta picar entre horas? ¿Qué picoteas?' => 'respuesta_estandar',
-            '¿Llegas con ansiedad a alguna de la tomas? ¿A cuál?' => 'respuesta_estandar',
-        ];
-    }
+    // private function preguntas_estandar()
+    // {
+    //     return [
+    //         '¿Se ha puesto anteriormente a dieta? ¿Cosas positivas que te aportaron esas dietas?' => 'respuesta_estandar',
+    //         '¿Tienes el hábito de desayunar regularmente? ¿Motivo? Indica qué desayunos suele hacer.' => 'respuesta_estandar',
+    //         '¿Tienes el hábito de comer algo a media mañana regularmente? ¿Motivo? Indica qué sueles hacerte.' => 'respuesta_estandar',
+    //         '¿Te gusta picar entre horas? ¿Qué picoteas?' => 'respuesta_estandar',
+    //         '¿Llegas con ansiedad a alguna de la tomas? ¿A cuál?' => 'respuesta_estandar',
+    //     ];
+    // }
 
-    private function guardar_db_datos_iniciales_nuevo_cliente($preguntas_extra_nuevo_cliente_db)
-    {
-        $guardado = false;
-        try {
-            Dato_Inicial_Cliente::create([
-                'id_cliente' => $preguntas_extra_nuevo_cliente_db['id_cliente'],
-                'fecha' => $preguntas_extra_nuevo_cliente_db['fecha_inicio'],
-                'pregunta_respuesta' => $preguntas_extra_nuevo_cliente_db['preguntas']
-            ]);
-            $guardado = true;
-        } catch (\Throwable $e) {
-        }
-        return $guardado;
-    }
+    // private function guardar_db_datos_iniciales_nuevo_cliente($preguntas_extra_nuevo_cliente_db)
+    // {
+    //     $guardado = false;
+    //     try {
+    //         Dato_Inicial_Cliente::create([
+    //             'id_cliente' => $preguntas_extra_nuevo_cliente_db['id_cliente'],
+    //             'fecha' => $preguntas_extra_nuevo_cliente_db['fecha_inicio'],
+    //             'pregunta_respuesta' => $preguntas_extra_nuevo_cliente_db['preguntas']
+    //         ]);
+    //         $guardado = true;
+    //     } catch (\Throwable $e) {
+    //     }
+    //     return $guardado;
+    // }
 
-    function actualizar_preguntas_respuestas($id_cliente, $preguntas_respuestas)
-    {
-        $actualizado = false;
-        try {
-            $preguntas_respuestas_json = json_encode($preguntas_respuestas);
+    // function actualizar_preguntas_respuestas($id_cliente, $preguntas_respuestas)
+    // {
+    //     $actualizado = false;
+    //     try {
+    //         $preguntas_respuestas_json = json_encode($preguntas_respuestas);
 
-            $pregunta_respuesta_db = Dato_Inicial_Cliente::get()->where('id_cliente', $id_cliente)->first();
-            $pregunta_respuesta_db->pregunta_respuesta = $preguntas_respuestas_json;
+    //         $pregunta_respuesta_db = Dato_Inicial_Cliente::get()->where('id_cliente', $id_cliente)->first();
+    //         $pregunta_respuesta_db->pregunta_respuesta = $preguntas_respuestas_json;
 
-            $pregunta_respuesta_db->save();
-            $actualizado = true;
-        } catch (\Throwable $e) {
-            # code...
-        }
-        return $actualizado;
-    }
+    //         $pregunta_respuesta_db->save();
+    //         $actualizado = true;
+    //     } catch (\Throwable $e) {
+    //         # code...
+    //     }
+    //     return $actualizado;
+    // }
 }
