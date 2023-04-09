@@ -105,6 +105,34 @@ class Actualizar_DB_Controller
         }
         return $actualizado;
     }
+
+    function actualizar_nuevo_peso($nuevo_dato_peso)
+    {
+        $actualizado = false;
+        try {
+            $peso_cliente_db = Peso::get()->where('id_cliente', $nuevo_dato_peso['id_cliente'])->first();
+
+            $pesos_decode = json_decode($peso_cliente_db->peso);
+            $pesos_decode[] = doubleval($nuevo_dato_peso['peso']);
+            $pesos_encode = json_encode($pesos_decode);
+            $peso_cliente_db->peso = $pesos_encode;
+
+            $nota_pasos_decode = json_decode($peso_cliente_db->nota_pasos);
+            if (count($nota_pasos_decode) > 0) {
+                // Arreglar si un cliente quiere ponerse nota a mitad de dieta
+                $nota_pasos_decode[] = doubleval($nuevo_dato_peso['nota_pasos']);
+                $nota_pasos_encode = json_encode($nota_pasos_decode);
+                $peso_cliente_db->nota_pasos = $nota_pasos_encode;
+            }
+
+            $peso_cliente_db->save();
+            $actualizado = true;
+        } catch (\Throwable $e) {
+            dump($e);
+        }
+        return $actualizado;
+    }
+
     function actualizar_pesos($peso_cliente)
     {
         $actualizado = false;

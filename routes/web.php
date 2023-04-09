@@ -24,6 +24,7 @@ Route::post('/guardar_respuestas_comenzarmiplan', [MainController::class, 'guard
 Route::post('/actualizar_cliente', [MainController::class, 'actualizar_cliente'])->name('actualizar_cliente');
 Route::post('/mensaje_externo', [MainController::class, 'mensaje_externo'])->name('mensaje_externo');
 Route::post('/mensaje_interno', [MainController::class, 'mensaje_interno'])->name('mensaje_interno');
+Route::post('/guardar_peso', [MainController::class, 'guardar_peso'])->name('guardar_peso');
 
 // Paginas que admitan GET y POST
 Route::match(['get', 'post'], '/midieta', [MainController::class, 'midieta'])->name('midieta');

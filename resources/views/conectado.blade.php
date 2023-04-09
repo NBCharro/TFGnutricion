@@ -6,6 +6,11 @@
         <div class="md:col-span-2">
             @include('components.conectado.selectClientes')
         </div>
+        @if (isset($mensaje))
+            <div class="md:col-span-2">
+                @include('components.conectado.alertas')
+            </div>
+        @endif
         @if (isset($peso_cliente) && count($peso_cliente) != 0 && isset($texto_dietas) && count($texto_dietas) != 0)
             <div class="flex flex-col justify-center">
                 @include('components.conectado.grafico')

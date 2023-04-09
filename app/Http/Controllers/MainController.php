@@ -307,4 +307,32 @@ class MainController extends Controller
         }
         return view('inicio')->with('mensaje_enviado', $mensaje_enviado);
     }
+
+    // Permite guardar el peso y la nota_pasos de un cliente
+    public function guardar_peso(Request $datos_cliente)
+    {
+        $nuevo_dato_peso = [
+            'id_cliente' => $datos_cliente['id_cliente'],
+            'peso' => $datos_cliente['peso'],
+            'nota_pasos' => $datos_cliente['nota_pasos'],
+        ];
+
+        $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
+        $datos_peso_actualizados = $funciones_actualizar_base_datos->actualizar_nuevo_peso($nuevo_dato_peso);
+        if ($datos_peso_actualizados) {
+            return $this->volver_dietas_conectado($datos_cliente['id_cliente'], 'exito');
+        }
+        return $this->volver_dietas_conectado($datos_cliente['id_cliente'], 'fallo');
+    }
+
+    private function volver_dietas_conectado($id_cliente, $mensaje)
+    {
+        $funciones_control_base_datos = new DataBaseController;
+        $funciones_obtener_base_datos = new Obtener_DB_Controller;
+        $clientes = $funciones_obtener_base_datos->obtener_clientes();
+        $datos_cliente_grafico = $funciones_obtener_base_datos->obtener_datos_pesos_grafico($id_cliente);
+        $platos_cliente = $funciones_obtener_base_datos->obtener_platos_cliente($id_cliente);
+        $texto_cliente = $funciones_obtener_base_datos->obtener_texto_dietas_cliente($id_cliente);
+        return view('conectado')->with('mensaje', $mensaje)->with('clientes', $clientes)->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente);
+    }
 }
