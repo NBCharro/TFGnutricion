@@ -22,7 +22,8 @@ class Obtener_DB_Controller
                 'id_cliente' => $value->id_cliente,
                 'nombre' => $this->obtener_nombre_mediante_id($value->id_cliente),
                 'fecha' => $value->fecha,
-                'mensaje' => $value->mensaje
+                'mensaje' => $value->mensaje,
+                'leido' => $value->leido,
             ];
         }
         return $mensajes_internos;
@@ -39,7 +40,8 @@ class Obtener_DB_Controller
                 'telefono' => $value->telefono,
                 'email' => $value->telefono,
                 'fecha' => $value->fecha,
-                'mensaje' => $value->mensaje
+                'mensaje' => $value->mensaje,
+                'leido' => $value->leido,
             ];
         }
         return $mensajes_externos;

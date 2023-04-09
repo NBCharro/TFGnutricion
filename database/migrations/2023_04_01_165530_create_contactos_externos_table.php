@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('fecha');
             $table->text('mensaje');
+            $table->boolean('leido');
             $table->timestamps();
         });
     }

@@ -6,6 +6,10 @@ const verMensajesMensaje = document.getElementById('verMensajesMensaje');
 const id_mensaje = document.getElementById('id_mensaje');
 
 listaMensajes.addEventListener('click', (event) => {
+    if (event.target.id == 'listaMensajes') {
+        // Si se pulsa en la zona blanca entre mensajes que no haga nada
+        return;
+    }
     const todosElementosLi = document.querySelectorAll("li");
     todosElementosLi.forEach(element => {
         element.classList.remove("bg-tertiary-500");

@@ -14,7 +14,8 @@ class Contacto_Externo extends Model
         'telefono',
         'email',
         'fecha',
-        'mensaje'
+        'mensaje',
+        'leido'
     ];
     protected $hidden = [];
 }

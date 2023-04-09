@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('id_cliente');
             $table->string('fecha');
             $table->text('mensaje');
+            $table->boolean('leido');
             $table->timestamps();
         });
     }

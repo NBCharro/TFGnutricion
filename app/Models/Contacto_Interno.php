@@ -12,7 +12,8 @@ class Contacto_Interno extends Model
     protected $fillable = [
         'id_cliente',
         'fecha',
-        'mensaje'
+        'mensaje',
+        'leido'
     ];
     protected $hidden = [];
 }
