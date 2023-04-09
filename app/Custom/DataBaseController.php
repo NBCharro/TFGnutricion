@@ -86,6 +86,23 @@ class DataBaseController
         return $datos_grafico;
     }
 
+    function obtener_datos_perdida_peso_cliente($id_cliente)
+    {
+        $cliente_coincide_db_peso = Peso::get()->where('id_cliente', $id_cliente)->first();
+        $datos_perdida_peso = [];
+        if ($cliente_coincide_db_peso) {
+            $datos_perdida_peso = [
+                'id_cliente' => $cliente_coincide_db_peso->id_cliente,
+                'perdida_peso_1' => $cliente_coincide_db_peso->perdida_peso_1,
+                'semanas_perdida_peso_1' => $cliente_coincide_db_peso->semanas_perdida_peso_1,
+                'perdida_peso_2' => $cliente_coincide_db_peso->perdida_peso_2,
+                'semanas_perdida_peso_2' => $cliente_coincide_db_peso->semanas_perdida_peso_2,
+                'perdida_peso_final' => $cliente_coincide_db_peso->perdida_peso_final,
+            ];
+        }
+        return $datos_perdida_peso;
+    }
+
     function obtener_platos_cliente($id_cliente)
     {
         $cliente_coincide_db_plato = Plato::get()->where('id_cliente', $id_cliente);

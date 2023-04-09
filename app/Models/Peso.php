@@ -11,8 +11,14 @@ class Peso extends Model
     protected $table = 'pesos';
     protected $fillable = [
         'id_cliente',
+        'perdida_peso_1',
+        'semanas_perdida_peso_1',
+        'perdida_peso_2',
+        'semanas_perdida_peso_2',
+        'perdida_peso_final',
         'fecha',
         'peso',
+        'peso_teorico',
         'nota_pasos'
     ];
     protected $hidden = [];

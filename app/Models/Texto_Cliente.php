@@ -12,7 +12,7 @@ class Texto_Cliente extends Model
     protected $fillable = [
         'id_cliente',
         'texto_general',
-        'texto_especifico'
+        'texto_particular'
     ];
     protected $hidden = [];
 }

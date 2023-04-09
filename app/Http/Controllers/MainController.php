@@ -114,16 +114,15 @@ class MainController extends Controller
         $datos_cliente_seleccionado = $funciones_control_base_datos->obtener_datos_cliente($id_cliente);
         $platos_cliente_seleccionado = $funciones_control_base_datos->obtener_platos_cliente($id_cliente);
         $textos_cliente_seleccionado = $funciones_control_base_datos->obtener_texto_dietas_cliente($id_cliente);
-        $pesos_cliente_seleccionado = $funciones_control_base_datos->obtener_datos_pesos_grafico($id_cliente);
+        $perdida_peso_cliente_seleccionado = $funciones_control_base_datos->obtener_datos_perdida_peso_cliente($id_cliente);
         $preguntas_respuestas_cliente_seleccionado = $funciones_control_base_datos->obtener_preguntas_respuestas_iniciales_cliente($id_cliente);
 
-        return view('dietas')->with('clientes', $clientes)->with('cliente_seleccionado', $datos_cliente_seleccionado)->with('platos_cliente_seleccionado', $platos_cliente_seleccionado)->with('textos_cliente_seleccionado', $textos_cliente_seleccionado)->with('pesos_cliente_seleccionado', $pesos_cliente_seleccionado)->with('preguntas_respuestas_cliente_seleccionado', $preguntas_respuestas_cliente_seleccionado);
+        return view('dietas')->with('clientes', $clientes)->with('cliente_seleccionado', $datos_cliente_seleccionado)->with('platos_cliente_seleccionado', $platos_cliente_seleccionado)->with('textos_cliente_seleccionado', $textos_cliente_seleccionado)->with('perdida_peso_cliente_seleccionado', $perdida_peso_cliente_seleccionado)->with('preguntas_respuestas_cliente_seleccionado', $preguntas_respuestas_cliente_seleccionado);
     }
 
     public function actualizar_cliente(Request $actualizar_cliente)
     {
         $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
-        // dump($actualizar_cliente);
         $datos_cliente = [
             'id_cliente' => $actualizar_cliente->id_cliente,
             'nombre_apellidos' => $actualizar_cliente->nombre_apellidos,
@@ -135,9 +134,8 @@ class MainController extends Controller
             'peso_final_1' => $actualizar_cliente->peso_final_1,
             'peso_final_2' => $actualizar_cliente->peso_final_2,
         ];
-        // $clientes = $funciones_actualizar_base_datos->actualizar_datos_cliente($datos_cliente);
+        $clientes_actualizado = $funciones_actualizar_base_datos->actualizar_datos_cliente($datos_cliente);
 
-        // id_cliente, [fecha], [peso], [peso_teorico], [nota_pasos]
         $peso = [
             'id_cliente' => $actualizar_cliente->id_cliente,
             'fecha_inicio' => $actualizar_cliente->fecha_inicio,
@@ -148,9 +146,9 @@ class MainController extends Controller
             'semanas_perdida_peso_1' => $actualizar_cliente->semanas_perdida_peso_1,
             'perdida_peso_2' => $actualizar_cliente->perdida_peso_2,
             'semanas_perdida_peso_2' => $actualizar_cliente->semanas_perdida_peso_2,
+            'perdida_peso_final' => $actualizar_cliente->perdida_peso_final,
         ];
-        $clientes = $funciones_actualizar_base_datos->actualizar_pesos($peso);
-
+        $pesos_actualizado = $funciones_actualizar_base_datos->actualizar_pesos($peso);
 
         $platos = [];
         $hora = '';
@@ -162,7 +160,7 @@ class MainController extends Controller
                 $platos[$hora][] = $value;
             }
         }
-        // $clientes = $funciones_actualizar_base_datos->actualizar_platos($actualizar_cliente->id_cliente, $platos);
+        $platos_actualizado = $funciones_actualizar_base_datos->actualizar_platos($actualizar_cliente->id_cliente, $platos);
 
         $textos_especificos = [];
         $alimento = '';
@@ -183,11 +181,11 @@ class MainController extends Controller
             ],
             'texto_particular' => $textos_especificos,
         ];
-        // $clientes = $funciones_actualizar_base_datos->actualizar_textos_clientes($textos_clientes);
-
+        $textos_actualizado = $funciones_actualizar_base_datos->actualizar_textos_clientes($textos_clientes);
 
         $funciones_control_base_datos = new DataBaseController;
         $clientes = $funciones_control_base_datos->obtener_clientes();
+        // Volver a la pagina con los datos del cliente lanzando una alerta de bien o mal
         return view('dietas')->with('clientes', $clientes);
     }
 
