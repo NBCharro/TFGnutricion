@@ -112,7 +112,7 @@ class DietasController extends Controller
             if (substr($key, 0, 13) == "select_plato_") {
                 $hora = $value;
             }
-            if (substr($key, 0, 12) == "input_plato_") {
+            if (substr($key, 0, 12) == "input_plato_" && $value) {
                 $platos[$hora][] = $value;
             }
         }
