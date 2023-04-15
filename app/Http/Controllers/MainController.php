@@ -112,6 +112,7 @@ class MainController extends Controller
     }
 
     // Cuando se actualizan los datos de un cliente desde /modificar_cliente se usa la siguiente funcion
+    // public function actualizar_cliente(Request $actualizar_cliente)
     public function actualizar_cliente(Request $actualizar_cliente)
     {
         $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
@@ -126,7 +127,6 @@ class MainController extends Controller
             'peso_final_1' => $actualizar_cliente->peso_final_1,
             'peso_final_2' => $actualizar_cliente->peso_final_2,
         ];
-        $clientes_actualizado = $funciones_actualizar_base_datos->actualizar_datos_cliente($datos_cliente);
 
         $peso = [
             'id_cliente' => $actualizar_cliente->id_cliente,
@@ -140,7 +140,6 @@ class MainController extends Controller
             'semanas_perdida_peso_2' => $actualizar_cliente->semanas_perdida_peso_2,
             'perdida_peso_final' => $actualizar_cliente->perdida_peso_final,
         ];
-        $pesos_actualizado = $funciones_actualizar_base_datos->actualizar_pesos($peso);
 
         $platos = [];
         $hora = '';
@@ -152,7 +151,6 @@ class MainController extends Controller
                 $platos[$hora][] = $value;
             }
         }
-        $platos_actualizado = $funciones_actualizar_base_datos->actualizar_platos($actualizar_cliente->id_cliente, $platos);
 
         $textos_especificos = [];
         $alimento = '';
@@ -173,12 +171,22 @@ class MainController extends Controller
             ],
             'texto_particular' => $textos_especificos,
         ];
+
+        // Crear transaccion
+        $clientes_actualizado = $funciones_actualizar_base_datos->actualizar_datos_cliente($datos_cliente);
+        $pesos_actualizado = $funciones_actualizar_base_datos->actualizar_pesos($peso);
+        $platos_actualizado = $funciones_actualizar_base_datos->actualizar_platos($actualizar_cliente->id_cliente, $platos);
         $textos_actualizado = $funciones_actualizar_base_datos->actualizar_textos_clientes($textos_clientes);
+
+        $mensaje_actualizado = 'fallo';
+        if ($clientes_actualizado && $pesos_actualizado && $platos_actualizado && $textos_actualizado) {
+            $mensaje_actualizado = 'exito';
+        }
 
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $clientes = $funciones_obtener_base_datos->obtener_clientes();
         // Volver a la pagina con los datos del cliente lanzando una alerta de bien o mal
-        return view('dietas')->with('clientes', $clientes);
+        return view('dietas')->with('clientes', $clientes)->with('mensaje_actualizado', $mensaje_actualizado);
     }
 
     // Obtencion de los mensajes internos y externos
@@ -212,6 +220,20 @@ class MainController extends Controller
             $borrado = 'borrado';
         }
         return $borrado;
+    }
+
+    // Borrado de un cliente de la DB
+    // Web: /borrar_cliente
+    public function borrar_cliente(Request $id_cliente)
+    {
+        $funciones_borrar_base_datos = new Borrar_DB_Controller;
+        $mensaje_borrado = $funciones_borrar_base_datos->borrar_cliente($id_cliente['id_cliente']);
+
+        $mensaje_cliente_borrado = 'fallo';
+        if ($mensaje_borrado) {
+            $mensaje_cliente_borrado = 'exito';
+        }
+        return view('dietas')->with('mensaje_cliente_borrado', $mensaje_cliente_borrado);
     }
 
     // Pagina que permite a los clientes rellenar la encuesta inicial

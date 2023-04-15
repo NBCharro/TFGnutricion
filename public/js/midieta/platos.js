@@ -68,9 +68,11 @@ async function crearModalNutrientes(plato) {
 
 // Buscar en la API
 async function datoNutrientesAPI(plato) {
+    const platoMinusculas = plato.toLowerCase();
     //  const respuesta = await fetch(`https://api-nutricion.onrender.com/api/v1/alimentos/nombre=${plato}`)
-    const respuesta = await fetch(`http://localhost:3000/api/v1/alimentos/nombre=${plato}`)
+    const respuesta = await fetch(`http://localhost:3000/api/v1/nombre=${platoMinusculas}`)
     const respuestaAPI = await respuesta.json();
+    // Igual me devuelve varios, vigila
     // Tratar Datos API
     const alimentoCapitalizado = respuestaAPI.alimento.charAt(0).toUpperCase() + respuestaAPI.alimento.slice(1);
     const datoTratado = {

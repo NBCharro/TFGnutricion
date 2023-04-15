@@ -9,6 +9,7 @@ use App\Models\Dato_Inicial_Cliente;
 use App\Models\Peso;
 use App\Models\Plato;
 use App\Models\Texto_Cliente;
+use Illuminate\Support\Facades\DB;
 
 class Borrar_DB_Controller
 {
@@ -31,6 +32,27 @@ class Borrar_DB_Controller
             $borrado = $mensaje->delete();
         } catch (\Throwable $e) {
         }
+        return $borrado;
+    }
+
+    function borrar_cliente($id)
+    {
+        $borrado = false;
+        DB::beginTransaction();
+
+        try {
+            DB::table('contactos_internos')->where('id_cliente', $id)->delete();
+            DB::table('datos_iniciales_clientes')->where('id_cliente', $id)->delete();
+            DB::table('clientes')->where('id_cliente', $id)->delete();
+            DB::table('pesos')->where('id_cliente', $id)->delete();
+            DB::table('platos')->where('id_cliente', $id)->delete();
+            DB::table('textos_clientes')->where('id_cliente', $id)->delete();
+            DB::commit();
+            $borrado = true;
+        } catch (\Exception $e) {
+            DB::rollBack();
+        }
+
         return $borrado;
     }
 }
