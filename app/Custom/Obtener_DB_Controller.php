@@ -38,7 +38,7 @@ class Obtener_DB_Controller
                 'id' => $value->id,
                 'nombre' => $value->nombre,
                 'telefono' => $value->telefono,
-                'email' => $value->telefono,
+                'email' => $value->email,
                 'fecha' => $value->fecha,
                 'mensaje' => $value->mensaje,
                 'leido' => $value->leido,

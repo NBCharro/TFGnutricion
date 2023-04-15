@@ -243,4 +243,37 @@ class Actualizar_DB_Controller
         }
         return $pesos;
     }
+
+    function marcar_mensaje_leido_interno($id_mensaje)
+    {
+        $actualizado = false;
+        try {
+            $mensaje_db = Contacto_Interno::get()->where('id', $id_mensaje)->first();
+
+            if ($mensaje_db->leido != 1) {
+                $mensaje_db->leido = 1;
+                $mensaje_db->save();
+                $actualizado = true;
+            }
+        } catch (\Throwable $e) {
+            $actualizado = 'error';
+        }
+        return $actualizado;
+    }
+    function marcar_mensaje_leido_externo($id_mensaje)
+    {
+        $actualizado = false;
+        try {
+            $mensaje_db = Contacto_Externo::get()->where('id', $id_mensaje)->first();
+
+            if ($mensaje_db->leido != 1) {
+                $mensaje_db->leido = 1;
+                $mensaje_db->save();
+                $actualizado = true;
+            }
+        } catch (\Throwable $e) {
+            $actualizado = 'error';
+        }
+        return $actualizado;
+    }
 }

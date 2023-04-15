@@ -189,39 +189,6 @@ class MainController extends Controller
         return view('dietas')->with('clientes', $clientes)->with('mensaje_actualizado', $mensaje_actualizado);
     }
 
-    // Obtencion de los mensajes internos y externos
-    // Web: /mensajes
-    public function mensajes(Request $mensajes)
-    {
-        $mensaje_borrado = 'ningun mensaje seleccionado';
-        if ($mensajes->id_mensaje != '') {
-            $mensaje_borrado = $this->borrar_mensaje($mensajes->id_mensaje);
-        }
-        $funciones_obtener_base_datos = new Obtener_DB_Controller;
-        $mensajes_internos = $funciones_obtener_base_datos->obtener_mensajes_internos();
-        $mensajes_externos = $funciones_obtener_base_datos->obtener_mensajes_externos();
-        return view('mensajes')->with('mensajes_internos', $mensajes_internos)->with('mensajes_externos', $mensajes_externos)->with('mensaje_borrado', $mensaje_borrado);
-    }
-
-    // Al pulsar el icono de borrar mensaje, se invocara esta funcion para borrar el mensaje interno o externo
-    private function borrar_mensaje($id_mensaje)
-    {
-        // $borrado = false;
-        $borrado = "no borrado";
-        $funciones_borrar_base_datos = new Borrar_DB_Controller;
-        $borrar_mensaje = explode("_", $id_mensaje);
-        if ($borrar_mensaje[0] == 'interno') {
-            $mensaje_borrado = $funciones_borrar_base_datos->borrar_mensaje_interno($borrar_mensaje[1]);
-        } else {
-            $mensaje_borrado = $funciones_borrar_base_datos->borrar_mensaje_externo($borrar_mensaje[1]);
-        }
-        if ($mensaje_borrado) {
-            // $borrado = true;
-            $borrado = 'borrado';
-        }
-        return $borrado;
-    }
-
     // Borrado de un cliente de la DB
     // Web: /borrar_cliente
     public function borrar_cliente(Request $id_cliente)
@@ -347,9 +314,9 @@ class MainController extends Controller
         return $this->volver_dietas_conectado($datos_cliente['id_cliente'], 'fallo');
     }
 
+    // Permite volver a la pagina Dietas. Es para separar codigo
     private function volver_dietas_conectado($id_cliente, $mensaje)
     {
-        $funciones_control_base_datos = new DataBaseController;
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $clientes = $funciones_obtener_base_datos->obtener_clientes();
         $datos_cliente_grafico = $funciones_obtener_base_datos->obtener_datos_pesos_grafico($id_cliente);

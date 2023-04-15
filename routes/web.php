@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\MensajesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,7 @@ Route::match(['get', 'post'], '/midieta', [MainController::class, 'midieta'])->n
 Route::match(['get', 'post'], '/comenzarmiplan', [MainController::class, 'comenzarmiplan'])->name('comenzarmiplan');
 Route::match(['get', 'post'], '/clientes', [MainController::class, 'clientes'])->name('clientes');
 Route::match(['get', 'post'], '/dietas', [MainController::class, 'dietas'])->name('dietas');
-Route::match(['get', 'post'], '/mensajes', [MainController::class, 'mensajes'])->name('mensajes');
+Route::match(['get', 'post'], '/mensajes', [MensajesController::class, 'mensajes'])->name('mensajes');
 
 // Pruebas
 Route::match(['get', 'post'], '/pruebas', [MainController::class, 'pruebas'])->name('pruebas');

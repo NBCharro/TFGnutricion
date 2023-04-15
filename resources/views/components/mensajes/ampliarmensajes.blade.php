@@ -1,3 +1,19 @@
+@php
+    if ($mensaje_mostrado['mensaje_interno_externo'] == 'interno') {
+        $nombre = $mensaje_mostrado['nombre'];
+        $info_extra = $mensaje_mostrado['id_cliente'];
+        $fecha = $mensaje_mostrado['fecha'];
+        $mensaje = $mensaje_mostrado['mensaje'];
+        $texto_id_mensaje = "interno_{$mensaje_mostrado['id']}";
+    }
+    if ($mensaje_mostrado['mensaje_interno_externo'] == 'externo') {
+        $nombre = $mensaje_mostrado['nombre'];
+        $info_extra = $mensaje_mostrado['telefono'] . ' | ' . $mensaje_mostrado['email'];
+        $fecha = $mensaje_mostrado['fecha'];
+        $mensaje = $mensaje_mostrado['mensaje'];
+        $texto_id_mensaje = "externo_{$mensaje_mostrado['id']}";
+    }
+@endphp
 <section id="ampliarmensajes"
     class="shadow-lg md:shadow-none my-5 py-4 md:my-0 md:w-8/12 px-4 md:flex md:flex-col rounded-3xl md:rounded-none md:rounded-r-3xl bg-white dark:bg-gray-800">
     <form action="{{ route('mensajes') }}" method="post"
@@ -5,24 +21,13 @@
         @csrf
         <div class="flex space-x-4 items-center">
             <div class="flex flex-col">
-                @php
-                    if (count($mensajes_internos) > 0) {
-                        $texto_verMensajesNombre = $mensajes_internos[0]['nombre'];
-                        $texto_verMensajesEmail = $mensajes_internos[0]['id_cliente'];
-                        $texto_id_mensaje = "interno_{$mensajes_internos[0]['id']}";
-                    } elseif (count($mensajes_externos) > 0) {
-                        $texto_verMensajesNombre = $mensajes_externos[0]['nombre'];
-                        $texto_verMensajesEmail = $mensajes_externos[0]['email'];
-                        $texto_id_mensaje = "externo_{$mensajes_externos[0]['id']}";
-                    }
-                @endphp
                 <h3 id="verMensajesNombre" class="font-semibold text-lg">
-                    <?php echo $texto_verMensajesNombre; ?>
+                    {{ $nombre }}
                 </h3>
                 <p id="verMensajesEmail" class="text-light dark:text-gray-400">
-                    <?php echo $texto_verMensajesEmail; ?>
+                    {{ $info_extra }}
                 </p>
-                <input id='id_mensaje' type="hidden" name="id_mensaje" value="<?php echo $texto_id_mensaje; ?>">
+                <input id='id_mensaje' type="hidden" name="id_mensaje" value="{{ $texto_id_mensaje }}">
             </div>
         </div>
         <div>
@@ -66,23 +71,11 @@
     </form>
     <section>
         <h1 id="verMensajesTitulo" class="font-bold text-2xl">
-            @php
-                if (count($mensajes_internos) > 0) {
-                    echo $mensajes_internos[0]['fecha'];
-                } else {
-                    echo $mensajes_externos[0]['fecha'];
-                }
-            @endphp
+            {{ $fecha }}
         </h1>
         <article class="mt-8 dark:text-gray-400 leading-7 tracking-wider">
             <p id="verMensajesMensaje">
-                @php
-                    if (count($mensajes_internos) > 0) {
-                        echo $mensajes_internos[0]['mensaje'];
-                    } elseif (count($mensajes_externos) > 0) {
-                        echo $mensajes_externos[0]['mensaje'];
-                    }
-                @endphp
+                {{ $mensaje }}
             </p>
         </article>
     </section>
