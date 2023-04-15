@@ -222,17 +222,12 @@ class Actualizar_DB_Controller
     }
     private function obtener_array_pesos_teoricos_perdida_peso($peso_inicial, $peso_final_1, $peso_final_2, $perdida_peso_1, $semanas_perdida_peso_1, $perdida_peso_2, $semanas_perdida_peso_2, $perdida_peso_final)
     {
-        $semana = 1;
-        $pesos = [];
-        dump($peso_inicial);
-        dump($peso_final_1);
-        dump($peso_final_2);
-        dump($perdida_peso_1);
-        dump($semanas_perdida_peso_1);
-        dump($perdida_peso_2);
-        dump($semanas_perdida_peso_2);
-        dump($perdida_peso_final);
+        if ($perdida_peso_final == 0) {
+            return [];
+        }
 
+        $pesos = [];
+        $semana = 1;
         $peso_iterativo = $peso_inicial;
         $peso_fin = $peso_final_1;
         if ($peso_final_2 > 0) {
