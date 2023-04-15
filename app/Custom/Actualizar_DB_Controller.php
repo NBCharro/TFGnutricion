@@ -224,6 +224,15 @@ class Actualizar_DB_Controller
     {
         $semana = 1;
         $pesos = [];
+        dump($peso_inicial);
+        dump($peso_final_1);
+        dump($peso_final_2);
+        dump($perdida_peso_1);
+        dump($semanas_perdida_peso_1);
+        dump($perdida_peso_2);
+        dump($semanas_perdida_peso_2);
+        dump($perdida_peso_final);
+
         $peso_iterativo = $peso_inicial;
         $peso_fin = $peso_final_1;
         if ($peso_final_2 > 0) {

@@ -33,7 +33,7 @@ function crear_nuevo_alimento() {
         'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white my-2';
     texto_particular_descripcion.className =
         'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white col-span-3';
-    hr.className = 'h-px my-3 border-0 bg-gray-700';
+    hr.className = 'h-px my-3 border-0 bg-gray-700 col-span-4';
 
     texto_particular_alimento.name = `texto_particular_alimento_${numero_campos_texto_particular}`;
     texto_particular_descripcion.name = `texto_particular_descripcion_${numero_campos_texto_particular}`;
