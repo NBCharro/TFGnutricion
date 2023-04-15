@@ -2,13 +2,8 @@
 
 namespace App\Custom;
 
-use App\Models\Cliente;
 use App\Models\Contacto_Externo;
 use App\Models\Contacto_Interno;
-use App\Models\Dato_Inicial_Cliente;
-use App\Models\Peso;
-use App\Models\Plato;
-use App\Models\Texto_Cliente;
 use Illuminate\Support\Facades\DB;
 
 class Borrar_DB_Controller
