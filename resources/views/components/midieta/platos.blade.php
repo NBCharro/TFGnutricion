@@ -52,3 +52,4 @@
     platosPHP = @js($platos);
 </script>
 <script src="{{ asset('js/midieta/platos.js') }}" defer></script>
+<script src="{{ asset('js/midieta/modalAPI.js') }}" defer></script>
