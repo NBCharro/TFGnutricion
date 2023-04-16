@@ -6,6 +6,7 @@ use App\Custom\Actualizar_DB_Controller;
 use App\Custom\DataBaseController;
 use App\Custom\Obtener_DB_Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ComenzarMiPlanController extends Controller
 {
@@ -14,7 +15,9 @@ class ComenzarMiPlanController extends Controller
     public function comenzarmiplan(Request $id_buscado)
     {
         if ($id_buscado['id_cliente_buscado'] == '') {
-            return view('comenzarmiplan');
+            $alimentosAPI = Http::get('http://localhost:3000/api/v1/lista');
+            $listaAlimentosAPI = $alimentosAPI->json();
+            return view('comenzarmiplan')->with('listaAlimentosAPI', $listaAlimentosAPI);
         }
         $funciones_control_base_datos = new DataBaseController;
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
@@ -40,5 +43,18 @@ class ComenzarMiPlanController extends Controller
         }
         $datos_actualizados = $funciones_actualizar_base_datos->actualizar_preguntas_respuestas($preguntas_respuestas_cliente->id_cliente, $preguntas_respuestas);
         return view('comenzarmiplan')->with('datos_actualizados', $datos_actualizados);
+    }
+
+    // Funcion que obtiene de la API un alimento y devuelve su informacion al usuario
+    public function mostrarNutrientesAlimento(Request $alimento)
+    {
+        $nombreAlimento = $alimento->nombreAlimento;
+        $alimentoAPI = Http::get("http://localhost:3000/api/v1/nombre={$nombreAlimento}");
+        $alimentoElegidoAPI = $alimentoAPI->json();
+
+        $alimentosAPI = Http::get('http://localhost:3000/api/v1/lista');
+        $listaAlimentosAPI = $alimentosAPI->json();
+
+        return view('comenzarmiplan')->with('listaAlimentosAPI', $listaAlimentosAPI)->with('alimentoElegidoAPI', $alimentoElegidoAPI[0]);
     }
 }
