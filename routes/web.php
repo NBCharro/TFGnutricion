@@ -53,5 +53,6 @@ Route::match(['get', 'post'], '/mensajes', [MensajesController::class, 'mensajes
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
 // Tablas de la DB
 Route::resource('contacto_interno', 'App\Http\Controllers\Contacto_InternoController');

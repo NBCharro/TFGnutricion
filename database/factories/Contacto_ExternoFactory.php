@@ -21,7 +21,8 @@ class Contacto_ExternoFactory extends Factory
             'telefono' => $this->faker->phoneNumber,
             'email' => $this->faker->email,
             'fecha' => $this->faker->date($format = 'd-m-Y', $max = '01-01-2024', $min = '01-01-2023'),
-            'mensaje' => $this->faker->realText($maxNbChars = 200, $indexSize = 2)
+            'mensaje' => $this->faker->realText($maxNbChars = 200, $indexSize = 2),
+            'leido' => $this->faker->randomElement([0, 1])
         ];
     }
 }

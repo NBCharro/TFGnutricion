@@ -32,7 +32,15 @@ class PlatoFactory extends Factory
         ]);
         return [
             'id_cliente' => $this->faker->unique()->text(6),
-            'accion' => $this->faker->randomElement(['desayuno', 'media manaña', 'comida', 'merienda', 'cena', 'recena', 'otro']),
+            'accion' => $this->faker->randomElement([
+                "desayuno",
+                "media mañana",
+                "comida",
+                "merienda",
+                "cena",
+                "recena",
+                "otro"
+            ]),
             'platos' => $data
         ];
     }
