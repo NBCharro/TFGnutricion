@@ -23,8 +23,8 @@ return new class extends Migration
                     "especifico"
                 ]
             );
-            $table->string('texto1');
-            $table->string('texto2')->nullable();
+            $table->text('texto1');
+            $table->text('texto2')->nullable();
             $table->timestamps();
         });
     }
