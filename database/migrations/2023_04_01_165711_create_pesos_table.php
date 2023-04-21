@@ -14,15 +14,10 @@ return new class extends Migration
         Schema::create('pesos', function (Blueprint $table) {
             $table->id();
             $table->string('id_cliente');
-            $table->integer('perdida_peso_1');
-            $table->integer('semanas_perdida_peso_1');
-            $table->integer('perdida_peso_2');
-            $table->integer('semanas_perdida_peso_2');
-            $table->integer('perdida_peso_final');
-            $table->text('fecha');
-            $table->text('peso');
-            $table->text('peso_teorico');
-            $table->text('nota_pasos');
+            $table->string('fecha');
+            $table->number('peso');
+            $table->number('peso_teorico');
+            $table->number('nota_pasos');
             $table->timestamps();
         });
     }

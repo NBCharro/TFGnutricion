@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('id_cliente');
             $table->string('fecha');
-            $table->json('pregunta_respuesta');
+            $table->text('pregunta');
+            $table->text('respuesta');
             $table->timestamps();
         });
     }

@@ -19,6 +19,11 @@ class Cliente extends Model
         'peso_inicial',
         'peso_final_1',
         'peso_final_2',
+        'perdida_peso_1',
+        'semanas_perdida_peso_1',
+        'perdida_peso_2',
+        'semanas_perdida_peso_2',
+        'perdida_peso_final',
     ];
     protected $hidden = [];
 }
