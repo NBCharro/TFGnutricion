@@ -56,24 +56,36 @@ class Obtener_DB_Controller
 
     function obtener_datos_pesos_grafico($id_cliente)
     {
-        $cliente_coincide_db_peso = Peso::get()->where('id_cliente', $id_cliente)->first();
+        // return [id_cliente, [fecha], [peso], [peso_teorico], [nota_pasos], [peso_final_1], [peso_final_2]];
+        $cliente_existe_DB_peso = Peso::get()->where('id_cliente', $id_cliente);
         $datos_grafico = [];
-        if ($cliente_coincide_db_peso) {
-            $datos_pesos = [
+        if ($cliente_existe_DB_peso) {
+            // Obtener fechas, pesos, peso teorico y nota pasos de la tabla peso
+            $fechas = [];
+            $peso = [];
+            $peso_teorico = [];
+            $nota_pasos = [];
+
+            foreach ($cliente_existe_DB_peso as $dato) {
+                $fechas[] = $dato->fecha;
+                $peso[] = $dato->peso;
+                $peso_teorico[] = $dato->peso_teorico;
+                $nota_pasos[] = $dato->peso_teorico;
+            }
+
+            $datos_grafico = [
                 'id_cliente' => $id_cliente,
-                'fecha' => json_decode(str_replace("'", '"', $cliente_coincide_db_peso->fecha), true),
-                'peso' => json_decode(str_replace("'", '"', $cliente_coincide_db_peso->peso), true),
-                'nota_pasos' => json_decode(str_replace("'", '"', $cliente_coincide_db_peso->nota_pasos), true),
-                'peso_teorico' => json_decode(str_replace("'", '"', $cliente_coincide_db_peso->peso_teorico), true),
+                'fecha' => $fechas,
+                'peso' => $peso,
+                'peso_teorico' => $peso_teorico,
+                'nota_pasos' => $nota_pasos,
             ];
-            $cliente_coincide_db_cliente = Cliente::get()->where('id_cliente', $id_cliente)->first();
-            $datos_cliente = [
-                'peso_final_1' => $cliente_coincide_db_cliente->peso_final_1,
-                'peso_final_2' => $cliente_coincide_db_cliente->peso_final_2
-            ];
-            $peso_final_1_array = array_fill(0, count($datos_pesos['fecha']), $datos_cliente['peso_final_1']);
-            $peso_final_2_array = array_fill(0, count($datos_pesos['fecha']), $datos_cliente['peso_final_2']);
-            $datos_grafico = [...$datos_pesos, 'peso_final_1' => $peso_final_1_array, 'peso_final_2' => $peso_final_2_array];
+
+            // Obtener pesos finales de la tabla cliente
+            $datos_cliente_DB = Cliente::get()->where('id_cliente', $id_cliente)->first();
+
+            $datos_grafico['peso_final_1'] = array_fill(0, count($fechas), $datos_cliente_DB['peso_final_1']);
+            $datos_grafico['peso_final_2'] = array_fill(0, count($fechas), $datos_cliente_DB['peso_final_1']);
         }
         return $datos_grafico;
     }
@@ -97,6 +109,7 @@ class Obtener_DB_Controller
 
     function obtener_platos_cliente($id_cliente)
     {
+        // return [id_cliente, [desayuno], [media mañana], [comida], [merienda], [cena], [recena], [otro]];
         $cliente_coincide_db_plato = Plato::get()->where('id_cliente', $id_cliente);
         $desayuno = [];
         $mediamanana = [];
@@ -107,25 +120,25 @@ class Obtener_DB_Controller
         $otro = [];
         foreach ($cliente_coincide_db_plato as $plato) {
             if ($plato->accion == 'desayuno') {
-                $desayuno = json_decode(str_replace("'", '"', $plato->platos), true);
+                $desayuno[] = $plato->platos;
             }
             if ($plato->accion == 'media mañana') {
-                $mediamanana = json_decode(str_replace("'", '"', $plato->platos), true);
+                $mediamanana[] = $plato->platos;
             }
             if ($plato->accion == 'comida') {
-                $comida = json_decode(str_replace("'", '"', $plato->platos), true);
+                $comida[] = $plato->platos;
             }
             if ($plato->accion == 'merienda') {
-                $merienda = json_decode(str_replace("'", '"', $plato->platos), true);
+                $merienda[] = $plato->platos;
             }
             if ($plato->accion == 'cena') {
-                $cena = json_decode(str_replace("'", '"', $plato->platos), true);
+                $cena[] = $plato->platos;
             }
             if ($plato->accion == 'recena') {
-                $recena = json_decode(str_replace("'", '"', $plato->platos), true);
+                $recena[] = $plato->platos;
             }
             if ($plato->accion == 'otro') {
-                $otro = json_decode(str_replace("'", '"', $plato->platos), true);
+                $otro[] = $plato->platos;
             }
         }
         $platos_cliente = [
@@ -143,21 +156,22 @@ class Obtener_DB_Controller
 
     function obtener_texto_dietas_cliente($id_cliente)
     {
-        $cliente_coincide_db_texto_cliente = Texto_Cliente::get()->where('id_cliente', $id_cliente)->first();
+        $cliente_coincide_db_texto_cliente = Texto_Cliente::get()->where('id_cliente', $id_cliente);
         $texto_cliente = [];
         if ($cliente_coincide_db_texto_cliente) {
-            $texto_general = json_decode(str_replace("'", '"', $cliente_coincide_db_texto_cliente->texto_general), true);
-            $texto_particular = json_decode(str_replace("'", '"', $cliente_coincide_db_texto_cliente->texto_particular), true);
-            $titulo = $texto_general['titulo'];
-            $parrafo1 = $texto_general['parrafo1'];
-            $parrafo2 = $texto_general['parrafo2'];
-            $texto_cliente = [
-                'titulo' => $titulo,
-                'parrafo1' => $parrafo1,
-                'parrafo2' => $parrafo2,
-            ];
-            foreach ($texto_particular as $nombre => $texto) {
-                $texto_cliente[$nombre] = $texto;
+            foreach ($cliente_coincide_db_texto_cliente as $texto) {
+                if ($texto->tipo_texto == 'particular') {
+                    $texto_cliente[$texto->texto1] = $texto->texto2;
+                }
+                if ($texto->tipo_texto == 'general1') {
+                    $texto_cliente['titulo'] = $texto->texto1;
+                }
+                if ($texto->tipo_texto == 'general2') {
+                    $texto_cliente['parrafo1'] = $texto->texto1;
+                }
+                if ($texto->tipo_texto == 'general3') {
+                    $texto_cliente['parrafo2'] = $texto->texto1;
+                }
             }
         }
         return $texto_cliente;

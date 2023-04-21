@@ -15,9 +15,7 @@ class ComenzarMiPlanController extends Controller
     public function comenzarmiplan(Request $id_buscado)
     {
         if ($id_buscado['id_cliente_buscado'] == '') {
-            $alimentosAPI = Http::get('http://localhost:3000/api/v1/lista');
-            $listaAlimentosAPI = $alimentosAPI->json();
-            return view('comenzarmiplan')->with('listaAlimentosAPI', $listaAlimentosAPI);
+            return view('comenzarmiplan');
         }
         $funciones_control_base_datos = new DataBaseController;
         $funciones_obtener_base_datos = new Obtener_DB_Controller;

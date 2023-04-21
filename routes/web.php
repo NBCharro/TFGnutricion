@@ -36,7 +36,6 @@ Route::post('/borrar_cliente', [DietasController::class, 'borrar_cliente'])->nam
 
 Route::match(['get', 'post'], '/comenzarmiplan', [ComenzarMiPlanController::class, 'comenzarmiplan'])->name('comenzarmiplan');
 Route::post('/guardar_respuestas_comenzarmiplan', [ComenzarMiPlanController::class, 'guardar_respuestas_comenzarmiplan'])->name('guardar_respuestas_comenzarmiplan');
-Route::post('/mostrarNutrientesAlimento', [ComenzarMiPlanController::class, 'mostrarNutrientesAlimento'])->name('mostrarNutrientesAlimento');
 
 
 Route::match(['get', 'post'], '/midieta', [MiDietaController::class, 'midieta'])->name('midieta');

@@ -27,10 +27,10 @@
                     @include('components.midieta.grafico')
                 </div>
                 <div>
-                    @include('components.midieta.platos')
+                    {{-- @include('components.midieta.platos') --}}
                 </div>
                 <div class="md:col-span-2">
-                    @include('components.midieta.texto')
+                    {{-- @include('components.midieta.texto') --}}
                 </div>
             @else
                 @if (isset($platos))

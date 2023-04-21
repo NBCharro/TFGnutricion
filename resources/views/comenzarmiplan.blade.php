@@ -7,8 +7,5 @@
         @if (isset($preguntas_respuestas_clientes))
             @include('components.comenzarmiplan.formulario_preguntas_respuestas')
         @endif
-        @if (!isset($preguntas_respuestas_clientes))
-            @include('components.comenzarmiplan.alimentos')
-        @endif
     </div>
 @endsection
