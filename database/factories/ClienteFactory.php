@@ -26,6 +26,11 @@ class ClienteFactory extends Factory
             'peso_inicial' => $this->faker->randomFloat(100, 0.5, 150),
             'peso_final_1' => $this->faker->randomFloat(70, 0.5, 99),
             'peso_final_2' => $this->faker->randomFloat(70, 0.5, 99),
+            'perdida_peso_1' => $this->faker->numberBetween(300, 800),
+            'semanas_perdida_peso_1' => $this->faker->numberBetween(1, 4),
+            'perdida_peso_2' => $this->faker->numberBetween(300, 800),
+            'semanas_perdida_peso_2' => $this->faker->numberBetween(1, 5),
+            'perdida_peso_final' => $this->faker->numberBetween(300, 800)
         ];
     }
 }

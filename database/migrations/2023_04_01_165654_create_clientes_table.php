@@ -22,6 +22,11 @@ return new class extends Migration
             $table->double('peso_inicial');
             $table->double('peso_final_1');
             $table->double('peso_final_2')->nullable();
+            $table->integer('perdida_peso_1');
+            $table->integer('semanas_perdida_peso_1');
+            $table->integer('perdida_peso_2')->nullable();
+            $table->integer('semanas_perdida_peso_2')->nullable();
+            $table->integer('perdida_peso_final');
             $table->timestamps();
         });
     }

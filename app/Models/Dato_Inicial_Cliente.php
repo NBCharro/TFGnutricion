@@ -12,7 +12,8 @@ class Dato_Inicial_Cliente extends Model
     protected $fillable = [
         'id_cliente',
         'fecha',
-        'pregunta_respuesta'
+        'pregunta',
+        'respuesta',
     ];
     protected $hidden = [];
 }

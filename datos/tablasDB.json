@@ -28,7 +28,8 @@
         "Campos": {
             "id_cliente": "VARCHAR",
             "fecha": "VARCHAR",
-            "pregunta_respuesta": "JSON"
+            "pregunta": "TEXT",
+            "respuesta": "TEXT"
         }
     },
     {
@@ -44,7 +45,12 @@
             "fecha_inicio": "VARCHAR",
             "peso_inicial": "DOUBLE",
             "peso_final_1": "DOUBLE",
-            "peso_final_2": "DOUBLE"
+            "peso_final_2": "DOUBLE",
+            "perdida_peso_1": "NUMBER",
+            "semanas_perdida_peso_1": "NUMBER",
+            "perdida_peso_2": "NUMBER",
+            "semanas_perdida_peso_2": "NUMBER",
+            "perdida_peso_final": "NUMBER"
         }
     },
     {
@@ -53,10 +59,10 @@
         "Nombre tabla": "pesos",
         "Campos": {
             "id_cliente": "VARCHAR",
-            "fecha": "TEXT",
-            "peso": "TEXT",
-            "peso_teorico": "TEXT",
-            "nota_pasos": "TEXT"
+            "fecha": "VARCHAR",
+            "peso": "NUMBER",
+            "peso_teorico": "NUMBER",
+            "nota_pasos": "NUMBER"
         }
     },
     {
@@ -66,7 +72,7 @@
         "Campos": {
             "id_cliente": "VARCHAR",
             "accion": "ENUM ('desayuno','media manaña','comida','merienda','cena','recena','otro')",
-            "platos": "TEXT"
+            "platos": "VARCHAR"
         }
     },
     {
@@ -75,8 +81,9 @@
         "Nombre tabla": "textos_clientes",
         "Campos": {
             "id_cliente": "VARCHAR",
-            "texto_general": "JSON",
-            "texto_especifico": "JSON"
+            "tipo_texto": "ENUM ('general1', 'general2', 'general3', 'especifico')",
+            "texto1": "VARCHAR",
+            "texto2": "VARCHAR"
         }
     },
     {

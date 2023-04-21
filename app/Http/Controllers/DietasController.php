@@ -138,13 +138,15 @@ class DietasController extends Controller
         ];
 
         // Crear transaccion
-        $clientes_actualizado = $funciones_actualizar_base_datos->actualizar_datos_cliente($datos_cliente);
-        $pesos_actualizado = $funciones_actualizar_base_datos->actualizar_pesos($peso);
-        $platos_actualizado = $funciones_actualizar_base_datos->actualizar_platos($actualizar_cliente->id_cliente, $platos);
-        $textos_actualizado = $funciones_actualizar_base_datos->actualizar_textos_clientes($textos_clientes);
+        // $clientes_actualizado = $funciones_actualizar_base_datos->actualizar_datos_cliente($datos_cliente);
+        // $pesos_actualizado = $funciones_actualizar_base_datos->actualizar_pesos($peso);
+        // $platos_actualizado = $funciones_actualizar_base_datos->actualizar_platos($actualizar_cliente->id_cliente, $platos);
+        // $textos_actualizado = $funciones_actualizar_base_datos->actualizar_textos_clientes($textos_clientes);
+        $actualizar_cliente = $funciones_actualizar_base_datos->actualizar_cliente($datos_cliente, $peso, $actualizar_cliente->id_cliente, $platos, $textos_clientes);
 
         $mensaje_actualizado = 'fallo';
-        if ($clientes_actualizado && $pesos_actualizado && $platos_actualizado && $textos_actualizado) {
+        // if ($clientes_actualizado && $pesos_actualizado && $platos_actualizado && $textos_actualizado) {
+        if ($actualizar_cliente) {
             $mensaje_actualizado = 'exito';
         }
 
