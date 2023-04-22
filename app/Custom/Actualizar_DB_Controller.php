@@ -18,6 +18,12 @@ class Actualizar_DB_Controller
 
     function actualizar_preguntas_respuestas($id_cliente, $preguntas_respuestas)
     {
+        /**
+         * Funcion que actualiza las preguntas y respuestas iniciales de un cliente de la base de datos
+         * @param $id_cliente: id del cliente
+         * @param $preguntas_respuestas: array con las preguntas y respuestas
+         * @return bool
+         */
         $actualizado = false;
         try {
             foreach ($preguntas_respuestas as $pregunta => $respuesta) {
@@ -105,7 +111,11 @@ class Actualizar_DB_Controller
 
     function actualizar_nuevo_peso($nuevo_dato_peso)
     {
-        // return true or false
+        /**
+         * Funcion que actualiza un nuevo dato de peso en la base de datos
+         * @param $nuevo_dato_peso: array con los datos del nuevo peso
+         * @return bool
+         */
         $actualizado = false;
         try {
             // Si el cliente quiere empezar a usar nota_pasos hay que actualizar la DB de las entradas anteriores a la fecha de inicio

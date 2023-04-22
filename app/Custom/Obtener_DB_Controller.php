@@ -14,6 +14,10 @@ class Obtener_DB_Controller
 {
     function obtener_mensajes_internos()
     {
+        /**
+         * Obtiene los mensajes internos de la base de datos.
+         * @return array Retorna un array asociativo con los mensajes internos.
+         */
         $mensajes_db = Contacto_Interno::get();
         $mensajes_internos = [];
         foreach ($mensajes_db as $value) {
@@ -31,6 +35,10 @@ class Obtener_DB_Controller
 
     function obtener_mensajes_externos()
     {
+        /**
+         * Obtiene los mensajes externos de la base de datos.
+         * @return array Retorna un array asociativo con los mensajes externos.
+         */
         $mensajes_db = Contacto_Externo::get();
         $mensajes_externos = [];
         foreach ($mensajes_db as $value) {
@@ -49,6 +57,11 @@ class Obtener_DB_Controller
 
     private function obtener_nombre_mediante_id($id_buscado)
     {
+        /**
+         * Obtiene el nombre y apellidos de un cliente a partir de su identificador.
+         * @param mixed $id_buscado Identificador del cliente.
+         * @return string Retorna el nombre y apellidos del cliente.
+         */
         $cliente_coincide_db = Cliente::get()->where('id_cliente', $id_buscado)->first();
         $nombre_apellidos = $cliente_coincide_db->nombre_apellidos;
         return $nombre_apellidos;
@@ -56,7 +69,18 @@ class Obtener_DB_Controller
 
     function obtener_datos_pesos_grafico($id_cliente)
     {
-        // return [id_cliente, [fecha], [peso], [peso_teorico], [nota_pasos], [peso_final_1], [peso_final_2]];
+        /**
+         * Obtiene los datos de peso y notas de un cliente para mostrar en un gráfico.
+         *
+         * @param mixed $id_cliente Identificador del cliente para obtener los datos.
+         * @return array Retorna un array asociativo con las siguientes claves:
+         *              - fecha: Array con las fechas de los registros.
+         *              - peso: Array con los pesos de los registros.
+         *              - peso_teorico: Array con los pesos teóricos de los registros.
+         *              - nota_pasos: Array con las notas de los registros.
+         *              - peso_final_1: Array con los pesos finales 1 de los registros.
+         *              - peso_final_2: Array con los pesos finales 2 de los registros.
+         */
         $cliente_existe_DB_peso = Peso::get()->where('id_cliente', $id_cliente);
         $datos_grafico = [];
         if ($cliente_existe_DB_peso) {
@@ -92,7 +116,16 @@ class Obtener_DB_Controller
 
     function obtener_fechas_pesos_notaspasos($id_cliente)
     {
-        // return [fecha], [peso], [peso_teorico], [nota_pasos]];
+        /**
+         * Obtiene los datos de peso y notas de un cliente para mostrar en un gráfico.
+         *
+         * @param mixed $id_cliente Identificador del cliente para obtener los datos.
+         * @return array Retorna un array asociativo con las siguientes claves:
+         *              - fecha: Array con las fechas de los registros.
+         *              - peso: Array con los pesos de los registros.
+         *              - peso_teorico: Array con los pesos teóricos de los registros.
+         *              - nota_pasos: Array con las notas de los registros.
+         */
         $cliente_existe_DB_peso = Peso::get()->where('id_cliente', $id_cliente);
         $fechas_pesos_notaspasos = [];
         if ($cliente_existe_DB_peso) {
@@ -136,7 +169,22 @@ class Obtener_DB_Controller
 
     function obtener_platos_cliente($id_cliente)
     {
-        // return [id_cliente, [desayuno], [media mañana], [comida], [merienda], [cena], [recena], [otro]];
+        /**
+         * Devuelve un array con los platos asignados al cliente correspondiente al id indicado.
+         *
+         * @param int $id_cliente El id del cliente para el que se desean obtener los platos asignados.
+         *
+         * @return array El array con la información de los platos asignados al cliente. La estructura del array es la siguiente:
+         * - id_cliente: el id del cliente.
+         * - desayuno: un array con los platos asignados para el desayuno.
+         * - media mañana: un array con los platos asignados para la media mañana.
+         * - comida: un array con los platos asignados para la comida.
+         * - merienda: un array con los platos asignados para la merienda.
+         * - cena: un array con los platos asignados para la cena.
+         * - recena: un array con los platos asignados para la recena.
+         * - otro: un array con los platos asignados para otro momento del día.
+         */
+
         $cliente_coincide_db_plato = Plato::get()->where('id_cliente', $id_cliente);
         $desayuno = [];
         $mediamanana = [];
@@ -183,7 +231,16 @@ class Obtener_DB_Controller
 
     function obtener_texto_dietas_cliente($id_cliente)
     {
-        // return [titulo,parrafo1,parrafo2,ensalada,azucar]
+        /**
+         * Obtiene el texto de las dietas de un cliente en particular.
+         *
+         * @param mixed $id_cliente Identificador del cliente para obtener los datos.
+         * @return array Retorna un array asociativo con las siguientes claves:
+         *              - titulo: Array con el titulo de la dieta.
+         *              - parrafo1: Array con el primer parrafo de la dieta.
+         *              - parrafo2: Array con el segundo parrafo de la dieta.
+         *              - ...ingredientes: Multiples arrays con los ingredientes de la dieta.
+         */
         $cliente_coincide_db_texto_cliente = Texto_Cliente::get()->where('id_cliente', $id_cliente);
         $texto_cliente = [];
         if ($cliente_coincide_db_texto_cliente) {
@@ -207,7 +264,11 @@ class Obtener_DB_Controller
 
     function obtener_preguntas_respuestas_iniciales_cliente($id_cliente)
     {
-        // return [pregunta1 => respuesta1, pregunta2 => respuesta2, ...]
+        /**
+         * Obtiene las preguntas y respuestas iniciales de un cliente en particular.
+         * @param mixed $id_cliente Identificador del cliente para obtener los datos.
+         * @return array Retorna un array asociativo con las preguntas y respuestas iniciales del cliente.
+         */
         $pregunta_respuesta_db = Dato_Inicial_Cliente::get()->where('id_cliente', $id_cliente);
         $pregunta_respuesta = [];
         foreach ($pregunta_respuesta_db as $value) {
@@ -218,6 +279,13 @@ class Obtener_DB_Controller
 
     function obtener_clientes()
     {
+        /**
+         * Obtiene los clientes de la base de datos.
+         *
+         * @return array Un array asociativo donde cada clave es el id del cliente y cada valor es el nombre y apellidos del cliente.
+         * Ejemplo: [1 => 'nombre1 apellidos1', 2 => 'nombre2 apellidos2', ...]
+         */
+
         $cliente_coincide_db = Cliente::get();
         $nombre_apellidos = [];
         foreach ($cliente_coincide_db as $cliente) {
@@ -228,6 +296,21 @@ class Obtener_DB_Controller
 
     function obtener_datos_cliente($id_cliente)
     {
+        /**
+         * Obtiene los datos de un cliente en particular.
+         *
+         * @param mixed $id_cliente Identificador del cliente para obtener los datos.
+         * @return array Retorna un array asociativo con las siguientes claves:
+         * - id_cliente: Identificador del cliente.
+         * - nombre_apellidos: Nombre y apellidos del cliente.
+         * - telefono: Telefono del cliente.
+         * - email: Email del cliente.
+         * - direccion: Direccion del cliente.
+         * - fecha_inicio: Fecha de inicio del cliente.
+         * - peso_inicial: Peso inicial del cliente.
+         * - peso_final_1: Peso final 1 del cliente.
+         * - peso_final_2: Peso final 2 del cliente.
+         */
         $cliente_coincide_db = Cliente::get()->where('id_cliente', $id_cliente)->first();
         $cliente = [
             'id_cliente' => $cliente_coincide_db->id_cliente,

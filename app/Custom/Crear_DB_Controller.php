@@ -68,7 +68,7 @@ class Crear_DB_Controller
         return $guardado;
     }
 
-    function crear_cliente_nuevo($datos_nuevo_cliente, $preguntas_extra_nuevo_cliente)
+    public function crear_cliente_nuevo($datos_nuevo_cliente, $preguntas_extra_nuevo_cliente)
     {
         $guardado = false;
 
@@ -115,6 +115,9 @@ class Crear_DB_Controller
 
     private function preguntas_estandar()
     {
+        /**
+         * Preguntas estandar que se guardan en la tabla datos_iniciales_cliente
+         */
         return [
             '¿Se ha puesto anteriormente a dieta? ¿Cosas positivas que te aportaron esas dietas?' => 'respuesta_estandar',
             '¿Tienes el hábito de desayunar regularmente? ¿Motivo? Indica qué desayunos suele hacer.' => 'respuesta_estandar',
@@ -141,6 +144,11 @@ class Crear_DB_Controller
 
     public function guardar_mensaje_interno($mensaje)
     {
+        /**
+         * Guarda un mensaje interno en la base de datos
+         *
+         * @return bool
+         */
         $guardado = false;
         try {
             Contacto_Interno::create([
@@ -157,6 +165,11 @@ class Crear_DB_Controller
 
     public function guardar_mensaje_externo($mensaje)
     {
+        /**
+         * Guarda un mensaje externo en la base de datos
+         *
+         * @return true o false
+         */
         $guardado = false;
         try {
             Contacto_Externo::create([

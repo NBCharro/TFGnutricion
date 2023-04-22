@@ -9,14 +9,17 @@ use Illuminate\Http\Request;
 
 class MensajesController extends Controller
 {
-    // Obtencion de los mensajes internos y externos
-    // Web: /mensajes
     public function mensajes(Request $mensajes)
     {
+        /**
+         * Funcion que obtiene los mensajes internos y externos
+         * @return view('mensajes')
+         */
         $with = [];
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
 
         if ($mensajes->id_mensaje != '' && !isset($mensajes->mensaje_interno_externo)) {
+            // Si solo se recibe el id del mensaje, se borra
             $borrar_mensaje = explode("_", $mensajes->id_mensaje);
             $mensaje_borrado = $this->borrar_mensaje($borrar_mensaje[0], $borrar_mensaje[1]);
             $with['mensaje_borrado'] = $mensaje_borrado;
@@ -35,17 +38,24 @@ class MensajesController extends Controller
         }
 
         if ($mensajes->id_mensaje != '' && $mensajes->mensaje_interno_externo != '') {
-            $mensaje_marcado_leido = $this->marcar_mensaje_leido($mensajes->id_mensaje, $mensajes->mensaje_interno_externo);
+            // Si se recibe el id del mensaje y el tipo de mensaje, se marca como leido
+            $this->marcar_mensaje_leido($mensajes->id_mensaje, $mensajes->mensaje_interno_externo);
+            // Si el mensaje recibido es interno
             if ($mensajes->mensaje_interno_externo == 'interno') {
-                foreach ($mensajes_internos as $mensaje) {
+                foreach ($mensajes_internos as $key => $mensaje) {
                     if ($mensaje['id'] == $mensajes->id_mensaje) {
+                        // Se actualiza el array de mensajes internos con el mensaje marcado como leido
+                        $with['mensajes_internos'][$key]['leido'] = 1;
+                        // Se actualiza el mensaje mostrado para que aparezca seleccionado
                         $with['mensaje_mostrado'] = [...$mensaje, 'mensaje_interno_externo' => 'interno'];
                     }
                 }
             }
+            // Si el mensaje recibido es externo
             if ($mensajes->mensaje_interno_externo == 'externo') {
                 foreach ($mensajes_externos as $key => $mensaje) {
                     if ($mensaje['id'] == $mensajes->id_mensaje) {
+                        $with['mensajes_externos'][$key]['leido'] = 1;
                         $with['mensaje_mostrado'] = [...$mensaje, 'mensaje_interno_externo' => 'externo'];
                     }
                 }
@@ -55,9 +65,15 @@ class MensajesController extends Controller
         return view('mensajes', $with);
     }
 
-    // Al pulsar el icono de borrar mensaje, se invocara esta funcion para borrar el mensaje interno o externo
     private function borrar_mensaje($interno_externo, $id_mensaje)
     {
+        /**
+         * Funcion que borra el mensaje interno o externo
+         * @param string $interno_externo
+         * @param int $id_mensaje
+         * @return bool
+         *
+         */
         $borrado = "no borrado";
         $funciones_borrar_base_datos = new Borrar_DB_Controller;
         if ($interno_externo == 'interno') {
@@ -71,9 +87,14 @@ class MensajesController extends Controller
         return $borrado;
     }
 
-    // Funcion que actualiza la base de datos con el mensaje marcado como leido
     private function marcar_mensaje_leido($id_mensaje, $interno_externo)
     {
+        /**
+         * Funcion que actualiza la base de datos con el mensaje marcado como leido
+         * @param int $id_mensaje
+         * @param string $interno_externo
+         * @return bool
+         */
         $mensaje_leido = false;
         $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
         if ($interno_externo == 'interno') {

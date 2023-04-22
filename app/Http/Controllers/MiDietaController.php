@@ -9,10 +9,14 @@ use Illuminate\Http\Request;
 
 class MiDietaController extends Controller
 {
-    // Pagina en la que los clientes podran ver sus datos previa introduccion de un codigo de cliente
-    // Web: /midieta
     public function midieta(Request $id_buscado)
     {
+        /**
+         * Pagina en la que los clientes podran ver sus datos previa introduccion de un codigo de cliente
+         * Web: /midieta
+         * @param Request $id_buscado
+         * @return view('midieta')
+         */
         if ($id_buscado['id_cliente_buscado'] == '') {
             return view('midieta');
         }
@@ -29,9 +33,13 @@ class MiDietaController extends Controller
             return view('midieta')->with('mensaje', 'No existe');
         }
     }
-    // Permite que un cliente se ponga en contacto con nosotros
+
     public function mensaje_interno(Request $mensaje)
     {
+        /**
+         * Permite que un cliente se ponga en contacto con nosotros
+         * @return view('midieta')
+         */
         $funciones_crear_base_datos = new Crear_DB_Controller;
         $mensaje_externo = [
             "id_cliente" => $mensaje['id_cliente'],

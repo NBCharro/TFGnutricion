@@ -12,6 +12,12 @@ class ClientesController extends Controller
     // Permite obtener un desplegable de todos los clientes
     public function clientes(Request $id_buscado)
     {
+        /**
+         * Pagina en la que los clientes podran ver sus datos previa introduccion de un codigo de cliente
+         * Web: /clientes
+         * @param Request $id_buscado
+         * @return view('conectado')
+         */
         $funciones_control_base_datos = new DataBaseController;
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $clientes = $funciones_obtener_base_datos->obtener_clientes();
@@ -30,9 +36,14 @@ class ClientesController extends Controller
             return view('conectado')->with('mensaje', 'No existe');
         }
     }
-    // Permite guardar el peso y la nota_pasos de un cliente
+
     public function guardar_peso(Request $datos_cliente)
     {
+        /**
+         * Permite guardar el peso y la nota_pasos de un cliente
+         * @param Request $datos_cliente
+         * @return funcion volver_dietas_conectado()
+         */
         $nuevo_dato_peso = [
             'id_cliente' => $datos_cliente['id_cliente'],
             'fecha' => $datos_cliente['fechaPeso'],
@@ -48,9 +59,14 @@ class ClientesController extends Controller
         return $this->volver_dietas_conectado($datos_cliente['id_cliente'], 'fallo');
     }
 
-    // Permite volver a la pagina Dietas. Es para separar codigo
     private function volver_dietas_conectado($id_cliente, $mensaje)
     {
+        /**
+         * Permite volver a la pagina Dietas
+         * @param string $id_cliente
+         * @param string $mensaje
+         * @return view('conectado')
+         */
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $clientes = $funciones_obtener_base_datos->obtener_clientes();
         $datos_cliente_grafico = $funciones_obtener_base_datos->obtener_datos_pesos_grafico($id_cliente);
