@@ -23,8 +23,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index'])->name('inicio');
 // Route::post('/buscar_cliente', [MainController::class, 'buscar_cliente'])->name('buscar_cliente');
 Route::post('/mensaje_externo', [MainController::class, 'mensaje_externo'])->name('mensaje_externo');
-// Pruebas
-Route::match(['get', 'post'], '/pruebas', [MainController::class, 'pruebas'])->name('pruebas');
 
 
 Route::match(['get', 'post'], '/dietas', [DietasController::class, 'dietas'])->name('dietas');

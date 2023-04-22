@@ -12,15 +12,31 @@ use App\Models\Texto_Cliente;
 
 class Crear_DB_Controller
 {
-    function crear_plato($id_cliente, $accion, $platos)
+    function crear_nuevos_pesos($id_cliente, $fechas, $pesos, $peso_teorico, $nota_pasos)
     {
+        /**
+         * Crea las entradas de fechas y pesos teoricos de un cliente
+         * @param $id_cliente
+         * @param [$fechas]
+         * @param [$pesos]
+         * @param [$peso_teorico]
+         * @param [$nota_pasos]
+         * @return bool
+         */
         $guardado = false;
         try {
-            $platos_json = json_encode($platos);
-            Plato::create([
-                'id_cliente' => $id_cliente,
-                'accion' => $accion,
-                'platos' => $platos_json
+            for ($i = 0; $i < count($fechas); $i++) {
+                Peso::create([
+                    'id_cliente' => $id_cliente,
+                    'fecha' => $fechas[$i],
+                    'peso' => isset($pesos[$i]) ? $pesos[$i] : 0,
+                    'peso_teorico' => $peso_teorico[$i],
+                    'nota_pasos' => isset($nota_pasos[$i]) ? $nota_pasos[$i] : 0
+                ]);
+            }
+            // Establezco el primer peso igual al peso teorico porque es desde donde comienza
+            Peso::where(['id_cliente' => $id_cliente, 'fecha' => $fechas[0],])->update([
+                'peso' => $peso_teorico[0]
             ]);
             $guardado = true;
         } catch (\Throwable $e) {
@@ -29,43 +45,64 @@ class Crear_DB_Controller
         return $guardado;
     }
 
-    function crear_pesos($datos_cliente, $array_pesos, $array_fechas)
+    function crear_textos_clientes($id_cliente, $tipo, $texto)
     {
+        /**
+         * Crea los textos de un cliente en la tabla texto_cliente
+         * @param $id_cliente
+         * @param $tipo: enum [general1, general2, general3, especifico]
+         * @param $texto
+         * @return bool
+         */
         $guardado = false;
         try {
-            $peso_cliente_db = Peso::get()->where('id_cliente', 'jl3864')->first();
-            Peso::create([
-                'id_cliente' => $datos_cliente['id_cliente'],
-                'perdida_peso_1' => $datos_cliente['perdida_peso_1'],
-                'semanas_perdida_peso_1' => $datos_cliente['semanas_perdida_peso_1'],
-                'perdida_peso_2' => $datos_cliente['perdida_peso_2'],
-                'semanas_perdida_peso_2' => $datos_cliente['semanas_perdida_peso_2'],
-                'perdida_peso_final' => $datos_cliente['perdida_peso_final'],
-                'fecha' => json_encode($array_fechas),
-                'peso' => json_encode([]),
-                'peso_teorico' => json_encode($array_pesos),
-                'nota_pasos' => json_encode([]),
-            ]);
+            if ($tipo == 'general1' || $tipo == 'general2' || $tipo == 'general3') {
+                Texto_Cliente::create([
+                    'id_cliente' => $id_cliente,
+                    'tipo_texto' => 'forzando error',
+                    // 'tipo_texto' => $tipo,
+                    'texto1' => $texto,
+                    'texto2' => ''
+                ]);
+            }
+            if ($tipo == 'texto_particular') {
+                foreach ($texto as $alimento => $texto) {
+                    Texto_Cliente::create([
+                        'id_cliente' => $id_cliente,
+                        'tipo_texto' => "especifico",
+                        'texto1' => $alimento,
+                        'texto2' => $texto
+                    ]);
+                }
+            }
             $guardado = true;
         } catch (\Throwable $e) {
+            dump($e);
         }
         return $guardado;
     }
-    function crear_textos_clientes($textos_clientes)
+
+    function crear_nuevo_plato($id_cliente, $accion, $plato)
     {
-        $guardado = false;
+        /**
+         * Crea un nuevo plato en la tabla plato
+         * @param $id_cliente
+         * @param $accion: enum ['desayuno','media manaña','comida','merienda','cena','recena','otro']
+         * @param $plato: array
+         * @return bool
+         */
+        $creado = false;
         try {
-            $texto_general_json = json_encode($textos_clientes['texto_general']);
-            $texto_particular_json = json_encode($textos_clientes['texto_particular']);
-            Texto_Cliente::create([
-                'id_cliente' => $textos_clientes['id_cliente'],
-                'texto_general' => $texto_general_json,
-                'texto_particular' => $texto_particular_json
+            Plato::create([
+                "id_cliente" => $id_cliente,
+                "accion" => $accion,
+                "platos" => $plato
             ]);
-            $guardado = true;
+            $creado = true;
         } catch (\Throwable $e) {
+            # code...
         }
-        return $guardado;
+        return $creado;
     }
 
     public function crear_cliente_nuevo($datos_nuevo_cliente, $preguntas_extra_nuevo_cliente)

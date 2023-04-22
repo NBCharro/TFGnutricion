@@ -7,13 +7,6 @@ use App\Custom\Crear_DB_Controller;
 
 class MainController extends Controller
 {
-    // private $funciones_control_base_datos = new DataBaseController;
-    public function pruebas(Request $modificar_cliente)
-    {
-
-        return view('pruebas');
-    }
-
     // Pagina inicio
     public function index()
     {

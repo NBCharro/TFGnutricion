@@ -11,8 +11,9 @@ class Texto_Cliente extends Model
     protected $table = 'textos_clientes';
     protected $fillable = [
         'id_cliente',
-        'texto_general',
-        'texto_particular'
+        'tipo_texto',
+        'texto1',
+        'texto2'
     ];
     protected $hidden = [];
 }

@@ -88,10 +88,13 @@ class DietasController extends Controller
         return view('dietas')->with('clientes', $clientes)->with('cliente_seleccionado', $datos_cliente_seleccionado)->with('platos_cliente_seleccionado', $platos_cliente_seleccionado)->with('textos_cliente_seleccionado', $textos_cliente_seleccionado)->with('perdida_peso_cliente_seleccionado', $perdida_peso_cliente_seleccionado)->with('preguntas_respuestas_cliente_seleccionado', $preguntas_respuestas_cliente_seleccionado);
     }
 
-    // Cuando se actualizan los datos de un cliente desde /modificar_cliente se usa la siguiente funcion
-    // public function actualizar_cliente(Request $actualizar_cliente)
     public function actualizar_cliente(Request $actualizar_cliente)
     {
+        /**
+         * Funcion que permite actualizar los datos de un cliente en la base de datos
+         * Web: /actualizar_cliente
+         * return view('dietas')
+         */
         $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
         $datos_cliente = [
             'id_cliente' => $actualizar_cliente->id_cliente,
@@ -103,6 +106,11 @@ class DietasController extends Controller
             'peso_inicial' => $actualizar_cliente->peso_inicial,
             'peso_final_1' => $actualizar_cliente->peso_final_1,
             'peso_final_2' => $actualizar_cliente->peso_final_2,
+            'perdida_peso_1' => $actualizar_cliente->perdida_peso_1,
+            'semanas_perdida_peso_1' => $actualizar_cliente->semanas_perdida_peso_1,
+            'perdida_peso_2' => $actualizar_cliente->perdida_peso_2,
+            'semanas_perdida_peso_2' => $actualizar_cliente->semanas_perdida_peso_2,
+            'perdida_peso_final' => $actualizar_cliente->perdida_peso_final,
         ];
 
         $peso = [
@@ -141,23 +149,15 @@ class DietasController extends Controller
         }
         $textos_clientes = [
             'id_cliente' => $actualizar_cliente->id_cliente,
-            'texto_general' => [
-                'titulo' => $actualizar_cliente->texto_general_titulo,
-                'parrafo1' => $actualizar_cliente->texto_general_parrafo_1,
-                'parrafo2' => $actualizar_cliente->texto_general_parrafo_2,
-            ],
+            'general1' => $actualizar_cliente->texto_general_titulo,
+            'general2' => $actualizar_cliente->texto_general_parrafo_1,
+            'general3' => $actualizar_cliente->texto_general_parrafo_2,
             'texto_particular' => $textos_especificos,
         ];
 
-        // Crear transaccion
-        // $clientes_actualizado = $funciones_actualizar_base_datos->actualizar_datos_cliente($datos_cliente);
-        // $pesos_actualizado = $funciones_actualizar_base_datos->actualizar_pesos($peso);
-        // $platos_actualizado = $funciones_actualizar_base_datos->actualizar_platos($actualizar_cliente->id_cliente, $platos);
-        // $textos_actualizado = $funciones_actualizar_base_datos->actualizar_textos_clientes($textos_clientes);
         $actualizar_cliente = $funciones_actualizar_base_datos->actualizar_cliente($datos_cliente, $peso, $actualizar_cliente->id_cliente, $platos, $textos_clientes);
 
         $mensaje_actualizado = 'fallo';
-        // if ($clientes_actualizado && $pesos_actualizado && $platos_actualizado && $textos_actualizado) {
         if ($actualizar_cliente) {
             $mensaje_actualizado = 'exito';
         }
@@ -168,10 +168,13 @@ class DietasController extends Controller
         return view('dietas')->with('clientes', $clientes)->with('mensaje_actualizado', $mensaje_actualizado);
     }
 
-    // Borrado de un cliente de la DB
-    // Web: /borrar_cliente
     public function borrar_cliente(Request $id_cliente)
     {
+        /**
+         * Funcion que permite borrar un cliente de la base de datos
+         * Web: /borrar_cliente
+         * return view('dietas')
+         */
         $funciones_borrar_base_datos = new Borrar_DB_Controller;
         $mensaje_borrado = $funciones_borrar_base_datos->borrar_cliente($id_cliente['id_cliente']);
 

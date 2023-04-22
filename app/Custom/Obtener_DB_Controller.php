@@ -152,6 +152,11 @@ class Obtener_DB_Controller
 
     function obtener_datos_perdida_peso_cliente($id_cliente)
     {
+        /**
+         * Obtiene los datos de peso y notas de un cliente para mostrar en un gráfico.
+         * @param mixed $id_cliente Identificador del cliente para obtener los datos.
+         * @return array Retorna un array asociativo con las siguientes claves:
+         */
         $cliente_coincide_db_peso = Peso::get()->where('id_cliente', $id_cliente)->first();
         $datos_perdida_peso = [];
         if ($cliente_coincide_db_peso) {
@@ -303,13 +308,18 @@ class Obtener_DB_Controller
          * @return array Retorna un array asociativo con las siguientes claves:
          * - id_cliente: Identificador del cliente.
          * - nombre_apellidos: Nombre y apellidos del cliente.
-         * - telefono: Telefono del cliente.
+         * - telefono: Teléfono del cliente.
          * - email: Email del cliente.
-         * - direccion: Direccion del cliente.
+         * - direccion: Dirección del cliente.
          * - fecha_inicio: Fecha de inicio del cliente.
          * - peso_inicial: Peso inicial del cliente.
          * - peso_final_1: Peso final 1 del cliente.
          * - peso_final_2: Peso final 2 del cliente.
+         * - perdida_peso_1: Perdida inicial de peso del cliente.
+         * - semanas_perdida_1: Semanas perdida peso 1 del cliente.
+         * - perdida_peso_2: Perdida de peso numero 2 del cliente.
+         * - semanas_perdida_2: Semanas perdiendo peso 2 del cliente.
+         * -perdida_peso_final: Perdida de peso final del cliente.
          */
         $cliente_coincide_db = Cliente::get()->where('id_cliente', $id_cliente)->first();
         $cliente = [
