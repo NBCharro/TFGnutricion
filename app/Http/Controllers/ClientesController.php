@@ -24,7 +24,8 @@ class ClientesController extends Controller
             $datos_cliente_grafico = $funciones_obtener_base_datos->obtener_datos_pesos_grafico($id_cliente);
             $platos_cliente = $funciones_obtener_base_datos->obtener_platos_cliente($id_cliente);
             $texto_cliente = $funciones_obtener_base_datos->obtener_texto_dietas_cliente($id_cliente);
-            return view('conectado')->with('clientes', $clientes)->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente);
+            $fechas_pesos_notaspasos = $funciones_obtener_base_datos->obtener_fechas_pesos_notaspasos($id_cliente);
+            return view('conectado')->with('clientes', $clientes)->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente)->with('fechas_pesos_notaspasos', $fechas_pesos_notaspasos);
         } else {
             return view('conectado')->with('mensaje', 'No existe');
         }
@@ -34,6 +35,7 @@ class ClientesController extends Controller
     {
         $nuevo_dato_peso = [
             'id_cliente' => $datos_cliente['id_cliente'],
+            'fecha' => $datos_cliente['fechaPeso'],
             'peso' => $datos_cliente['peso'],
             'nota_pasos' => $datos_cliente['nota_pasos'],
         ];
@@ -54,6 +56,7 @@ class ClientesController extends Controller
         $datos_cliente_grafico = $funciones_obtener_base_datos->obtener_datos_pesos_grafico($id_cliente);
         $platos_cliente = $funciones_obtener_base_datos->obtener_platos_cliente($id_cliente);
         $texto_cliente = $funciones_obtener_base_datos->obtener_texto_dietas_cliente($id_cliente);
-        return view('conectado')->with('mensaje', $mensaje)->with('clientes', $clientes)->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente);
+        $fechas_pesos_notaspasos = $funciones_obtener_base_datos->obtener_fechas_pesos_notaspasos($id_cliente);
+        return view('conectado')->with('mensaje', $mensaje)->with('clientes', $clientes)->with('peso_cliente', $datos_cliente_grafico)->with('platos', $platos_cliente)->with('texto_dietas', $texto_cliente)->with('fechas_pesos_notaspasos', $fechas_pesos_notaspasos);
     }
 }

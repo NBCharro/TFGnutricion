@@ -90,6 +90,33 @@ class Obtener_DB_Controller
         return $datos_grafico;
     }
 
+    function obtener_fechas_pesos_notaspasos($id_cliente)
+    {
+        // return [fecha], [peso], [peso_teorico], [nota_pasos]];
+        $cliente_existe_DB_peso = Peso::get()->where('id_cliente', $id_cliente);
+        $fechas_pesos_notaspasos = [];
+        if ($cliente_existe_DB_peso) {
+            // Obtener fechas, pesos y nota pasos de la tabla peso
+            $fechas = [];
+            $peso = [];
+            $nota_pasos = [];
+
+            foreach ($cliente_existe_DB_peso as $dato) {
+                $fechas[] = $dato->fecha;
+                $peso[] = $dato->peso;
+                $nota_pasos[] = $dato->nota_pasos;
+            }
+
+            $fechas_pesos_notaspasos = [
+                'id_cliente' => $id_cliente,
+                'fecha' => $fechas,
+                'peso' => $peso,
+                'nota_pasos' => $nota_pasos,
+            ];
+        }
+        return $fechas_pesos_notaspasos;
+    }
+
     function obtener_datos_perdida_peso_cliente($id_cliente)
     {
         $cliente_coincide_db_peso = Peso::get()->where('id_cliente', $id_cliente)->first();
