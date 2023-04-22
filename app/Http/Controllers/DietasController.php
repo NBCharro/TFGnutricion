@@ -11,24 +11,31 @@ use Illuminate\Http\Request;
 
 class DietasController extends Controller
 {
-    // Pagina que permite crear nuevas dietas y modificar dietas existentes
-    // Web: /dietas
     public function dietas()
     {
+        /**
+         * Funcion que permite obtener los clientes de la base de datos y mostrarlos en la pagina
+         * Web: /dietas
+         * return view('dietas')
+         */
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $clientes = $funciones_obtener_base_datos->obtener_clientes();
         return view('dietas')->with('clientes', $clientes);
     }
-    // Pagina en la que se podra crear un nuevo cliente
-    // Web: nuevo_cliente
+
     public function nuevo_cliente(Request $nuevo_cliente)
     {
-        $funciones_control_base_datos = new DataBaseController;
-        $funciones_crear_base_datos = new Crear_DB_Controller;
+        /**
+         * Funcion que permite crear un nuevo cliente en la base de datos
+         * Web: /nuevo_cliente
+         * return view('dietas')
+         */
         $id_cliente = $nuevo_cliente->id_cliente;
         if ($id_cliente == '') {
             return view('dietas');
         }
+        $funciones_control_base_datos = new DataBaseController;
+        $funciones_crear_base_datos = new Crear_DB_Controller;
         $cliente_existe = $funciones_control_base_datos->comprobar_cliente_existe($id_cliente);
         $cliente_nuevo = [
             "id_cliente" => $nuevo_cliente->id_cliente,
@@ -44,12 +51,14 @@ class DietasController extends Controller
         $preguntas_extra_nuevo_cliente = [];
         foreach ($nuevo_cliente->request as $key => $value) {
             if (strpos($key, 'pregunta_') !== false && $value != null) {
-                $preguntas_extra_nuevo_cliente[$value] = "respuesta";
+                $preguntas_extra_nuevo_cliente[] = $value;
             }
         }
         if ($cliente_existe) {
+            // Si el cliente ya existe, vuelve a la misma pagina y mantiene los datos del cliente introducidos anteriormente
             return view('dietas')->with('cliente_existe', true)->with('cliente_nuevo', $cliente_nuevo)->with('preguntas_extra_nuevo_cliente', $preguntas_extra_nuevo_cliente);
         } else {
+            // SI el cliente no existe, se crea y se redirige a la pagina de dietas
             $cliente_guardado = $funciones_crear_base_datos->crear_cliente_nuevo($cliente_nuevo, $preguntas_extra_nuevo_cliente);
             return view('dietas')->with('cliente_guardado', $cliente_guardado);
         }

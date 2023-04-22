@@ -70,23 +70,25 @@ class Crear_DB_Controller
 
     public function crear_cliente_nuevo($datos_nuevo_cliente, $preguntas_extra_nuevo_cliente)
     {
+        /**
+         * Crea un nuevo cliente en la base de datos, en las tablas cliente y datos_iniciales_cliente
+         * @param array $datos_nuevo_cliente
+         * @param array $preguntas_extra_nuevo_cliente
+         * @return boolean
+         */
         $guardado = false;
+        try {
+            $guardado_datos_cliente = $this->guardar_db_nuevo_cliente($datos_nuevo_cliente);
 
-        $guardado_datos_cliente = $this->guardar_db_nuevo_cliente($datos_nuevo_cliente);
+            $id_cliente = $datos_nuevo_cliente['id_cliente'];
+            $fecha = $datos_nuevo_cliente['fecha_inicio'];
+            $guardado_preguntas_cliente = $this->guardar_db_datos_iniciales_nuevo_cliente($id_cliente, $fecha, $preguntas_extra_nuevo_cliente);
 
-        $preguntas_estandar = $this->preguntas_estandar();
-        $preguntas_json = json_encode([...$preguntas_estandar, ...$preguntas_extra_nuevo_cliente]);
-        $preguntas_extra_nuevo_cliente_db = [
-            'id_cliente' => $datos_nuevo_cliente['id_cliente'],
-            'fecha_inicio' => $datos_nuevo_cliente['fecha_inicio'],
-            'preguntas' => $preguntas_json,
-        ];
-        $guardado_preguntas_cliente = $this->guardar_db_datos_iniciales_nuevo_cliente($preguntas_extra_nuevo_cliente_db);
-
-        if ($guardado_datos_cliente && $guardado_preguntas_cliente) {
-            $guardado = true;
-        } else {
-            // Si falla alguno, deshacer guardado
+            if ($guardado_datos_cliente && $guardado_preguntas_cliente) {
+                $guardado = true;
+            }
+        } catch (\Throwable $e) {
+            # code...
         }
 
         return $guardado;
@@ -94,6 +96,11 @@ class Crear_DB_Controller
 
     private function guardar_db_nuevo_cliente($datos_cliente_db)
     {
+        /**
+         * Guarda los datos del cliente en la tabla cliente
+         * @param array $datos_cliente_db
+         * @return boolean
+         */
         $guardado = false;
         try {
             Cliente::create([
@@ -106,7 +113,49 @@ class Crear_DB_Controller
                 'peso_inicial' => $datos_cliente_db['peso_inicial'],
                 'peso_final_1' => $datos_cliente_db['peso_final_1'],
                 'peso_final_2' => $datos_cliente_db['peso_final_2'],
+                'perdida_peso_1' => 0,
+                'semanas_perdida_peso_1' => 0,
+                'perdida_peso_2' => 0,
+                'semanas_perdida_peso_2' => 0,
+                'perdida_peso_final' => 0,
             ]);
+            $guardado = true;
+        } catch (\Throwable $e) {
+            dump($e);
+        }
+        return $guardado;
+    }
+
+    private function guardar_db_datos_iniciales_nuevo_cliente($id_cliente, $fecha, $preguntas_extra_nuevo_cliente_db)
+    {
+        /**
+         * Guarda los datos iniciales del cliente en la tabla datos_iniciales_cliente
+         * @param string $id_cliente
+         * @param string $fecha
+         * @param array $preguntas_extra_nuevo_cliente_db
+         * @return boolean
+         */
+        $guardado = false;
+        try {
+            // Guardamos las preguntas estandar
+            $preguntas_estandar = $this->preguntas_estandar();
+            foreach ($preguntas_estandar as $pregunta) {
+                Dato_Inicial_Cliente::create([
+                    'id_cliente' => $id_cliente,
+                    'fecha' => $fecha,
+                    'pregunta' => $pregunta,
+                    'respuesta' => 'respuesta_estandar'
+                ]);
+            }
+            // Guardamos las preguntas extra
+            foreach ($preguntas_extra_nuevo_cliente_db as $pregunta_extra) {
+                Dato_Inicial_Cliente::create([
+                    'id_cliente' => $id_cliente,
+                    'fecha' => $fecha,
+                    'pregunta' => $pregunta_extra,
+                    'respuesta' => 'respuesta_estandar'
+                ]);
+            }
             $guardado = true;
         } catch (\Throwable $e) {
         }
@@ -119,27 +168,12 @@ class Crear_DB_Controller
          * Preguntas estandar que se guardan en la tabla datos_iniciales_cliente
          */
         return [
-            '¿Se ha puesto anteriormente a dieta? ¿Cosas positivas que te aportaron esas dietas?' => 'respuesta_estandar',
-            '¿Tienes el hábito de desayunar regularmente? ¿Motivo? Indica qué desayunos suele hacer.' => 'respuesta_estandar',
-            '¿Tienes el hábito de comer algo a media mañana regularmente? ¿Motivo? Indica qué sueles hacerte.' => 'respuesta_estandar',
-            '¿Te gusta picar entre horas? ¿Qué picoteas?' => 'respuesta_estandar',
-            '¿Llegas con ansiedad a alguna de la tomas? ¿A cuál?' => 'respuesta_estandar',
+            '¿Se ha puesto anteriormente a dieta? ¿Cosas positivas que te aportaron esas dietas?',
+            '¿Tienes el hábito de desayunar regularmente? ¿Motivo? Indica qué desayunos suele hacer.',
+            '¿Tienes el hábito de comer algo a media mañana regularmente? ¿Motivo? Indica qué sueles hacerte.',
+            '¿Te gusta picar entre horas? ¿Qué picoteas?',
+            '¿Llegas con ansiedad a alguna de la tomas? ¿A cuál?',
         ];
-    }
-
-    private function guardar_db_datos_iniciales_nuevo_cliente($preguntas_extra_nuevo_cliente_db)
-    {
-        $guardado = false;
-        try {
-            Dato_Inicial_Cliente::create([
-                'id_cliente' => $preguntas_extra_nuevo_cliente_db['id_cliente'],
-                'fecha' => $preguntas_extra_nuevo_cliente_db['fecha_inicio'],
-                'pregunta_respuesta' => $preguntas_extra_nuevo_cliente_db['preguntas']
-            ]);
-            $guardado = true;
-        } catch (\Throwable $e) {
-        }
-        return $guardado;
     }
 
     public function guardar_mensaje_interno($mensaje)
