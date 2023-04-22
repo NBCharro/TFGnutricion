@@ -70,7 +70,7 @@ class Obtener_DB_Controller
                 $fechas[] = $dato->fecha;
                 $peso[] = $dato->peso;
                 $peso_teorico[] = $dato->peso_teorico;
-                $nota_pasos[] = $dato->peso_teorico;
+                $nota_pasos[] = $dato->nota_pasos;
             }
 
             $datos_grafico = [
@@ -156,11 +156,12 @@ class Obtener_DB_Controller
 
     function obtener_texto_dietas_cliente($id_cliente)
     {
+        // return [titulo,parrafo1,parrafo2,ensalada,azucar]
         $cliente_coincide_db_texto_cliente = Texto_Cliente::get()->where('id_cliente', $id_cliente);
         $texto_cliente = [];
         if ($cliente_coincide_db_texto_cliente) {
             foreach ($cliente_coincide_db_texto_cliente as $texto) {
-                if ($texto->tipo_texto == 'particular') {
+                if ($texto->tipo_texto == 'especifico') {
                     $texto_cliente[$texto->texto1] = $texto->texto2;
                 }
                 if ($texto->tipo_texto == 'general1') {
