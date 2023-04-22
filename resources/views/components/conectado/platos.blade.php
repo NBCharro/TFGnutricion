@@ -6,9 +6,9 @@
                 @foreach ($platos as $key => $plato)
                     @if (is_array($plato) && count($plato) > 0)
                         @if ($key == 'mediamanana')
-                            <option value="<?php echo "$key"; ?>">Media mañana</option>
+                            <option value="{{ $key }}">Media mañana</option>
                         @else
-                            <option value="<?php echo "$key"; ?>"><?php echo ucfirst($key); ?></option>
+                            <option value="{{ $key }}">{{ $key }}</option>
                         @endif
                     @endif
                 @endforeach
