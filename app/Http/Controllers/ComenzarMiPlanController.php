@@ -34,9 +34,10 @@ class ComenzarMiPlanController extends Controller
     {
         $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
         $preguntas_respuestas = [];
-        foreach ($preguntas_respuestas_cliente->request as $pregunta => $respuesta) {
-            if ($pregunta != '_token' && $pregunta != 'id_cliente') {
-                $preguntas_respuestas[$pregunta] = $respuesta;
+        foreach ($preguntas_respuestas_cliente->request as $key => $value) {
+            if (strpos($key, 'pregunta_') === 0) {
+                $numero = str_replace('pregunta_', '', $key);
+                $preguntas_respuestas[$value] = $preguntas_respuestas_cliente['respuesta_' . $numero];
             }
         }
         $datos_actualizados = $funciones_actualizar_base_datos->actualizar_preguntas_respuestas($preguntas_respuestas_cliente->id_cliente, $preguntas_respuestas);

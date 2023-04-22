@@ -180,11 +180,11 @@ class Obtener_DB_Controller
 
     function obtener_preguntas_respuestas_iniciales_cliente($id_cliente)
     {
-        $pregunta_respuesta_db = Dato_Inicial_Cliente::get()->where('id_cliente', $id_cliente)->first();
-        $pregunta_respuesta_json = json_decode($pregunta_respuesta_db->pregunta_respuesta);
+        // return [pregunta1 => respuesta1, pregunta2 => respuesta2, ...]
+        $pregunta_respuesta_db = Dato_Inicial_Cliente::get()->where('id_cliente', $id_cliente);
         $pregunta_respuesta = [];
-        foreach ($pregunta_respuesta_json as $key => $value) {
-            $pregunta_respuesta[$key] = $value;
+        foreach ($pregunta_respuesta_db as $value) {
+            $pregunta_respuesta[$value->pregunta] = $value->respuesta;
         }
         return $pregunta_respuesta;
     }

@@ -11,6 +11,7 @@ use App\Models\Plato;
 use App\Models\Texto_Cliente;
 
 use App\Custom\Crear_DB_Controller;
+use Illuminate\Support\Facades\DB;
 
 class Actualizar_DB_Controller
 {
@@ -19,15 +20,11 @@ class Actualizar_DB_Controller
     {
         $actualizado = false;
         try {
-            $preguntas_respuestas_json = json_encode($preguntas_respuestas);
-
-            $pregunta_respuesta_db = Dato_Inicial_Cliente::get()->where('id_cliente', $id_cliente)->first();
-            $pregunta_respuesta_db->pregunta_respuesta = $preguntas_respuestas_json;
-
-            $pregunta_respuesta_db->save();
+            foreach ($preguntas_respuestas as $pregunta => $respuesta) {
+                Dato_Inicial_Cliente::where(['id_cliente' => $id_cliente, 'pregunta' => $pregunta])->update(['respuesta' => $respuesta]);
+            }
             $actualizado = true;
         } catch (\Throwable $e) {
-            # code...
         }
         return $actualizado;
     }
@@ -291,7 +288,7 @@ class Actualizar_DB_Controller
             $this->actualizar_datos_cliente($datos_cliente);
             $this->actualizar_pesos($peso_cliente);
             $this->actualizar_platos($id_cliente, $platos);
-            $this->actualizar_textos_clientes($id_cliente,$textos_clientes);
+            $this->actualizar_textos_clientes($id_cliente, $textos_clientes);
 
             DB::commit();
             $actualizado = true;
@@ -309,14 +306,14 @@ class Actualizar_DB_Controller
         $actualizado = false;
         try {
             // $cliente_db = DB::table('clientes')->where('id_cliente', $datos_cliente['id_cliente'])->update(['nombre_apellidos' => $datos_cliente['nombre_apellidos']]);
-            $cliente_db = Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['nombre_apellidos' => $datos_cliente['nombre_apellidos']]);
-            $cliente_db = Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['telefono' => $datos_cliente['telefono']]);
-            $cliente_db = Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['email' => $datos_cliente['email']]);
-            $cliente_db = Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['direccion' =>$datos_cliente['direccion']]);
-            $cliente_db = Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['fecha_inicio' => $datos_cliente['fecha_inicio']]);
-            $cliente_db = Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['peso_inicial' =>$datos_cliente['peso_inicial']]);
-            $cliente_db = Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['peso_final_1' => $datos_cliente['peso_final_1']]);
-            $cliente_db = Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['peso_final_2' => $datos_cliente['peso_final_2']]);
+            Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['nombre_apellidos' => $datos_cliente['nombre_apellidos']]);
+            Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['telefono' => $datos_cliente['telefono']]);
+            Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['email' => $datos_cliente['email']]);
+            Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['direccion' => $datos_cliente['direccion']]);
+            Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['fecha_inicio' => $datos_cliente['fecha_inicio']]);
+            Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['peso_inicial' => $datos_cliente['peso_inicial']]);
+            Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['peso_final_1' => $datos_cliente['peso_final_1']]);
+            Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['peso_final_2' => $datos_cliente['peso_final_2']]);
             $actualizado = true;
         } catch (\Throwable $e) {
             # code...
@@ -346,18 +343,18 @@ class Actualizar_DB_Controller
             $perdida_peso_2 = $peso_cliente['perdida_peso_2'];
             $semanas_perdida_peso_2 = $peso_cliente['semanas_perdida_peso_2'];
             $perdida_peso_final = $peso_cliente['perdida_peso_final'];
-            $array_pesos_teoricos = $this->obtener_array_fechas_pesos_teoricos($fecha_inicio,$peso_inicial,$peso_final_1,$peso_final_2,$perdida_peso_1,$semanas_perdida_peso_1,$perdida_peso_2,$semanas_perdida_peso_2,$perdida_peso_final);
+            $array_pesos_teoricos = $this->obtener_array_fechas_pesos_teoricos($fecha_inicio, $peso_inicial, $peso_final_1, $peso_final_2, $perdida_peso_1, $semanas_perdida_peso_1, $perdida_peso_2, $semanas_perdida_peso_2, $perdida_peso_final);
 
             // Creo las entradas actualizadas
             $indice = 0;
             foreach ($array_pesos_teoricos as $fecha => $peso_teorico) {
-                $cliente_db = Peso::create([
-                    "id_cliente": $peso_cliente['id_cliente'],
-                    "fecha": $fecha,
-                    "peso": isset($peso_cliente_db[$indice]->peso)? $peso_cliente_db[$indice]->peso:0,
-                    "peso_teorico": $peso_teorico,
-                    "nota_pasos": isset($peso_cliente_db[$indice]->nota_pasos)? $peso_cliente_db[$indice]->nota_pasos:0
-                ]);
+                // $cliente_db = Peso::create([
+                //     "id_cliente": $peso_cliente['id_cliente'],
+                //     "fecha": $fecha,
+                //     "peso": isset($peso_cliente_db[$indice]->peso)? $peso_cliente_db[$indice]->peso:0,
+                //     "peso_teorico": $peso_teorico,
+                //     "nota_pasos": isset($peso_cliente_db[$indice]->nota_pasos)? $peso_cliente_db[$indice]->nota_pasos:0
+                // ]);
                 $indice++;
             };
 
@@ -408,9 +405,9 @@ class Actualizar_DB_Controller
             foreach ($platos as $key => $value) {
                 $accion = strtolower($key);
                 $cliente_db = Plato::create([
-                    "id_cliente": $id_cliente,
-                    "accion": $accion,
-                    "platos": $value
+                    // "id_cliente": $id_cliente,
+                    // "accion": $accion,
+                    // "platos": $value
                 ]);
             }
             $actualizado = true;
@@ -421,7 +418,7 @@ class Actualizar_DB_Controller
     }
 
     // ($id_cliente, [[$tipo_texto, texto1, texto2]])
-    private function actualizar_textos_clientes($id_cliente,$textos_clientes)
+    private function actualizar_textos_clientes($id_cliente, $textos_clientes)
     {
         $actualizado = false;
         try {
@@ -430,10 +427,10 @@ class Actualizar_DB_Controller
             // Creo los textos
             foreach ($textos_clientes as $texto) {
                 $cliente_db = Plato::create([
-                    "id_cliente": $id_cliente,
-                    "tipo_texto": $texto[0],
-                    "texto1": $texto[1],
-                    "texto2": $texto[2]==0?'':$texto[2]
+                    // "id_cliente": $id_cliente,
+                    // "tipo_texto": $texto[0],
+                    // "texto1": $texto[1],
+                    // "texto2": $texto[2]==0?'':$texto[2]
                 ]);
             }
             $actualizado = true;

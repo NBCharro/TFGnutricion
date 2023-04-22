@@ -23,7 +23,6 @@ async function crearModalNutrientes(plato) {
         }
     } else {
         crearBloquesModalHTMLSinAlimento();
-        console.log('No existe el alimento');
     }
 }
 
@@ -33,8 +32,6 @@ async function datoNutrientesAPI(plato) {
     //  const respuesta = await fetch(`https://api-nutricion.onrender.com/api/v1/alimentos/nombre=${plato}`)
     const respuesta = await fetch(`http://localhost:3000/api/v1/nombre=${platoMinusculasSinTildes}`)
     const respuestaAPI = await respuesta.json();
-    // Igual me devuelve varios, vigila
-    console.log(respuestaAPI);
     // Tratar Datos API
     if (respuestaAPI.message == 'Alimento no encontrado') {
         return false;
@@ -49,6 +46,17 @@ function nombreAlimentoMinusculasSinTildes(plato) {
     platoMinusculas = plato.toLowerCase();
     platoMinusculasSinTildes = platoMinusculas.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     return platoMinusculasSinTildes;
+}
+
+function convertirPlatoArray(str) {
+    const regex = /(\d*)\s*([^\d+]+)(?=\s*\+|$)/g;
+    const matches = [...str.matchAll(regex)];
+    const result = matches.map((match) => {
+        const quantity = match[1] === "" ? 1 : parseInt(match[1]);
+        const ingredient = match[2].trim();
+        return [quantity, ingredient];
+    });
+    return result.length > 0 ? result.flat() : [str];
 }
 
 // Transformar el alimento obtenido de la API en un objeto que podamos usar
