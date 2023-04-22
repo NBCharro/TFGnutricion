@@ -14,7 +14,9 @@ let datos = [{
     label: "Peso",
     backgroundColor: "hsl(217, 57%, 51%)",
     borderColor: "hsl(217, 57%, 51%)",
-    data: pesos,
+    data: pesos.filter(function (value) {
+        return value !== 0;
+    }),
     yAxisID: 'pesos',
 },
 {
@@ -37,7 +39,9 @@ if (nota_pasos.length != 0) {
         label: nombre_nota_pasos,
         backgroundColor: "hsl(255, 9%, 50%)",
         borderColor: "hsl(255, 9%, 50%)",
-        data: nota_pasos,
+        data: nota_pasos.filter(function (value) {
+            return value !== 0;
+        }),
         yAxisID: 'notas_pasos'
     });
 }
@@ -95,13 +99,18 @@ const configLineChart = {
                 type: 'linear',
                 display: true,
                 position: 'left',
+                beginAtZero: false,
+                suggestedMin: Math.min(...peso_teorico) - Math.min(...peso_teorico) * 0.05,
+                suggestedMax: Math.max(...peso_teorico) + Math.max(...peso_teorico) * 0.05
             },
             notas_pasos: {
                 type: 'linear',
                 display: nota_pasos == "" ? false : true,
                 position: 'right',
-            },
-        }
+                suggestedMin: 0,
+                suggestedMax: 10
+            }
+        },
     }
 }
 
