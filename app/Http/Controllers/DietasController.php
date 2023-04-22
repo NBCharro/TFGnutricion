@@ -64,10 +64,13 @@ class DietasController extends Controller
         }
     }
 
-    // Pagina que modificara un cliente elegido de la lista desplegable
-    // Web: /modificar_cliente
     public function modificar_cliente(Request $modificar_cliente)
     {
+        /**
+         * Funcion que permite obtener los datos de un cliente de la base de datos y mostrarlos en la pagina
+         * Web: /modificar_cliente
+         * return view('dietas')
+         */
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $clientes = $funciones_obtener_base_datos->obtener_clientes();
         if ($modificar_cliente['selectClientes'] == '') {

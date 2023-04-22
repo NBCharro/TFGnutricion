@@ -30,19 +30,18 @@
                     </textarea>
     </div>
     <div id="texto_particular" class="hidden md:grid-cols-4 md:gap-4 md:my-5">
-        <hr class="h-px my-3 border-0 bg-gray-700 col-span-4">
         @if (count($textos_cliente_seleccionado) > 1)
             @foreach ($textos_cliente_seleccionado as $key => $item)
                 @if ($key != 'titulo' && $key != 'parrafo1' && $key != 'parrafo2')
+                    <hr class="h-px my-3 border-0 bg-gray-700 col-span-4">
                     <input type="text" name="texto_particular_alimento_<?php echo "$index_textos"; ?>"
                         value="<?php echo "$key"; ?>"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white my-2 col-span-2"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white my-2 col-span-1"
                         placeholder="Escriba el alimento">
                     <input type="text" name="texto_particular_descripcion_<?php echo "$index_textos"; ?>"
                         value="<?php echo "$item"; ?>"
                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white col-span-3"
                         placeholder="Escriba la descripcion">
-                    <hr class="h-px my-3 border-0 bg-gray-700 col-span-4">
                     @php
                         $index_textos++;
                     @endphp
@@ -50,7 +49,7 @@
             @endforeach
         @else
             <input type="text" name="texto_particular_alimento_1"
-                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white col-span-1"
                 placeholder="Escriba el alimento">
             <input type="text" name="texto_particular_descripcion_1"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white col-span-3"
@@ -58,7 +57,8 @@
         @endif
         <div id="crearMas_texto_particular"
             class="self-center font-medium rounded-lg text-sm w-fit px-5 py-2.5 text-center bg-primary text-white hover:bg-tertiary-100 hover:text-black mt-4 cursor-pointer">
-            Crear mas</div>
+            Crear mas
+        </div>
     </div>
 
 </div>

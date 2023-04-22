@@ -4,12 +4,12 @@
     $perdida_peso_2 = 0;
     $semanas_perdida_peso_2 = 0;
     $perdida_peso_final = 0;
-    if (isset($perdida_peso_cliente_seleccionado) && count($perdida_peso_cliente_seleccionado)) {
-        $perdida_peso_1 = $perdida_peso_cliente_seleccionado['perdida_peso_1'];
-        $semanas_perdida_peso_1 = $perdida_peso_cliente_seleccionado['semanas_perdida_peso_1'];
-        $perdida_peso_2 = $perdida_peso_cliente_seleccionado['perdida_peso_2'];
-        $semanas_perdida_peso_2 = $perdida_peso_cliente_seleccionado['semanas_perdida_peso_2'];
-        $perdida_peso_final = $perdida_peso_cliente_seleccionado['perdida_peso_final'];
+    if (isset($cliente_seleccionado) && count($cliente_seleccionado)) {
+        $perdida_peso_1 = $cliente_seleccionado['perdida_peso_1'];
+        $semanas_perdida_peso_1 = $cliente_seleccionado['semanas_perdida_peso_1'];
+        $perdida_peso_2 = $cliente_seleccionado['perdida_peso_2'];
+        $semanas_perdida_peso_2 = $cliente_seleccionado['semanas_perdida_peso_2'];
+        $perdida_peso_final = $cliente_seleccionado['perdida_peso_final'];
     }
 @endphp
 <div id="perdida_peso" class="grid md:grid-cols-5 md:gap-2 bg-tertiary-500 md:p-2 rounded-xl p-2 my-2">

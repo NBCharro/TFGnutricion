@@ -321,7 +321,12 @@ class Obtener_DB_Controller
             'fecha_inicio' => $cliente_coincide_db->fecha_inicio,
             'peso_inicial' => $cliente_coincide_db->peso_inicial,
             'peso_final_1' => $cliente_coincide_db->peso_final_1,
-            'peso_final_2' => $cliente_coincide_db->peso_final_2
+            'peso_final_2' => $cliente_coincide_db->peso_final_2,
+            'perdida_peso_1' => $cliente_coincide_db->perdida_peso_1,
+            'semanas_perdida_peso_1' => $cliente_coincide_db->semanas_perdida_peso_1,
+            'perdida_peso_2' => $cliente_coincide_db->perdida_peso_2,
+            'semanas_perdida_peso_2' => $cliente_coincide_db->semanas_perdida_peso_2,
+            'perdida_peso_final' => $cliente_coincide_db->perdida_peso_final
         ];
         return $cliente;
     }
