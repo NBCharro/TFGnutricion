@@ -17,7 +17,7 @@
 
 <body class="dark">
     <div
-        class="md:flex md:flex-col justify-between h-screen bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
+        class="flex flex-col h-screen justify-between bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
         @include('components.header')
         @yield('content-area')
         @include('components.footer')

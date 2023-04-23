@@ -1,7 +1,7 @@
 <footer
     class="shadow sm:flex sm:items-center sm:justify-between p-4 sm:p-6 xl:p-8 bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
     <p class="mb-4 text-sm text-center text-gray-500 dark:text-tertiary-100 dark:bg-tertiary-700 sm:mb-0">
-        &copy; 2023 <a href="https://www.nbcharro.com/" class="hover:underline font-semibold" target="_blank">NBcharro</a>
+        &copy; 2023 <a href="https://www.nbcharro.com/" class="hover:underline font-semibold" target="_blank">NBCharro</a>
     </p>
     <div class="flex justify-center items-center space-x-1">
         <a href="#" data-tooltip-target="tooltip-facebook"
@@ -53,10 +53,5 @@
             </svg>
             <span class="sr-only">Dribbble</span>
         </a>
-        <div id="tooltip-dribbble" role="tooltip"
-            class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-tertiary-700">
-            Follow us on Dribbble
-            <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
     </div>
 </footer>
