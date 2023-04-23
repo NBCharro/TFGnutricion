@@ -9,5 +9,5 @@ Además, se ha utilizado MariaDB como sistema de gestión de bases de datos. Mar
 ## API REST
 Una parte importante del proyecto ha sido la creación de una API REST, disponible en [apiNutricion](https://api-nutricion.onrender.com) y el código en [Github](https://github.com/NBCharro/apiNutricion). Una API REST (Representational State Transfer) es una interfaz de programación de aplicaciones que utiliza los métodos HTTP para acceder a los recursos. Esta API permite el intercambio de datos entre diferentes sistemas de manera eficiente y flexible.
 
-# Resumen
+## Resumen
 En resumen, el trabajo de fin de grado de nutrición ha sido desarrollado utilizando tecnologías de vanguardia en el campo de la programación web, como PHP y Laravel, y utilizando un sistema de gestión de bases de datos de alto rendimiento como MariaDB. Además, la creación de una API REST permite el intercambio de datos de manera eficiente y flexible, lo que lo convierte en un proyecto muy completo e innovador en su campo.
