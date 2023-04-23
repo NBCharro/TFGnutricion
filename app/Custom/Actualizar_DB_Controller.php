@@ -150,12 +150,12 @@ class Actualizar_DB_Controller
     {
         $actualizado = false;
 
-        DB::beginTransaction();
-
         try {
+            DB::beginTransaction();
+
             $this->actualizar_datos_cliente($datos_cliente);
-            $this->actualizar_pesos($peso_cliente);
-            $this->actualizar_platos($id_cliente, $platos);
+            $this->actualizar_pesos_cliente($peso_cliente);
+            $this->actualizar_platos_cliente($id_cliente, $platos);
             $this->actualizar_textos_clientes($id_cliente, $textos_clientes);
 
             DB::commit();
@@ -193,11 +193,12 @@ class Actualizar_DB_Controller
             $actualizado = true;
         } catch (\Throwable $e) {
             // dump($e);
+            throw $e;
         }
         return $actualizado;
     }
 
-    private function actualizar_pesos($peso_cliente)
+    private function actualizar_pesos_cliente($peso_cliente)
     {
         /**
          * Funcion que actualiza los datos de la tabla pesos
@@ -245,6 +246,7 @@ class Actualizar_DB_Controller
             $actualizado = true;
         } catch (\Throwable $e) {
             // dump($e);
+            throw $e;
         }
         return $actualizado;
     }
@@ -335,7 +337,7 @@ class Actualizar_DB_Controller
         return $cambian;
     }
 
-    private function actualizar_platos($id_cliente, $platos)
+    private function actualizar_platos_cliente($id_cliente, $platos)
     {
         /**
          * Funcion que actualiza los platos de un cliente
@@ -358,6 +360,7 @@ class Actualizar_DB_Controller
             $actualizado = true;
         } catch (\Throwable $e) {
             // dump($e);
+            throw $e;
         }
         return $actualizado;
     }
@@ -382,6 +385,7 @@ class Actualizar_DB_Controller
             $actualizado = true;
         } catch (\Throwable $e) {
             // dump($e);
+            throw $e;
         }
         return $actualizado;
     }

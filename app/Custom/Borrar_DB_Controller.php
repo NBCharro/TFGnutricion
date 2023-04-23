@@ -79,6 +79,7 @@ class Borrar_DB_Controller
             // Borrar todas las entradas del cliente de la tabla pesos segun su id
             Peso::where('id_cliente', $id)->delete();
         } catch (\Throwable $e) {
+            throw $e;
         }
         return $borrado;
     }

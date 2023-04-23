@@ -9,7 +9,8 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-bold">Ha ocurrido un error. </span>No se han podido actualizar los datos.
+            <span class="font-bold">Oh no! Algo ha salido mal.</span> Ha habido un problema al actualizar los datos.
+            Inténtelo de nuevo más tarde o contacte con nuestro equipo de soporte si el problema persiste.
         </div>
     </div>
 @endif
@@ -24,7 +25,8 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-bold">Exito. </span>Los datos se han actualziado correctamente.
+            <span class="font-bold">¡Listo! Los datos están guardados.</span> Los datos del cliente se han actualizado
+            correctamente.
         </div>
     </div>
 @endif
@@ -39,7 +41,8 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-bold">Ha ocurrido un error. </span>No se ha podido borrar el cliente.
+            <span class="font-bold">Oh no! Algo ha salido mal.</span> Ha habido un problema al borrar el cliente.
+            Inténtelo de nuevo más tarde o contacte con nuestro equipo de soporte si el problema persiste.
         </div>
     </div>
 @endif
@@ -54,7 +57,8 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-bold">Exito. </span>El cliente ha sido borrado.
+            <span class="font-bold">¡Listo! El cliente ha sido borrado.</span> Si quieres recuperar los datos contacte
+            con nuestro equipo de soporte.
         </div>
     </div>
 @endif

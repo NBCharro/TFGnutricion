@@ -76,8 +76,8 @@
                     <li>
                         <a href="{{ route('dietas') }}"
                             class="block py-2 pr-4 pl-3 rounded lg:p-0
-                            {{ Route::is('dietas') || Route::is('modificar_cliente') || Route::is('nuevo_cliente') ? 'text-tertiary-700' : 'text-gray-400' }}
-                            dark:{{ Route::is('dietas') || Route::is('modificar_cliente') || Route::is('modificar_cliente') || Route::is('nuevo_cliente') ? 'text-white' : 'text-gray-400' }}
+                            {{ Route::is('dietas') || Route::is('modificar_cliente') || Route::is('nuevo_cliente') || Route::is('actualizar_cliente') || Route::is('borrar_cliente') ? 'text-tertiary-700' : 'text-gray-400' }}
+                            dark:{{ Route::is('dietas') || Route::is('modificar_cliente') || Route::is('modificar_cliente') || Route::is('nuevo_cliente') || Route::is('actualizar_cliente') || Route::is('borrar_cliente') ? 'text-white' : 'text-gray-400' }}
                             lg:bg-transparent">
                             Dietas
                         </a>

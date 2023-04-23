@@ -26,12 +26,14 @@ class Crear_DB_Controller
         $guardado = false;
         try {
             for ($i = 0; $i < count($fechas); $i++) {
+                $peso = isset($pesos[$i]) ? $pesos[$i] : 0;
+                $nota_pasos = isset($nota_pasos[$i]) ? $nota_pasos[$i] : 0;
                 Peso::create([
                     'id_cliente' => $id_cliente,
                     'fecha' => $fechas[$i],
-                    'peso' => isset($pesos[$i]) ? $pesos[$i] : 0,
+                    'peso' => $peso,
                     'peso_teorico' => $peso_teorico[$i],
-                    'nota_pasos' => isset($nota_pasos[$i]) ? $nota_pasos[$i] : 0
+                    'nota_pasos' => $nota_pasos
                 ]);
             }
             // Establezco el primer peso igual al peso teorico porque es desde donde comienza
@@ -41,6 +43,7 @@ class Crear_DB_Controller
             $guardado = true;
         } catch (\Throwable $e) {
             # code...
+            throw $e;
         }
         return $guardado;
     }
@@ -59,8 +62,7 @@ class Crear_DB_Controller
             if ($tipo == 'general1' || $tipo == 'general2' || $tipo == 'general3') {
                 Texto_Cliente::create([
                     'id_cliente' => $id_cliente,
-                    'tipo_texto' => 'forzando error',
-                    // 'tipo_texto' => $tipo,
+                    'tipo_texto' => $tipo,
                     'texto1' => $texto,
                     'texto2' => ''
                 ]);
@@ -77,7 +79,8 @@ class Crear_DB_Controller
             }
             $guardado = true;
         } catch (\Throwable $e) {
-            dump($e);
+            // dump($e);
+            throw $e;
         }
         return $guardado;
     }
@@ -101,6 +104,7 @@ class Crear_DB_Controller
             $creado = true;
         } catch (\Throwable $e) {
             # code...
+            throw $e;
         }
         return $creado;
     }
