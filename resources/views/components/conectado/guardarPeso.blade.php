@@ -1,5 +1,4 @@
-<form action="{{ route('guardar_peso') }}" method="post"
-    class="relative mb-4 w-full flex-wrap items-stretch grid md:grid-cols-3 md:gap-3 md:mx-4">
+<form action="{{ route('guardar_peso') }}" method="post" class="relative mb-4 w-full grid md:grid-cols-3 md:gap-3 px-2 ">
     @csrf
     <div class="relative z-0 w-full mb-2 group">
         <label for="fechaPeso" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">

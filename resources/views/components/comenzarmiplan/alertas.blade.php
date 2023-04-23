@@ -9,8 +9,8 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-bold">El codigo introducido no es correcto</span> intentelo de nuevo o contacte con
-            nuestros nutricionistas para arreglarlo.
+            <span class="font-bold">Oh no! Algo ha salido mal.</span> Parece que ha habido un error con el código que
+            has introducido, inténtalo de nuevo o contáctanos para que podamos ayudarte.
         </div>
     </div>
 @endif
@@ -25,9 +25,8 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-bold">Ha ocurrido un error.</span>Las respuestas no se han podido guardar. Intentelo
-            de
-            nuevo mas tarde
+            <span class="font-bold">Oh no! Algo ha salido mal.</span> Ha habido un error al guardar tus respuestas.
+            Inténtalo de nuevo más tarde o contáctanos para que podamos solucionarlo.
         </div>
     </div>
 @endif
@@ -42,9 +41,8 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-bold">Exito. </span>Las respuestas se han guardado correctamente. En breve se pondra
-            en
-            contacto con usted una nutricionista.
+            <span class="font-bold">¡Listo! Tus respuestas están guardadas. </span> En breve nos pondremos en contacto
+            contigo para programar una cita con una de nuestras nutricionistas.
         </div>
     </div>
 @endif

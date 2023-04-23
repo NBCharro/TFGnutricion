@@ -8,14 +8,14 @@
             </a>
             <div class="flex items-center lg:order-2">
                 <a href="{{ route('home') }}"
-                    class="text-gray-800 dark:text-white hover:bg-gray-50 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-tertiary-100 dark:hover:text-black">
+                    class="font-medium rounded-lg text-sm w-full sm:w-fit px-5 py-2.5 text-center
+            bg-tertiary-100 hover:text-white hover:bg-primary text-black">
                     Log in
                 </a>
-                <a href="#"
-                    class="font-medium rounded-lg text-sm w-full sm:w-fit px-5 py-2.5 text-center
-            bg-tertiary-100 hover:text-white hover:bg-primary text-black"
-                    id="botonModoNoche">
-                    Modo noche</a>
+                <a href="#" id="botonModoNoche"
+                    class="text-gray-800 dark:text-white hover:bg-gray-50 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-tertiary-100 dark:hover:text-black">
+                    Modo noche
+                </a>
                 <button data-collapse-toggle="mobile-menu-2" type="button"
                     class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100
                     ring ring-gray-500 dark:ring-tertiary-100 dark:text-tertiary-100"
@@ -39,8 +39,8 @@
                     <li>
                         <a href="{{ route('inicio') }}"
                             class="block py-2 pr-4 pl-3 rounded lg:p-0
-                            {{ Route::is('inicio') ? 'text-tertiary-700' : 'text-gray-400' }}
-                            dark:{{ Route::is('inicio') ? 'text-white' : 'text-gray-400' }}
+                            {{ Route::is('inicio') || Route::is('mensaje_externo') ? 'text-tertiary-700' : 'text-gray-400' }}
+                            dark:{{ Route::is('inicio') || Route::is('mensaje_externo') ? 'text-white' : 'text-gray-400' }}
                             lg:bg-transparent"
                             aria-current="page">
                             Inicio
@@ -49,8 +49,8 @@
                     <li>
                         <a href="{{ route('midieta') }}"
                             class="block py-2 pr-4 pl-3 rounded lg:p-0
-                            {{ Route::is('midieta') ? 'text-tertiary-700' : 'text-gray-400' }}
-                            dark:{{ Route::is('midieta') ? 'text-white' : 'text-gray-400' }}
+                            {{ Route::is('midieta') || Route::is('mensaje_interno') ? 'text-tertiary-700' : 'text-gray-400' }}
+                            dark:{{ Route::is('midieta') || Route::is('mensaje_interno') ? 'text-white' : 'text-gray-400' }}
                             lg:bg-transparent">
                             Mi dieta
                         </a>
@@ -58,8 +58,8 @@
                     <li>
                         <a href="{{ route('comenzarmiplan') }}"
                             class="block py-2 pr-4 pl-3 rounded lg:p-0
-                            {{ Route::is('comenzarmiplan') ? 'text-tertiary-700' : 'text-gray-400' }}
-                            dark:{{ Route::is('comenzarmiplan') ? 'text-white' : 'text-gray-400' }}
+                            {{ Route::is('comenzarmiplan') || Route::is('guardar_respuestas_comenzarmiplan') ? 'text-tertiary-700' : 'text-gray-400' }}
+                            dark:{{ Route::is('comenzarmiplan') || Route::is('guardar_respuestas_comenzarmiplan') ? 'text-white' : 'text-gray-400' }}
                             lg:bg-transparent">
                             Comenzar mi plan
                         </a>
@@ -67,8 +67,8 @@
                     <li>
                         <a href="{{ route('clientes') }}"
                             class="block py-2 pr-4 pl-3 rounded lg:p-0
-                            {{ Route::is('clientes') ? 'text-tertiary-700' : 'text-gray-400' }}
-                            dark:{{ Route::is('clientes') ? 'text-white' : 'text-gray-400' }}
+                            {{ Route::is('clientes') || Route::is('guardar_peso') ? 'text-tertiary-700' : 'text-gray-400' }}
+                            dark:{{ Route::is('clientes') || Route::is('guardar_peso') ? 'text-white' : 'text-gray-400' }}
                             lg:bg-transparent">
                             Clientes
                         </a>

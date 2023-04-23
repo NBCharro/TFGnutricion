@@ -9,7 +9,8 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-bold">Ha ocurrido un error. </span>No se han podido guardar los datos.
+            <span class="font-bold">Oh no! Algo ha salido mal.</span> Ha habido un problema al guardar los datos.
+            Inténtelo de nuevo más tarde o contacte con nuestro equipo de soporte si el problema persiste.
         </div>
     </div>
 @endif
@@ -24,7 +25,8 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-bold">Exito. </span>Los datos se han guardado.
+            <span class="font-bold">¡Listo! Los datos están guardados.</span> Ahora podrás acceder a ellos en cualquier
+            momento desde tu cuenta de usuario
         </div>
     </div>
 @endif

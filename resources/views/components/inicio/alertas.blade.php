@@ -1,5 +1,6 @@
-@if (isset($mensaje_borrado) && $mensaje_borrado == 'no borrado')
-    <div class="flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 md:mx-4"
+@if (isset($mensaje_enviado) && $mensaje_enviado == 'fallo')
+    <div id="mensaje_externo"
+        class="flex p-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 md:mx-4"
         role="alert">
         <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg">
@@ -9,14 +10,14 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-bold">Oh no! Algo ha salido mal.</span> Ha habido un problema y no hemos podido borrar el
-            mensaje, nténtelo de nuevo más tarde o póngase en contacto con nuestro equipo de soporte si el problema
-            persiste.
+            <span class="font-bold">Ha ocurrido un error.</span>Intentelo de nuevo mas tarde o utilice otro medio de
+            contacto.
         </div>
     </div>
 @endif
-@if (isset($mensaje_borrado) && $mensaje_borrado == 'borrado')
-    <div class="flex p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800 md:mx-4"
+@if (isset($mensaje_enviado) && $mensaje_enviado == 'exito')
+    <div id="mensaje_externo"
+        class="flex p-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800 md:mx-4"
         role="alert">
         <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg">
@@ -26,8 +27,8 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            <span class="font-bold">¡Listo! Mensaje eliminado con éxito.</span> El mensaje ha sido eliminado
-            correctamente. Ya no aparecerá en la plataforma.
+            <span class="font-bold">Gracias por ponerse en contacto con nosotros.</span> En breve se pondra en contacto
+            con usted una nutricionista.
         </div>
     </div>
 @endif
