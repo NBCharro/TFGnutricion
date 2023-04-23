@@ -62,8 +62,7 @@ class Crear_DB_Controller
             if ($tipo == 'general1' || $tipo == 'general2' || $tipo == 'general3') {
                 Texto_Cliente::create([
                     'id_cliente' => $id_cliente,
-                    'tipo_texto' => 'forzar error',
-                    // 'tipo_texto' => $tipo,
+                    'tipo_texto' => $tipo,
                     'texto1' => $texto,
                     'texto2' => ''
                 ]);

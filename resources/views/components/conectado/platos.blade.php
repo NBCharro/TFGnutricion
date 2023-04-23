@@ -8,7 +8,7 @@
                         @if ($key == 'mediamanana')
                             <option value="{{ $key }}">Media mañana</option>
                         @else
-                            <option value="{{ $key }}">{{ $key }}</option>
+                            <option value="{{ $key }}">{{ ucfirst($key) }}</option>
                         @endif
                     @endif
                 @endforeach

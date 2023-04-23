@@ -17,8 +17,8 @@
             @else
                 <div class="md:col-span-2">
                     @include('components.midieta.buscarCliente')
+                    @include('components.midieta.cuadroTexto')
                 </div>
-                @include('components.midieta.cuadroTexto')
             @endif
         </div>
         <div>
