@@ -31,6 +31,11 @@ class Actualizar_DB_Controller
             }
             $actualizado = true;
         } catch (\Throwable $e) {
+            $funciones_crear_base_datos = new Crear_DB_Controller;
+            $archivo = '/app/Custom/Actualizar_DB_Controller.php';
+            $funcion = 'actualizar_preguntas_respuestas';
+            $paginaWeb = '/comenzarmiplan';
+            $funciones_crear_base_datos->guardar_error_db($e, $archivo, $funcion, $paginaWeb);
         }
         return $actualizado;
     }
@@ -62,6 +67,11 @@ class Actualizar_DB_Controller
                 ]);
             $actualizado = true;
         } catch (\Throwable $e) {
+            $funciones_crear_base_datos = new Crear_DB_Controller;
+            $archivo = '/app/Custom/Actualizar_DB_Controller.php';
+            $funcion = 'actualizar_nuevo_peso';
+            $paginaWeb = '/clientes';
+            $funciones_crear_base_datos->guardar_error_db($e, $archivo, $funcion, $paginaWeb);
         }
         return $actualizado;
     }
@@ -119,6 +129,11 @@ class Actualizar_DB_Controller
             }
         } catch (\Throwable $e) {
             $actualizado = 'error';
+            $funciones_crear_base_datos = new Crear_DB_Controller;
+            $archivo = '/app/Custom/Actualizar_DB_Controller.php';
+            $funcion = 'marcar_mensaje_leido_interno';
+            $paginaWeb = '/mensajes';
+            $funciones_crear_base_datos->guardar_error_db($e, $archivo, $funcion, $paginaWeb);
         }
         return $actualizado;
     }
@@ -141,6 +156,11 @@ class Actualizar_DB_Controller
             }
         } catch (\Throwable $e) {
             $actualizado = 'error';
+            $funciones_crear_base_datos = new Crear_DB_Controller;
+            $archivo = '/app/Custom/Actualizar_DB_Controller.php';
+            $funcion = 'marcar_mensaje_leido_externo';
+            $paginaWeb = '/mensajes';
+            $funciones_crear_base_datos->guardar_error_db($e, $archivo, $funcion, $paginaWeb);
         }
         return $actualizado;
     }
@@ -163,6 +183,11 @@ class Actualizar_DB_Controller
         } catch (\Exception $e) {
             // dump($e);
             DB::rollBack();
+            $funciones_crear_base_datos = new Crear_DB_Controller;
+            $archivo = '/app/Custom/Actualizar_DB_Controller.php';
+            $funcion = 'actualizar_cliente';
+            $paginaWeb = '/dietas';
+            $funciones_crear_base_datos->guardar_error_db($e, $archivo, $funcion, $paginaWeb);
         }
 
         return $actualizado;
@@ -192,7 +217,6 @@ class Actualizar_DB_Controller
             Cliente::where('id_cliente', $datos_cliente['id_cliente'])->update(['perdida_peso_final' => $datos_cliente['perdida_peso_final']]);
             $actualizado = true;
         } catch (\Throwable $e) {
-            // dump($e);
             throw $e;
         }
         return $actualizado;
@@ -245,7 +269,6 @@ class Actualizar_DB_Controller
             // Si el cliente ya existia en la base de datos y no cambian datos, no se hace nada
             $actualizado = true;
         } catch (\Throwable $e) {
-            // dump($e);
             throw $e;
         }
         return $actualizado;
@@ -332,7 +355,11 @@ class Actualizar_DB_Controller
                 $cambian = true;
             }
         } catch (\Throwable $e) {
-            // dump($e);
+            $funciones_crear_base_datos = new Crear_DB_Controller;
+            $archivo = '/app/Custom/Actualizar_DB_Controller.php';
+            $funcion = 'comparar_datos_pesos_cliente';
+            $paginaWeb = '/dietas';
+            $funciones_crear_base_datos->guardar_error_db($e, $archivo, $funcion, $paginaWeb);
         }
         return $cambian;
     }
@@ -359,7 +386,6 @@ class Actualizar_DB_Controller
             }
             $actualizado = true;
         } catch (\Throwable $e) {
-            // dump($e);
             throw $e;
         }
         return $actualizado;
@@ -384,7 +410,6 @@ class Actualizar_DB_Controller
             }
             $actualizado = true;
         } catch (\Throwable $e) {
-            // dump($e);
             throw $e;
         }
         return $actualizado;

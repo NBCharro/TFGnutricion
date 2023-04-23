@@ -6,6 +6,7 @@ use App\Models\Cliente;
 use App\Models\Contacto_Externo;
 use App\Models\Contacto_Interno;
 use App\Models\Dato_Inicial_Cliente;
+use App\Models\Error;
 use App\Models\Peso;
 use App\Models\Plato;
 use App\Models\Texto_Cliente;
@@ -42,7 +43,6 @@ class Crear_DB_Controller
             ]);
             $guardado = true;
         } catch (\Throwable $e) {
-            # code...
             throw $e;
         }
         return $guardado;
@@ -62,7 +62,8 @@ class Crear_DB_Controller
             if ($tipo == 'general1' || $tipo == 'general2' || $tipo == 'general3') {
                 Texto_Cliente::create([
                     'id_cliente' => $id_cliente,
-                    'tipo_texto' => $tipo,
+                    'tipo_texto' => 'forzar error',
+                    // 'tipo_texto' => $tipo,
                     'texto1' => $texto,
                     'texto2' => ''
                 ]);
@@ -79,7 +80,6 @@ class Crear_DB_Controller
             }
             $guardado = true;
         } catch (\Throwable $e) {
-            // dump($e);
             throw $e;
         }
         return $guardado;
@@ -103,7 +103,6 @@ class Crear_DB_Controller
             ]);
             $creado = true;
         } catch (\Throwable $e) {
-            # code...
             throw $e;
         }
         return $creado;
@@ -129,7 +128,10 @@ class Crear_DB_Controller
                 $guardado = true;
             }
         } catch (\Throwable $e) {
-            # code...
+            $archivo = '/app/Custom/Crear_DB_Controller.php';
+            $funcion = 'crear_cliente_nuevo';
+            $paginaWeb = '/dietas';
+            $this->guardar_error_db($e, $archivo, $funcion, $paginaWeb);
         }
 
         return $guardado;
@@ -162,7 +164,10 @@ class Crear_DB_Controller
             ]);
             $guardado = true;
         } catch (\Throwable $e) {
-            dump($e);
+            $archivo = '/app/Custom/Crear_DB_Controller.php';
+            $funcion = 'guardar_db_nuevo_cliente';
+            $paginaWeb = '/dietas';
+            $this->guardar_error_db($e, $archivo, $funcion, $paginaWeb);
         }
         return $guardado;
     }
@@ -199,6 +204,10 @@ class Crear_DB_Controller
             }
             $guardado = true;
         } catch (\Throwable $e) {
+            $archivo = '/app/Custom/Crear_DB_Controller.php';
+            $funcion = 'guardar_db_datos_iniciales_nuevo_cliente';
+            $paginaWeb = '/dietas';
+            $this->guardar_error_db($e, $archivo, $funcion, $paginaWeb);
         }
         return $guardado;
     }
@@ -234,6 +243,10 @@ class Crear_DB_Controller
             ]);
             $guardado = true;
         } catch (\Throwable $e) {
+            $archivo = '/app/Custom/Crear_DB_Controller.php';
+            $funcion = 'guardar_mensaje_interno';
+            $paginaWeb = '/midieta';
+            $this->guardar_error_db($e, $archivo, $funcion, $paginaWeb);
         }
         return $guardado;
     }
@@ -257,7 +270,28 @@ class Crear_DB_Controller
             ]);
             $guardado = true;
         } catch (\Throwable $e) {
+            $archivo = '/app/Custom/Crear_DB_Controller.php';
+            $funcion = 'guardar_mensaje_externo';
+            $paginaWeb = '/inicio';
+            $this->guardar_error_db($e, $archivo, $funcion, $paginaWeb);
         }
         return $guardado;
+    }
+
+    public function guardar_error_db($e, $archivo, $funcion, $paginaWeb)
+    {
+        $codigo_error = $e->getCode();
+        $mensaje_error = $e->getMessage();
+        $linea = $e->getLine();
+        $fecha = date('d-m-Y H:i:s');
+        Error::create([
+            'codigoError' => $codigo_error,
+            'mensajeError' => $mensaje_error,
+            'archivo' => $archivo,
+            'funcion' => $funcion,
+            'linea' => $linea,
+            'fecha' => $fecha,
+            'paginaWeb' => $paginaWeb
+        ]);
     }
 }
