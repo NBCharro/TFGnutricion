@@ -7,23 +7,23 @@
     <div class="relative p-5 md:grid md:grid-cols-3 md:gap-10 md:px-12 md:py-12 md:items-center text-white">
         <div class="col-span-2">
             <h1 class="text-2xl mb-10 font-extrabold tracking-tight leading-none">
-                Soy Técnica en Dietética y Diplomada en Nutrición humana por la Universidad del País Vasco
+                ¿Quieres mejorar tu salud y sentirte mejor que nunca? ¡Déjame ayudarte!
             </h1>
             <p class="mb-4 font-light md:text-lg lg:text-xl">
-                Me considero una persona ética que apuesta por una dieta personalizada en gustos, patologías
-                relacionadas y hábitos de consumo.
+                Me considero una nutricionista ética y comprometida que cree en la importancia de adaptar la dieta a tus
+                gustos, patologías y hábitos de consumo.
             <p class="mb-4 font-light md:text-lg lg:text-xl">
-                No solo uno tiene que adaptarse a la dieta, si no que la dieta debe adaptarse a uno mismo también.
+                En lugar de hacerte ajustar a una dieta genérica, te ofrezco una dieta personalizada que se adapte a
+                ti y a tu estilo de vida. Quiero que aprendas a comer de manera más saludable y sostenible para que
+                nunca más tengas que depender de dietas temporales para mantener tu peso.
             </p>
             <p class="mb-4 font-light md:text-lg lg:text-xl">
-                Lo que me mueve es que aprendas a comer de otra manera más saludable y nunca más tengas que depende
-                de
-                hacer dieta porque sepas mantener ese peso.
+                Al trabajar conmigo, te pido que te comprometas a seguir la dieta hasta alcanzar tu peso ideal.
+                Juntos, podemos lograr tus objetivos de salud y bienestar.
             </p>
-            <p class="font-light md:text-lg lg:text-xl">
-                Al iniciar una dieta conmigo pido compromiso de que vas a seguirla hasta el peso que tú definas. No
-                hago
-                dietas si no hay dicho compromiso
+            <p class="font-semibold md:text-lg lg:text-xl">
+                ¡Contáctame hoy para comenzar tu camino
+                hacia una vida más saludable!
             </p>
         </div>
         <div class="p-5">

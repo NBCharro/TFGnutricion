@@ -11,7 +11,7 @@
                 <div class="relative mb-12 space-y-4">
                     <h3 class="text-2xl font-semibold">Dieta personalizada</h3>
                     <hr>
-                    <p class="mb-6">Hago unas dietas de la hostia ajustadas a lo que te guste comer</p>
+                    <p class="mb-6">Diseñamos dietas de ensueño que se adaptan a tus gustos y te llevan al éxito. </p>
                 </div>
             </div>
             <div
@@ -20,7 +20,10 @@
                 <div class="relative mb-12 space-y-4">
                     <h3 class="text-2xl font-semibold">Adaptada a patologías</h3>
                     <hr>
-                    <p class="mb-6">¿Comes carne? Pues ración pequeña de carne o pescado a la plancha</p>
+                    <p class="mb-6">
+                        Para que puedas disfrutar de una vida saludable y llena de energía y sentirte saludable y
+                        radiante.
+                    </p>
                 </div>
             </div>
             <div
@@ -29,7 +32,9 @@
                 <div class="relative mb-12 space-y-4">
                     <h3 class="text-2xl font-semibold">Seguimiento</h3>
                     <hr>
-                    <p class="mb-6">Cada dos semanas te contacto y revisamos que tal lo llevas</p>
+                    <p class="mb-6">
+                        Juntos alcanzaremos tus metas y crearemos un estilo de vida sano y duradero.
+                    </p>
                 </div>
             </div>
             <div
@@ -38,7 +43,9 @@
                 <div class="relative mb-12 space-y-4">
                     <h3 class="text-2xl font-semibold">Sin pastillas milagros</h3>
                     <hr>
-                    <p class="mb-6">En esta casa seguimos las leyes de la termodinámica</p>
+                    <p class="mb-6">
+                        Aprenderás a cuidarte y mantener un peso saludable de manera sostenible.
+                    </p>
                 </div>
             </div>
         </div>
