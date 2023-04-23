@@ -1,4 +1,3 @@
-{{-- <header class="fixed z-50 top-0 w-full"> --}}
 <header>
     <nav
         class="border-gray-200 px-4 lg:px-6 py-2.5 bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
@@ -7,13 +6,25 @@
                 <img src="{{ asset('images/logo.png') }}" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
             </a>
             <div class="flex items-center lg:order-2">
-                <a href="{{ route('home') }}"
-                    class="font-medium rounded-lg text-sm w-full sm:w-fit px-5 py-2.5 text-center
-            bg-tertiary-100 hover:text-white hover:bg-primary text-black">
-                    Log in
-                </a>
+                @if (Auth::check())
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="font-medium rounded-lg text-sm w-full sm:w-fit px-5 py-2.5 text-center
+bg-tertiary-100 hover:text-white hover:bg-primary text-black">
+                        Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                @else
+                    <a href="{{ route('home') }}"
+                        class="font-medium rounded-lg text-sm w-full sm:w-fit px-5 py-2.5 text-center
+bg-tertiary-100 hover:text-white hover:bg-primary text-black">
+                        Log in
+                    </a>
+                @endif
                 <a href="#" id="botonModoNoche"
-                    class="text-gray-800 dark:text-white hover:bg-gray-50 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-tertiary-100 dark:hover:text-black">
+                    class="text-gray-800 dark:text-white  font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 ">
                     Modo noche
                 </a>
                 <button data-collapse-toggle="mobile-menu-2" type="button"
@@ -64,33 +75,35 @@
                             Comenzar mi plan
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('clientes') }}"
-                            class="block py-2 pr-4 pl-3 rounded lg:p-0
+                    @if (Auth::check())
+                        <li>
+                            <a href="{{ route('clientes') }}"
+                                class="block py-2 pr-4 pl-3 rounded lg:p-0
                             {{ Route::is('clientes') || Route::is('guardar_peso') ? 'text-tertiary-700' : 'text-gray-400' }}
                             dark:{{ Route::is('clientes') || Route::is('guardar_peso') ? 'text-white' : 'text-gray-400' }}
                             lg:bg-transparent">
-                            Clientes
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('dietas') }}"
-                            class="block py-2 pr-4 pl-3 rounded lg:p-0
+                                Clientes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('dietas') }}"
+                                class="block py-2 pr-4 pl-3 rounded lg:p-0
                             {{ Route::is('dietas') || Route::is('modificar_cliente') || Route::is('nuevo_cliente') || Route::is('actualizar_cliente') || Route::is('borrar_cliente') ? 'text-tertiary-700' : 'text-gray-400' }}
                             dark:{{ Route::is('dietas') || Route::is('modificar_cliente') || Route::is('modificar_cliente') || Route::is('nuevo_cliente') || Route::is('actualizar_cliente') || Route::is('borrar_cliente') ? 'text-white' : 'text-gray-400' }}
                             lg:bg-transparent">
-                            Dietas
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('mensajes') }}"
-                            class="block py-2 pr-4 pl-3 rounded lg:p-0
+                                Dietas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('mensajes') }}"
+                                class="block py-2 pr-4 pl-3 rounded lg:p-0
                             {{ Route::is('mensajes') ? 'text-tertiary-700' : 'text-gray-400' }}
                             dark:{{ Route::is('mensajes') ? 'text-white' : 'text-gray-400' }}
                             lg:bg-transparent">
-                            Mensajes
-                        </a>
-                    </li>
+                                Mensajes
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
