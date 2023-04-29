@@ -17,9 +17,22 @@ class MiDietaController extends Controller
          * @param Request $id_buscado
          * @return view('midieta')
          */
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         if ($id_buscado['id_cliente_buscado'] == '') {
             return view('midieta');
         }
+
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         $funciones_control_base_datos = new DataBaseController;
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $id_cliente = $id_buscado['id_cliente_buscado'];
@@ -40,6 +53,18 @@ class MiDietaController extends Controller
          * Permite que un cliente se ponga en contacto con nosotros
          * @return view('midieta')
          */
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         $funciones_crear_base_datos = new Crear_DB_Controller;
         $mensaje_externo = [
             "id_cliente" => $mensaje['id_cliente'],

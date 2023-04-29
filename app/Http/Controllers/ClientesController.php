@@ -18,6 +18,12 @@ class ClientesController extends Controller
          * @param Request $id_buscado
          * @return view('conectado')
          */
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         $funciones_control_base_datos = new DataBaseController;
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $clientes = $funciones_obtener_base_datos->obtener_clientes();
@@ -44,6 +50,12 @@ class ClientesController extends Controller
          * @param Request $datos_cliente
          * @return funcion volver_dietas_conectado()
          */
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         $nuevo_dato_peso = [
             'id_cliente' => $datos_cliente['id_cliente'],
             'fecha' => $datos_cliente['fechaPeso'],

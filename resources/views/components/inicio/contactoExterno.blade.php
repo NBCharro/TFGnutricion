@@ -41,7 +41,10 @@
             </div>
             <button type="submit"
                 class="font-medium rounded-lg text-sm w-full sm:w-fit px-5 py-2.5 text-center
-            bg-primary text-white hover:bg-tertiary-100 hover:text-black my-4">Enviar</button>
+bg-primary-500 text-white
+hover:bg-tertiary-100 hover:text-black
+dark:bg-tertiary-100 dark:text-black
+dark:hover:bg-primary-500 dark:hover:text-white">Enviar</button>
         </form>
     </div>
 </section>

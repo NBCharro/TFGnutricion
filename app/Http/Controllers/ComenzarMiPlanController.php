@@ -6,7 +6,6 @@ use App\Custom\Actualizar_DB_Controller;
 use App\Custom\DataBaseController;
 use App\Custom\Obtener_DB_Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 
 class ComenzarMiPlanController extends Controller
 {
@@ -20,6 +19,13 @@ class ComenzarMiPlanController extends Controller
         if ($id_buscado['id_cliente_buscado'] == '') {
             return view('comenzarmiplan');
         }
+
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         $funciones_control_base_datos = new DataBaseController;
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $id_cliente = $id_buscado['id_cliente_buscado'];
@@ -38,6 +44,13 @@ class ComenzarMiPlanController extends Controller
          * Funcion que guarda las respuestas a las preguntas iniciales
          * @return view('comenzarmiplan')
          */
+
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
         $preguntas_respuestas = [];
         foreach ($preguntas_respuestas_cliente->request as $key => $value) {

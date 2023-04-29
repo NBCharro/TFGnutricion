@@ -18,6 +18,12 @@ class DietasController extends Controller
          * Web: /dietas
          * return view('dietas')
          */
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $clientes = $funciones_obtener_base_datos->obtener_clientes();
         return view('dietas')->with('clientes', $clientes);
@@ -30,6 +36,12 @@ class DietasController extends Controller
          * Web: /nuevo_cliente
          * return view('dietas')
          */
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         $id_cliente = $nuevo_cliente->id_cliente;
         if ($id_cliente == '') {
             return view('dietas');
@@ -71,6 +83,12 @@ class DietasController extends Controller
          * Web: /modificar_cliente
          * return view('dietas')
          */
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $clientes = $funciones_obtener_base_datos->obtener_clientes();
         if ($modificar_cliente['selectClientes'] == '') {
@@ -95,6 +113,12 @@ class DietasController extends Controller
          * Web: /actualizar_cliente
          * return view('dietas')
          */
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
         $datos_cliente = [
             'id_cliente' => $actualizar_cliente->id_cliente,
@@ -175,6 +199,12 @@ class DietasController extends Controller
          * Web: /borrar_cliente
          * return view('dietas')
          */
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         $funciones_borrar_base_datos = new Borrar_DB_Controller;
         $mensaje_borrado = $funciones_borrar_base_datos->borrar_cliente($id_cliente['id_cliente']);
 

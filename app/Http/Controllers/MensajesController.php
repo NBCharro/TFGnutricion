@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Custom\Actualizar_DB_Controller;
 use App\Custom\Borrar_DB_Controller;
+use App\Custom\DataBaseController;
 use App\Custom\Obtener_DB_Controller;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,12 @@ class MensajesController extends Controller
          * Funcion que obtiene los mensajes internos y externos
          * @return view('mensajes')
          */
+        $funcion_no_existe_conexion_db = new DataBaseController;
+        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
+        if ($no_existe_conexion_db) {
+            return view('error');
+        }
+
         $with = [];
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
 

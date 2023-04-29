@@ -8,7 +8,8 @@
             </label>
             <input type="text" name="id_cliente" id="id_cliente" required
                 value='{{ $cliente_seleccionado['id_cliente'] }}'
-                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                disabled>
         </div>
         <div class="relative z-0 w-full mb-2 group">
             <label for="nombre_apellidos" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

@@ -1,3 +1,7 @@
+INSERT INTO `tfg`.`users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'nutricionista', 'nutricionista@email.com', '2023-04-29 06:48:25', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'nutricionista', 'G8TRruk3VF', '2023-04-29 06:48:25', '2023-04-29 06:48:25'),
+(2, 'administrador', 'administrador@email.com', '2023-04-29 06:48:25', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'administrador', 'oNSw3gfA6d', '2023-04-29 06:48:25', '2023-04-29 06:48:25');
+
 INSERT INTO `tfg`.`clientes`(`id`,`id_cliente`,`nombre_apellidos`,`telefono`,`email`,`direccion`,`fecha_inicio`,`peso_inicial`,`peso_final_1`,`peso_final_2`,`perdida_peso_1`,`semanas_perdida_peso_1`,`perdida_peso_2`,`semanas_perdida_peso_2`,`perdida_peso_final`,`created_at`,`updated_at`)
 VALUES
 (1,'jl3864','Jose Luis Panadero Gutierrez','926 901 067','jose.luis@gmail.com','Plaza Eduardo, 3, 0º A','04-09-2022',98,90,82,700,4,500,3,400,'2023-04-06 04:43:15','2023-04-06 04:43:15'),

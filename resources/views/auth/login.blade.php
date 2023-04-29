@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('page-title', 'Log in')
 @section('content')
     <section>
         @error('email')

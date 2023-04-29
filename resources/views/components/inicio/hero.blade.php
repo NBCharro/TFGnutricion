@@ -20,7 +20,10 @@
             <div class="mt-8 flex flex-wrap gap-4 text-center">
                 <a href="#servicios"
                     class="font-medium rounded-lg text-sm w-full sm:w-fit px-5 py-2.5 text-center
-            bg-primary text-white hover:bg-tertiary-100 hover:text-black">
+bg-primary-500 text-white
+hover:bg-tertiary-100 hover:text-black
+dark:bg-tertiary-100 dark:text-black
+dark:hover:bg-primary-500 dark:hover:text-white">
                     Saber más
                 </a>
             </div>

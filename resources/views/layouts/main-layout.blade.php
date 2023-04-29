@@ -13,9 +13,9 @@
     {{-- <script src="{{ asset('js/@yield('page-js')') }}" defer></script> --}}
 </head>
 
-{{-- <body> --}}
+<body>
 
-<body class="dark">
+    {{-- <body class="dark"> --}}
     <div
         class="flex flex-col h-screen justify-between bg-white dark:bg-tertiary-700 bg-[url('/public/images/dotGrid.png')] bg-center bg-repeat bg-fixed">
         @include('components.header')
