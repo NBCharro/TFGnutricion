@@ -279,6 +279,11 @@ class Crear_DB_Controller
 
     public function guardar_error_db($e, $archivo, $funcion, $paginaWeb)
     {
+        /**
+         * Guarda un error en la base de datos
+         *
+         * @return true o false
+         */
         $codigo_error = $e->getCode();
         $mensaje_error = $e->getMessage();
         $linea = $e->getLine();
