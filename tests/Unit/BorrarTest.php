@@ -60,14 +60,14 @@ class BorrarTest extends TestCase
     }
 
     /** @test */
-    public function testAccesoABaseDeDatosContactoInterno()
+    public function testObtenerContactoInterno()
     {
         // Crear un mensaje interno de prueba
-        Contacto_Interno::factory(1)->create(['id_cliente' => 'aa999']);
-
+        Contacto_Interno::factory(1)
+            ->create(['id_cliente' => 'aa999']);
         // Obtener el registro creado
-        $registro = Contacto_Interno::get()->where('id_cliente', 'aa999')->first();
-
+        $registro = Contacto_Interno::get()
+            ->where('id_cliente', 'aa999')->first();
         // Verificar que el mensaje haya sido creado
         $this->assertEquals('aa999', $registro->id_cliente);
     }

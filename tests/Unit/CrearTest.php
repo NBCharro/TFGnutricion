@@ -36,7 +36,7 @@ class CrearTest extends TestCase
         $platos = ['legumbres', 'ensalada mixta'];
 
         $crearDBController = new Crear_DB_Controller();
-        $creado = $crearDBController->crear_plato($id_cliente, $accion, $platos);
+        $creado = $crearDBController->crear_nuevo_plato($id_cliente, $accion, $platos);
 
         $this->assertTrue($creado);
     }
@@ -49,7 +49,7 @@ class CrearTest extends TestCase
         $platos = ['legumbres', 'ensalada mixta'];
 
         $crearDBController = new Crear_DB_Controller();
-        $crearDBController->crear_plato($id_cliente, $accion, $platos);
+        $crearDBController->crear_nuevo_plato($id_cliente, $accion, $platos);
 
         // Obtener el ID del mensaje creado
         $id = Plato::get()->where('id_cliente', 'aa999')->first()->id_cliente;
@@ -65,7 +65,7 @@ class CrearTest extends TestCase
         // Fuerza un error al intentar guardar el plato
         $accion = 'cenac';
         $crearDBController = new Crear_DB_Controller();
-        $result = $crearDBController->crear_plato($id_cliente, $accion, $platos);
+        $result = $crearDBController->crear_nuevo_plato($id_cliente, $accion, $platos);
         $this->assertFalse($result);
     }
 
@@ -76,7 +76,7 @@ class CrearTest extends TestCase
         $accion = 'cena';
         $platos = ['pollo asado', 'ensalada mixta'];
         $crearDBController = new Crear_DB_Controller();
-        $crearDBController->crear_plato($id_cliente, $accion, $platos);
+        $crearDBController->crear_nuevo_plato($id_cliente, $accion, $platos);
         $plato = Plato::where('id_cliente', $id_cliente)->where('accion', $accion)->first();
         $this->assertNotNull($plato);
         $this->assertJson($plato->platos);

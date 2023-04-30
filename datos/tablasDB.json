@@ -87,6 +87,20 @@
         }
     },
     {
+        "Nombre": "Errores",
+        "Descripcion": "Informacion de los errores aparecidos en la web",
+        "Nombre tabla": "errores",
+        "Campos": {
+            "codigoError": "VARCHAR",
+            "mensajeError": "TEXT",
+            "archivo": "VARCHAR",
+            "funcion": "VARCHAR",
+            "linea": "VARCHAR",
+            "fecha": "VARCHAR",
+            "paginaWeb": "VARCHAR"
+        }
+    },
+    {
         "Nombre": "Login",
         "Descripcion": "Usuarios de la plataforma",
         "Nombre tabla": "users",
