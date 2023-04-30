@@ -17,14 +17,15 @@ class MiDietaController extends Controller
          * @param Request $id_buscado
          * @return view('midieta')
          */
+
+        if ($id_buscado['id_cliente_buscado'] == '') {
+            return view('midieta');
+        }
+
         $funcion_no_existe_conexion_db = new DataBaseController;
         $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
         if ($no_existe_conexion_db) {
             return view('error');
-        }
-
-        if ($id_buscado['id_cliente_buscado'] == '') {
-            return view('midieta');
         }
 
         $funcion_no_existe_conexion_db = new DataBaseController;

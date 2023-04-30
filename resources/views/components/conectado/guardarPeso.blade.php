@@ -35,8 +35,11 @@
     </div>
     <input type="hidden" name="id_cliente" value="{{ $fechas_pesos_notaspasos['id_cliente'] }}">
     <button type="submit"
-        class="self-center font-medium rounded-lg text-sm w-fit px-5 py-2.5 text-center uppercase
-            bg-primary text-white hover:bg-tertiary-100 hover:text-black">
+        class="font-medium rounded-lg text-sm w-full sm:w-fit px-5 py-2.5 text-center
+bg-primary-500 text-white
+hover:bg-tertiary-100 hover:text-black
+dark:bg-tertiary-100 dark:text-black
+dark:hover:bg-primary-500 dark:hover:text-white">
         Guardar
     </button>
 </form>

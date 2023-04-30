@@ -48,16 +48,16 @@ function nombreAlimentoMinusculasSinTildes(plato) {
     return platoMinusculasSinTildes;
 }
 
-function convertirPlatoArray(str) {
-    const regex = /(\d*)\s*([^\d+]+)(?=\s*\+|$)/g;
-    const matches = [...str.matchAll(regex)];
-    const result = matches.map((match) => {
-        const quantity = match[1] === "" ? 1 : parseInt(match[1]);
-        const ingredient = match[2].trim();
-        return [quantity, ingredient];
-    });
-    return result.length > 0 ? result.flat() : [str];
-}
+// function convertirPlatoArray(str) {
+//     const regex = /(\d*)\s*([^\d+]+)(?=\s*\+|$)/g;
+//     const matches = [...str.matchAll(regex)];
+//     const result = matches.map((match) => {
+//         const quantity = match[1] === "" ? 1 : parseInt(match[1]);
+//         const ingredient = match[2].trim();
+//         return [quantity, ingredient];
+//     });
+//     return result.length > 0 ? result.flat() : [str];
+// }
 
 // Transformar el alimento obtenido de la API en un objeto que podamos usar
 function alimentoApiTratado(respuestaAPI) {

@@ -53,10 +53,14 @@ class Actualizar_DB_Controller
             if ($nuevo_dato_peso['nota_pasos'] > 0) {
                 // Buscar todas las entradas anteriores a la fecha dada con nota igual a 0
                 $entradas = Peso::get()->where('id_cliente', $nuevo_dato_peso['id_cliente']);
-                // Actualizar las entradas encontradas con nota igual a 5
+                // Actualizar las entradas encontradas con nota igual a 5 o con los pasos del cliente
+                $valor_nota_pasos = 5;
+                if ($nuevo_dato_peso['nota_pasos'] > 10) {
+                    $valor_nota_pasos = $nuevo_dato_peso['nota_pasos'];
+                }
                 foreach ($entradas as $entrada) {
                     if ($entrada->nota_pasos == 0 && strtotime($entrada->fecha) < strtotime($nuevo_dato_peso['fecha'])) {
-                        Peso::where(['id_cliente' => $entrada->id_cliente, 'fecha' => $entrada->fecha])->update(['nota_pasos' => 5]);
+                        Peso::where(['id_cliente' => $entrada->id_cliente, 'fecha' => $entrada->fecha])->update(['nota_pasos' => $valor_nota_pasos]);
                     }
                 }
             }
@@ -75,41 +79,6 @@ class Actualizar_DB_Controller
         }
         return $actualizado;
     }
-
-    // private function cambia_datos_pesos_cliente($peso_cliente)
-    // {
-    //     $cambia_dato = false;
-    //     try {
-    //         $peso_cliente_db = Peso::get()->where('id_cliente', $peso_cliente['id_cliente'])->first();
-    //         $cliente_db = Cliente::get()->where('id_cliente', $peso_cliente['id_cliente'])->first();
-    //         $fecha_inicio_db = $cliente_db->fecha_inicio;
-    //         $peso_inicial_db = $cliente_db->peso_inicial;
-    //         $peso_final_1_db = $cliente_db->peso_final_1;
-    //         $peso_final_2_db = $cliente_db->peso_final_2;
-    //         $perdida_peso_1_db = $peso_cliente_db->perdida_peso_1;
-    //         $semanas_perdida_peso_1_db = $peso_cliente_db->semanas_perdida_peso_1;
-    //         $perdida_peso_2_db = $peso_cliente_db->perdida_peso_2;
-    //         $semanas_perdida_peso_2_db = $peso_cliente_db->semanas_perdida_peso_2;
-    //         $perdida_peso_final_db = $peso_cliente_db->perdida_peso_final;
-
-    //         if (
-    //             $peso_cliente['fecha_inicio'] != $fecha_inicio_db ||
-    //             $peso_cliente['peso_inicial'] != $peso_inicial_db ||
-    //             $peso_cliente['peso_final_1'] != $peso_final_1_db ||
-    //             $peso_cliente['peso_final_2'] != $peso_final_2_db ||
-    //             $peso_cliente['perdida_peso_1'] != $perdida_peso_1_db ||
-    //             $peso_cliente['semanas_perdida_peso_1'] != $semanas_perdida_peso_1_db ||
-    //             $peso_cliente['perdida_peso_2'] != $perdida_peso_2_db ||
-    //             $peso_cliente['semanas_perdida_peso_2'] != $semanas_perdida_peso_2_db ||
-    //             $peso_cliente['perdida_peso_final'] != $perdida_peso_final_db
-    //         ) {
-    //             $cambia_dato = true;
-    //         }
-    //     } catch (\Throwable $e) {
-    //         # code...
-    //     }
-    //     return $cambia_dato;
-    // }
 
     function marcar_mensaje_leido_interno($id_mensaje)
     {
@@ -181,7 +150,6 @@ class Actualizar_DB_Controller
             DB::commit();
             $actualizado = true;
         } catch (\Exception $e) {
-            // dump($e);
             DB::rollBack();
             $funciones_crear_base_datos = new Crear_DB_Controller;
             $archivo = '/app/Custom/Actualizar_DB_Controller.php';
@@ -311,6 +279,7 @@ class Actualizar_DB_Controller
 
         $pesos = [];
         $semana = 1;
+
         $peso_iterativo = $peso_inicial;
         $peso_fin = $peso_final_1;
         if ($peso_final_2 > 0) {

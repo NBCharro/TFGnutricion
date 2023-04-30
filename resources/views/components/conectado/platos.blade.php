@@ -2,7 +2,8 @@
     <div class="block max-w-sm rounded-lg pt-6">
         <div class="relative mb-4">
             <select id="plato"
-                class="border text-m rounded-lg block w-full py-2.5 px-8 bg-primary-600 text-white dark:bg-gray-800">
+                class="border text-m rounded-lg block w-full py-2.5 px-8 dark:bg-primary-500 dark:text-white
+bg-tertiary-100 text-black">
                 @foreach ($platos as $key => $plato)
                     @if (is_array($plato) && count($plato) > 0)
                         @if ($key == 'mediamanana')
