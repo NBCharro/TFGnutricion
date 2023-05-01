@@ -135,7 +135,7 @@ class Obtener_DB_Controller
                 $datos_cliente_DB = Cliente::get()->where('id_cliente', $id_cliente)->first();
 
                 $datos_grafico['peso_final_1'] = array_fill(0, count($fechas), $datos_cliente_DB['peso_final_1']);
-                $datos_grafico['peso_final_2'] = array_fill(0, count($fechas), $datos_cliente_DB['peso_final_1']);
+                $datos_grafico['peso_final_2'] = array_fill(0, count($fechas), $datos_cliente_DB['peso_final_2']);
             }
         } catch (\Throwable $e) {
             $funciones_crear_base_datos = new Crear_DB_Controller;
