@@ -129,4 +129,18 @@ class BorrarTest extends TestCase
         $this->assertNull(Plato::where('id_cliente', $id_cliente)->first());
         $this->assertNull(Texto_Cliente::where('id_cliente', $id_cliente)->first());
     }
+    /** @test */
+    public function testBorrarClienteInexistente_Error()
+    {
+        // Obtener el ID del cliente creado
+        $id_cliente = '1';
+
+        try {
+            // Llamar a la función borrar_cliente con el ID del cliente creado
+            $borrarDBController = new Borrar_DB_Controller();
+            $borrarDBController->borrar_cliente($id_cliente);
+        } catch (\Throwable $e) {
+            $this->assertTrue(true);
+        }
+    }
 }

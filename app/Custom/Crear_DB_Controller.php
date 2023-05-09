@@ -90,7 +90,7 @@ class Crear_DB_Controller
          * Crea un nuevo plato en la tabla plato
          * @param $id_cliente
          * @param $accion: enum ['desayuno','media manaña','comida','merienda','cena','recena','otro']
-         * @param $plato: array
+         * @param $plato: string
          * @return bool
          */
         $creado = false;
