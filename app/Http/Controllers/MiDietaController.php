@@ -28,12 +28,6 @@ class MiDietaController extends Controller
             return view('error');
         }
 
-        $funcion_no_existe_conexion_db = new DataBaseController;
-        $no_existe_conexion_db = $funcion_no_existe_conexion_db->comprobar_no_existe_conexion_db();
-        if ($no_existe_conexion_db) {
-            return view('error');
-        }
-
         $funciones_control_base_datos = new DataBaseController;
         $funciones_obtener_base_datos = new Obtener_DB_Controller;
         $id_cliente = $id_buscado['id_cliente_buscado'];

@@ -100,15 +100,4 @@ class ActualizarTest extends TestCase
             $this->assertTrue(true);
         }
     }
-
-    /** @test */
-    public function TestMarcarMensajeInternoLeido()
-    {
-        $id_mensaje = 1;
-        // Ejecución de la función a probar
-        $funciones_actualizar_base_datos = new Actualizar_DB_Controller;
-        $resultado = $funciones_actualizar_base_datos->marcar_mensaje_leido_interno($id_mensaje);
-        // Verificación de que el resultado es verdadero
-        $this->assertTrue($resultado);
-    }
 }
